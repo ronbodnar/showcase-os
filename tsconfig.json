@@ -1,0 +1,16 @@
+{
+  "files": [],
+  "references": [{ "path": "./tsconfig.app.json" }, { "path": "./tsconfig.node.json" }],
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "types": ["node", "vitest/globals"],
+    "paths": {
+      "@assets/*": ["assets/*"],
+      "@core/*": ["core/*"],
+      "@features/*": ["features/*"],
+      "@shared/*": ["shared/*"],
+      "@sharedIcons": ["assets/icons/shared/*"],
+      "@themeIcons": ["assets/icons/themes/*"]
+    }
+  }
+}
