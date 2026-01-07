@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="Neural Network Icon">
+  <defs>
+    <linearGradient id="nodeGrad" x1="0" x2="1">
+      <stop offset="0%" stop-color="#2EC4B6"/>
+      <stop offset="100%" stop-color="#1FA37A"/>
+    </linearGradient>
+    <linearGradient id="lineGrad" x1="0" x2="1">
+      <stop offset="0%" stop-color="#00C4FF"/>
+      <stop offset="100%" stop-color="#005ABF"/>
+    </linearGradient>
+  </defs>
+
+  <!-- input layer nodes -->
+  <circle cx="80" cy="96" r="24" fill="url(#nodeGrad)"/>
+  <circle cx="80" cy="256" r="24" fill="url(#nodeGrad)"/>
+  <circle cx="80" cy="416" r="24" fill="url(#nodeGrad)"/>
+
+  <!-- hidden layer nodes -->
+  <circle cx="256" cy="96" r="24" fill="url(#nodeGrad)"/>
+  <circle cx="256" cy="256" r="24" fill="url(#nodeGrad)"/>
+  <circle cx="256" cy="416" r="24" fill="url(#nodeGrad)"/>
+
+  <!-- output layer nodes -->
+  <circle cx="432" cy= "176" r="24" fill="url(#nodeGrad)"/>
+  <circle cx="432" cy= "336" r="24" fill="url(#nodeGrad)"/>
+
+  <!-- connections: input -> hidden -->
+  <path d="M80 96 L256 96" stroke="url(#lineGrad)" stroke-width="3"/>
+  <path d="M80 96 L256 256" stroke="url(#lineGrad)" stroke-width="3"/>
+  <path d="M80 96 L256 416" stroke="url(#lineGrad)" stroke-width="3"/>
+  <path d="M80 256 L256 96" stroke="url(#lineGrad)" stroke-width="3"/>
+  <path d="M80 256 L256 256" stroke="url(#lineGrad)" stroke-width="3"/>
+  <path d="M80 256 L256 416" stroke="url(#lineGrad)" stroke-width="3"/>
+  <path d="M80 416 L256 96" stroke="url(#lineGrad)" stroke-width="3"/>
+  <path d="M80 416 L256 256" stroke="url(#lineGrad)" stroke-width="3"/>
+  <path d="M80 416 L256 416" stroke="url(#lineGrad)" stroke-width="3"/>
+
+  <!-- connections: hidden -> output -->
+  <path d="M256 96 L432 176" stroke="url(#lineGrad)" stroke-width="3"/>
+  <path d="M256 96 L432 336" stroke="url(#lineGrad)" stroke-width="3"/>
+  <path d="M256 256 L432 176" stroke="url(#lineGrad)" stroke-width="3"/>
+  <path d="M256 256 L432 336" stroke="url(#lineGrad)" stroke-width="3"/>
+  <path d="M256 416 L432 176" stroke="url(#lineGrad)" stroke-width="3"/>
+  <path d="M256 416 L432 336" stroke="url(#lineGrad)" stroke-width="3"/>
+</svg>

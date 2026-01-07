@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="MTG Virtual Binder icon">
+  <defs>
+    <!-- Ember gradient -->
+    <radialGradient id="flame" cx="40%" cy="35%" r="75%">
+      <stop offset="0%" stop-color="#A1391E"/>
+      <stop offset="55%" stop-color="#6E2418"/>
+      <stop offset="100%" stop-color="#3A1A12"/>
+    </radialGradient>
+
+    <!-- Gold accent gradient -->
+    <linearGradient id="gold" x1="0" x2="1">
+      <stop offset="0%" stop-color="#F4C76A"/>
+      <stop offset="100%" stop-color="#D49729"/>
+    </linearGradient>
+
+    <!-- faint magical aura -->
+    <radialGradient id="aura" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="rgba(255,200,120,0.25)" />
+      <stop offset="100%" stop-color="rgba(255,200,120,0)" />
+    </radialGradient>
+  </defs>
+
+  <!-- background base -->
+  <rect width="512" height="512" rx="72" ry="72" fill="url(#flame)" />
+
+  <!-- inner aura -->
+  <circle cx="256" cy="256" r="190" fill="url(#aura)" />
+
+  <!-- gold rim -->
+  <circle cx="256" cy="256" r="196" fill="none" stroke="url(#gold)" stroke-width="18" opacity="0.9"/>
+
+  <!-- MTG text (dominant) -->
+  <text x="50%" y="46%" text-anchor="middle" dominant-baseline="central"
+        font-family="Georgia, 'Times New Roman', serif"
+        font-weight="700"
+        font-size="108"
+        fill="#F9EAC2"
+        letter-spacing="-3"
+        style="paint-order: stroke; stroke: #2a1208; stroke-width: 2;">
+    MTG
+  </text>
+
+  <!-- VB subtext (supporting) -->
+  <text x="50%" y="66%" text-anchor="middle" dominant-baseline="central"
+        font-family="Georgia, 'Times New Roman', serif"
+        font-weight="700"
+        font-size="72"
+        fill="#EBC565"
+        letter-spacing="-2"
+        style="paint-order: stroke; stroke: #2a1208; stroke-width: 1;">
+    VB
+  </text>
+</svg>

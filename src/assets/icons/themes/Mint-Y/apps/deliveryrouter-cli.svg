@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" role="img" aria-label="DeliverRouter CLI Icon">
+  <defs>
+    <linearGradient id="centralGrad" x1="0" x2="1">
+      <stop offset="0%" stop-color="#FFB347"/>
+      <stop offset="100%" stop-color="#FF5E5B"/>
+    </linearGradient>
+    <linearGradient id="edgeGrad" x1="0" x2="1">
+      <stop offset="0%" stop-color="#00C4FF"/>
+      <stop offset="100%" stop-color="#005ABF"/>
+    </linearGradient>
+  </defs>
+
+  <!-- central hub -->
+  <circle cx="128" cy="128" r="28" fill="url(#centralGrad)" stroke="#FF0000" stroke-width="2"/>
+
+  <!-- outgoing arrows -->
+  <path d="M128 128 L64 64" stroke="url(#edgeGrad)" stroke-width="4" marker-end="url(#arrow)"/>
+  <path d="M128 128 L192 64" stroke="url(#edgeGrad)" stroke-width="4" marker-end="url(#arrow)"/>
+  <path d="M128 128 L64 192" stroke="url(#edgeGrad)" stroke-width="4" marker-end="url(#arrow)"/>
+  <path d="M128 128 L192 192" stroke="url(#edgeGrad)" stroke-width="4" marker-end="url(#arrow)"/>
+
+  <!-- arrow marker -->
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L10,5 L0,10 L3,5 z" fill="#00C4FF"/>
+    </marker>
+  </defs>
+</svg>
