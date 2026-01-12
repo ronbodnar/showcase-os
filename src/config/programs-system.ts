@@ -119,8 +119,8 @@ export const SYSTEM_PROGRAMS_META = [
     window: {
       spawn: {
         size: { width: 0.4, height: 0.55, unit: "%" },
-        minSize: { width: 700, height: 600 },
-        maxSize: { width: 1000, height: 750 },
+        minSize: { width: 700, height: 610 },
+        maxSize: { width: 1000, height: 610 },
       },
     },
     details: {

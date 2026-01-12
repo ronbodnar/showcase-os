@@ -18,6 +18,7 @@ import LoanEligibilityMLSrc from "@themeIcons/Mint-Y/apps/loan-eligibility-ml.sv
 import MTGVirtualBinderSrc from "@themeIcons/Mint-Y/apps/mtg-virtual-binder.svg"
 import OEDParserSrc from "@themeIcons/Mint-Y/apps/oed-parser.svg"
 import OSDClaimManagerSrc from "@themeIcons/Mint-Y/apps/osd-claim-manager.svg"
+import PDFViewerSrc from "@themeIcons/Mint-Y/apps/pdf-viewer.png"
 import PhotoViewerSrc from "@themeIcons/Mint-Y/apps/photo-viewer.png"
 import ShowcaseOSSrc from "@themeIcons/Mint-Y/apps/showcase-os.svg"
 import SoftwareCenterSrc from "@themeIcons/Mint-Y/apps/software-center.png"
@@ -55,6 +56,7 @@ export const icons: Record<string, IconMetadata> = {
   MTGVirtualBinder: makeIcon(MTGVirtualBinderSrc),
   OEDParser: makeIcon(OEDParserSrc),
   OSDClaimManager: makeIcon(OSDClaimManagerSrc),
+  PDFViewer: makeIcon(PDFViewerSrc),
   PhotoViewer: makeIcon(PhotoViewerSrc),
   ShowcaseOS: makeIcon(ShowcaseOSSrc),
   SoftwareCenter: makeIcon(SoftwareCenterSrc),

@@ -1,8 +1,8 @@
 import { Theme } from "./types"
-import { theme as MintY } from "./skins/Mint-Y"
-import { theme as Fluent } from "./skins/Mint-Y-light"
+import { theme as MintYDark } from "./skins/Mint-Y"
+import { theme as MintYLight } from "./skins/Mint-Y-light"
 
 export const Themes = {
-  "Mint-Y (dark)": MintY,
-  "Mint-Y (light)": Fluent,
+  "Mint-Y (dark)": MintYDark,
+  "Mint-Y (light)": MintYLight,
 } as const satisfies Record<string, Theme>
