@@ -7,7 +7,11 @@
 <h1 align="center">Showcase OS</h1>
 
 <p align="center">
-  The Developer's Operating System Portfolio
+  A web-based, extensible desktop environment for developers.
+</p>
+
+<p align="center">
+  Launch apps, move windows, and showcase your projects like a living operating system.
 </p>
 
 <p align="center">
@@ -16,10 +20,8 @@
   <img src="https://img.shields.io/badge/Vite-Bundler-646cff" />
   <img src="https://img.shields.io/badge/License-GPL--3.0-green" />
   <img src="https://github.com/ronbodnar/showcase-os/actions/workflows/ci.yml/badge.svg" alt="CI Status" />
-  <img src="https://img.shields.io/badge/Architecture-OS--Inspired-critical" />
+  <img src="https://github.com/ronbodnar/showcase-os/actions/workflows/deploy.yml/badge.svg" alt="CD Status" />
 </p>
-
-**Showcase OS** is an extensible desktop environment built entirely for the web. It functions as a **living operating system simulation** where developers showcase real projects as first‑class, system‑level applications. If you understand it, you can extend it.
 
 <br />
 
@@ -31,34 +33,189 @@
 
 ## 📍 Table of Contents
 
-- [🚀 Vision](#vision)
-- [🧠 Architectural Philosophy](#philosophy)
-- [🏗️ System Architecture](#architecture)
-- [🧩 Applications as First‑Class Citizens](#applications)
-- [🛠️ Customization & Extension](#customization)
-- [📂 Project Structure (High‑Level)](#structure)
-- [🧪 Testing Strategy](#testing)
 - [🚦 Getting Started](#getting-started)
-- [💡 Core Concepts](#concepts)
+- [🛠️ Add Your Projects or Apps](#customization)
+- [🧩 Extend System Programs](#programs)
+- [🎨 Modifying Themes](#themes)
+- [📂 Project Structure (High‑Level)](#structure)
+- [🏗️ Architecture Overview](#architecture)
+- [🧪 Testing Strategy](#testing)
+- [📫 Connect](#connect)
 - [🎨 Credits & Assets](#credits)
 
 <br />
 
-<a name="vision"></a>
+<a name="getting-started"></a>
 
-## 🚀 Vision
+## 🚦 Getting Started
 
-Most portfolios are static. **Showcase OS is experiential.**
+### Clone
 
-Visitors don’t scroll, they launch apps, move windows, open system settings, browse a software center, and interact with your work the same way they would on a real workstation.
+```
+git clone https://github.com/ronbodnar/showcase-os.git
+cd showcase-os
+```
+
+### Install Dependencies
+
+_Note: This step can be skipped if you are running with docker._
+
+```
+npm install
+```
+
+### Run Locally
+
+```
+npm run dev        # Local development
+npm run devhost    # Locally hosted server
+```
+
+### Production Build
+
+```
+npm run build
+```
+
+### Docker (Optional)
+
+```
+docker build -t showcase-os .
+docker run --rm -p 8080:80 showcase-os
+```
+
+Open http://localhost:8080 in your browser.
 
 <br />
 
-<a name="philosophy"></a>
+<a name="customization"></a>
 
-## 🧠 Architectural Philosophy
+## 🛠️ Add Your Projects or Apps
 
-Showcase OS is built around **strict separation of concerns**.  
+1. Add project metadata: `src/config/programs-developer.ts`
+2. Add project to the Software Center: `src/config/config.ts`
+3. Override or customize the launcher: `src/config/launchers.ts`
+
+_Note: Step 3 is required if you are supplying a URL for the iframe to the `browser` program, otherwise the system generates a launcher automatically._
+
+<br />
+
+<a name="programs"></a>
+
+## 🧩 Extend System Programs
+
+Programs are React components wrapped in OS‑managed windows.
+
+### Built-in Programs
+
+`src/features/program/components`
+
+- App Drawer
+- Browser
+- Photo Viewer
+- Software Center
+- Start Menu
+- System Info
+- System Settings
+- Terminal (command registry–driven, powered by XTerm)
+- Visual Studio Code (powered by github1s)
+
+The OS automatically handles:
+
+- Launcher creation
+- Window lifecycle
+- Process lifecycle
+- Environment compatibility
+
+### Add Custom Programs
+
+1. Add Program metadata: `src/config/programs-system.ts`
+2. Create a React Component for your new Program: `src/features/program/components`
+3. Register the Component in the program map: `src/features/program/components/index.ts`
+
+_Note: Programs are lazy-loaded by default and use a resolver to map the component. You can eagerly load it by providing the Component directly (Start Menu is an example)_
+
+<br />
+
+<a name="themes"></a>
+
+## 🎨 Modifying Themes
+
+### Icons
+
+`src/assets/icons`
+
+Icons are loaded asynchronously on demand using loaders within the Theme's skin.
+
+#### Add a new icon:
+
+1. Update the `ThemeIconSet` type in `src/features/theme/types.ts` with the new icon name
+2. Add the icon file to `src/assets/icons/themes/THEME_NAME/...` (pick a category or create a new one)
+3. Register the icon file with the skin in `src/features/theme/skins/THEME_NAME/icons/(desktop, mobile, or shared).ts`
+
+_Note: Mobile icons are not available on desktop and vice versa. The shared icon set is available on all platforms._
+
+<br />
+
+### Wallpapers
+
+`src/assets/wallpaper`
+
+The system will apply the correct wallpaper based on the user's viewport and defaults to 1080p.
+
+You can add or change the supported resolutions in `src/features/theme/services/themeService.ts` within `detectResolution()`.
+
+#### Add a new wallpaper:
+
+1. Create a new directory in `src/assets/wallpaper/`
+2. Add the .webp files to the directory (desktop-1080p is the fallback wallpaper)
+3. Make the wallpaper available in `src/features/theme/assets/wallpaper.ts`
+
+<br />
+
+### Creating or Extending Skins
+
+`src/features/theme/skins`
+
+The default theme is **Mint-Y (dark)** `src/features/theme/skins/Mint-Y/index.ts` and contains the complete default icon set.
+
+#### Add a new skin:
+
+1. Copy the **Mint-Y (light)** skin: `cp -r src/features/theme/skins/Mint-Y-light src/features/theme/skins/YOUR_THEME_NAME`
+2. Update the theme config within `index.ts` with a new name and scheme
+3. Override desktop, mobile, or shared icons within `icons/`. The default icon set is already included as a fallback.
+
+To ensure the system picks up new themes or to change a skin directory name, you must also update the map in `src/features/theme/index.ts`.
+
+<br />
+
+<a name="structure"></a>
+
+## 📂 Project Structure (High‑Level)
+
+```txt
+public/               # Static assets for branding and deployment
+
+src/
+├── config/           # Static configuration files to easily extend or modify the system
+├── core/             # OS hooks, services, overlays, global stores
+├── features/         # OS subsystems (environments, grids, windows/app cards, launchers, programs, themes)
+├── assets/           # Icons, wallpapers, Software Center previews
+├── shared/           # Reusable UI primitives & hooks
+├── test/             # Setup for unit tests
+├── App.tsx           # Root application shell
+├── main.tsx          # Entry point
+└── index.css         # Global styles
+
+index.html            # Site metadata and root element
+```
+
+<br />
+
+<a name="architecture"></a>
+
+## 🏗️ Architecture Overview
+
 Every subsystem behaves like its real OS counterpart, but implemented in a modern web stack.
 
 ### Core Principles
@@ -71,43 +228,44 @@ Every subsystem behaves like its real OS counterpart, but implemented in a moder
 
 <br />
 
-<a name="architecture"></a>
+### Core Services
 
-## 🏗️ System Architecture
-
-### Core Services (`src/core/services`)
-
-Centralized system logic with no UI coupling.
-
-- **gridService** — Desktop icon placement and snapping
-- **launcherService** — Desktop, menu, panel, and mobile launch flows
-- **osService** — Boot, shutdown, lock, global state
-- **processService** — Program lifecycle, PID tracking, runtime state
-- **programService** — Program registration and metadata
-- **overlayService** — Context menus, dialogs, tooltips
-- **windowService** — Focus, z‑index, resize/maximize/minimize state
+| Service          | Responsibility                                         |
+| ---------------- | ------------------------------------------------------ |
+| `osService`      | Platform detection, desktop/mobile state               |
+| `systemService`  | Boot, shutdown, lock, global state                     |
+| `panelService`   | Panel launcher management, pinning/unpinning launchers |
+| `processService` | Program lifecycle, PID tracking, runtime state         |
+| `overlayService` | Overlay state and lifecycle                            |
 
 <br />
 
-### Window System (`src/features/window`)
+### Feature Services
 
-A full windowing abstraction.
-
-- Custom window frames
-- Dragging, resizing, snapping
-- Title bars, controls, focus handling
+| Service           | Responsibility                                      |
+| ----------------- | --------------------------------------------------- |
+| `appCardService`  | App card management (mobile equivalent of a window) |
+| `programService`  | Program registration and metadata                   |
+| `gridService`     | Grid launcher placement, resizing, snapping         |
+| `launcherService` | Desktop, menu, panel, and mobile launch flows       |
+| `programService`  | In-program navigation, Program Component access     |
+| `themeService`    | Applying theme settings, asset management           |
+| `windowService`   | Focus, z‑index, resize/maximize/minimize state      |
 
 <br />
 
-### Environments (`src/features/environments`)
+### Environments
 
-Dual‑mode OS environments sharing the same core services.
+`src/features/environments`
+
+Dual‑mode OS environments sharing the same services.
 
 #### Desktop
 
 - Grid‑based desktop
 - Panel + system tray
 - Floating resizable windows
+- Live window previews (panel hover)
 
 #### Mobile
 
@@ -119,106 +277,16 @@ Dual‑mode OS environments sharing the same core services.
 
 <br />
 
-### Theme Engine (`src/features/theme`)
+### Overlays
 
-A full, extensible skinning system.
+`src/core/overlays`
 
-- Icon packs (separated by desktop / mobile / shared to save resources)
-- Wallpapers with resolution awareness
-- Spacing, sizing, and density scaling
-- Multiple default skins (Mint‑Y (dark), Mint‑Y (light))
+Tooltips, context menus, dialogs, and window compositor (for live previews on the panel/taskbar)
 
-<br />
-
-<a name="applications"></a>
-
-## 🧩 Applications as First‑Class Citizens
-
-Applications are real React components wrapped in OS‑managed windows.
-
-### Built‑in Programs
-
-- Browser
-- Photo Viewer
-- Software Center
-- System Info
-- System Settings
-- Terminal (command registry–driven, built with XTerm)
-- Visual Studio Code (using GitHub1s)
-
-<br />
-
-<a name="customization"></a>
-
-## 🛠️ Customization & Extension
-
-### 1. Add Your Projects
-
-Edit:
-
-```ts
-src / features / program / metadata / developer.ts
-```
-
-Define:
-
-- Icons & launch locations
-- Default window size
-- Categories
-
-<br />
-
-### 2. Create New Applications
-
-1. Create a component:
-
-```txt
-src/features/program/components/
-```
-
-2. Register it:
-
-```ts
-src / features / program / registry.ts
-```
-
-The OS automatically handles:
-
-- Window chrome
-- Process lifecycle
-- Focus and z‑index
-- Environment compatibility
-
-<br />
-
-### 3. Themes & Assets
-
-- Icons: `src/assets/icons`
-- Wallpapers: `src/assets/wallpaper`
-- Skins: `src/features/theme/skins`
-
-Supports:
-
-- 4K & ultrawide wallpapers
-- Mobile‑specific assets
-- SVG‑first icon pipelines
-
-<br />
-
-<a name="structure"></a>
-
-## 📂 Project Structure (High‑Level)
-
-```txt
-src/
-├── core/             # OS services, overlays, global stores
-├── features/         # OS subsystems (windowing, launcher, programs)
-├── assets/           # Icons, wallpapers, previews
-├── shared/           # Reusable UI primitives & hooks
-├── App.tsx           # Root application shell
-├── main.tsx          # Entry point
-└── index.css         # Global styles
-```
+- Syle variant support
+- Positional constraints (within viewport, clamp to edge)
+- Offset support from client mouse position
+- `src/core/hooks/useOverlayPosition.ts` for consistent functionality
 
 <br />
 
@@ -226,11 +294,11 @@ src/
 
 ## 🧪 Testing Strategy
 
-Showcase OS employs a comprehensive test suite powered by Vitest, focusing on "System-Level" validation. Since the UI is a complex state-driven simulation, I prioritize testing the service logic and state transitions that drive the experience.
+Since the UI is a complex state-driven simulation, I prioritize testing the service logic and state transitions that drive the experience.
 
 ### Core Testing Pillars
 
-- **Service-Level Unit Tests** — Every core service is validated for mathematical accuracy and logical correctness.
+- **Service-Level Unit Tests** — Every service is validated for mathematical accuracy and logical correctness.
 - **Strict State Mocking** — vi.hoisted patterns to deterministically mock Zustand stores, ensuring tests are isolated.
 - **Environment Simulation** — Logic is validated across both Desktop and Mobile modes, ensuring responsive system behavior.
 - **Idempotency & Caching** — Registry services are tested to verify component loaders and asset managers cache correctly, preventing performance leaks.
@@ -243,72 +311,7 @@ npm run test
 
 <br />
 
-<a name="getting-started"></a>
-
-## 🚦 Getting Started
-
-### Run with Docker
-
-Build the image:
-
-```bash
-docker build -t showcase-os .
-```
-
-Run the container:
-
-```bash
-docker run --rm -p 8080:80 showcase-os
-```
-
-Open http://localhost:8080 in your browser.
-
-### Install
-
-```bash
-npm install
-```
-
-### Development
-
-Local server:
-
-```bash
-npm run dev
-```
-
-Locally hosted server:
-
-```bash
-npm run devhost
-```
-
-### Production Build
-
-```bash
-npm run build
-```
-
-<br />
-
-<a name="concepts"></a>
-
-## 💡 Core Concepts
-
-- **Program vs Process**  
-  A _Program_ is metadata + component.  
-  A _Process_ is a live runtime instance with a PID.
-
-- **Window ≠ App**  
-  Windows are containers. Programs can spawn multiple processes.
-
-- **Grid System**  
-  Desktop icons persist position using `gridService`.
-
-- **Overlay Layer**  
-  Context menus, dialogs, previews, and tooltips are globally managed.
-
-<br />
+<a name="connect"></a>
 
 ## 📫 Connect
 
@@ -340,7 +343,3 @@ This project is an open-source tribute to desktop environments. It utilizes seve
 ### Licensing
 
 This software is licensed under **GPL-3.0**. This ensures the project remains free and open-source, respecting the licenses of the bundled Linux-based assets.
-
-<br />
-
-> Development Note: This repository follows a curated commit history to demonstrate the architectural progression of the OS, from core service orchestration to environment-specific UI implementation.
