@@ -13,6 +13,7 @@ const navigationHandlers: Record<string, ProgramNavigation> = {}
 const programComponentMap = new Map<ProgramId, React.ComponentType<any>>()
 
 export const programService = {
+  // Bridges OS title bar controls to internal program navigation state.
   registerNavigationHandler: (id: string, handler: ProgramNavigation) => {
     navigationHandlers[id] = handler
   },

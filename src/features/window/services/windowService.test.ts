@@ -6,7 +6,6 @@ import { useWindowStore } from "../store/useWindowStore"
 import { processService } from "@core/services/processService"
 import { osService } from "@core/services/osService"
 import { useDesktopStore } from "@features/environments/desktop/store/useDesktopStore"
-import { useProcessStore } from "@core/store/useProcessStore"
 
 vi.mock("@core/services/osService")
 vi.mock("@core/services/processService")
@@ -119,14 +118,12 @@ describe("windowService", () => {
 
       useDesktopStore.setState({ ephemeralWindowId: targetId })
 
-      const removeWindowSpy = vi.spyOn(useWindowStore.getState(), "removeWindow")
-      const removeProcessSpy = vi.spyOn(useProcessStore.getState(), "removeProcess")
+      const minimizeWindowSpy = vi.spyOn(useWindowStore.getState(), "minimizeWindow")
 
       const result = windowService.tryCloseEphemeralWindow({ x: 200, y: 200 })
 
       expect(result).toBe(true)
-      expect(removeWindowSpy).toHaveBeenCalledWith(targetId)
-      expect(removeProcessSpy).toHaveBeenCalledWith(targetProcessId)
+      expect(minimizeWindowSpy).toHaveBeenCalledWith(targetId)
       expect(useDesktopStore.getState().ephemeralWindowId).toBeUndefined()
     })
 

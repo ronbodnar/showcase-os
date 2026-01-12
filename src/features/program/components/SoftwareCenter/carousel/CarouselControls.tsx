@@ -1,5 +1,5 @@
-import { Button } from "@shared/components/button/Button"
-import Icon from "@shared/components/icon/Icon"
+import { Button } from "@shared/components/Button"
+import Icon from "@shared/components/Icon"
 
 export interface CarouselControlsProps {
   index: number

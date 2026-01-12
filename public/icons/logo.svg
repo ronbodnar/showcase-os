@@ -1,0 +1,44 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#008a5a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00a86b;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#009860;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00b070;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Outer OS Window Frame -->
+  <rect x="5" y="5" width="190" height="190" rx="12" fill="url(#grad1)" opacity="0.9"/>
+  
+  <!-- Window Title Bar -->
+  <rect x="5" y="5" width="190" height="30" rx="12" fill="url(#grad2)"/>
+  <rect x="5" y="26" width="190" height="9" fill="url(#grad2)"/>
+  
+  <!-- Window Controls -->
+  <circle cx="178" cy="20" r="6" fill="#ef4444"/>
+  <circle cx="161" cy="20" r="6" fill="#fbbf24"/>
+  <circle cx="142" cy="20" r="6" fill="#22c55e"/>
+  
+  <!-- Curly Braces Symbol - { } -->
+  <g transform="translate(100, 115) scale(1.2)">
+    <!-- Left brace -->
+    <path d="M -20 -30 Q -30 -30 -30 -20 L -30 -5 Q -30 0 -40 0 Q -30 0 -30 5 L -30 20 Q -30 30 -20 30" 
+          stroke="#f4f3f2" stroke-width="9" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <!-- Right brace -->
+    <path d="M 20 -30 Q 30 -30 30 -20 L 30 -5 Q 30 0 40 0 Q 30 0 30 5 L 30 20 Q 30 30 20 30" 
+          stroke="#f4f3f2" stroke-width="9" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  
+  <!-- Bottom accent - system indicator dots -->
+  <circle cx="65" cy="177" r="3.5" fill="#008a5a" opacity="0.8"/>
+  <circle cx="78" cy="177" r="3.5" fill="#009460" opacity="0.8"/>
+  <circle cx="91" cy="177" r="3.5" fill="#009e65" opacity="0.8"/>
+  <circle cx="104" cy="177" r="3.5" fill="#00a86b" opacity="0.8"/>
+  <circle cx="117" cy="177" r="3.5" fill="#00b070" opacity="0.8"/>
+  <circle cx="130" cy="177" r="3.5" fill="#00b876" opacity="0.8"/>
+  <circle cx="143" cy="177" r="3.5" fill="#00c07c" opacity="0.8"/>
+</svg>

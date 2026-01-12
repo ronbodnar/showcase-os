@@ -3,21 +3,15 @@ import { Themes } from "."
 
 export type ThemeName = keyof typeof Themes
 
-/**
- * These are these supported options for the theme system. Certain options can be overridden by the user settings.
- *
- * All colors support CSS color formats (Hex, RGB, HSL, OKLCH, etc.)
- *
- * For colors to be applied, they must also be added in applyTheme.ts
- */
 export interface Theme {
   name: string
   scheme: "dark" | "light"
 
   font: Record<string, string>
 
-  /*
-   * If any colors are added here, ensure they are also added in index.css @theme rules for Tailwind to create utility
+  /**
+   * Color tokens mapped to CSS variables.
+   * Ensure these match the @theme rules in index.css for Tailwind utility support.
    */
   colors: {
     shell: string
@@ -44,7 +38,11 @@ export interface Theme {
 
   defaultWallpaper: ThemeWallpaper
   wallpaperOptions: ThemeWallpaper[]
+
+  /** Currently loaded icons; starts as a partial set until loadIcons is called */
   icons: Partial<ThemeIconSet>
+
+  /** Dynamic import for platform-specific (Mobile/Desktop) icon assets */
   loadIcons: (platform: OSPlatform) => Promise<Partial<ThemeIconSet>>
 }
 
@@ -56,6 +54,7 @@ export interface ThemeAccent {
 
 export interface ThemeWallpaper {
   name: string
+  /** Dynamic loaders for resolution-specific assets to optimize bandwidth */
   loaders: Record<WallpaperResolution, () => Promise<{ default: string }>>
 }
 
@@ -70,14 +69,16 @@ export type WallpaperResolution =
 
 export interface IconMetadata {
   title?: string
+  /** Supports both standard image paths and React-wrapped SVGs */
   src: string | React.FC<React.SVGProps<SVGSVGElement>>
-  //src?: string
-  //Component?: React.FC<React.SVGProps<SVGSVGElement>>
 }
 
 export type IconName = keyof ThemeIconSet
 
-// Flat interface to allow for easier type checking and to avoid having to use a resolver
+/**
+ * Comprehensive manifest of all system icons.
+ * Using a flat interface prevents deep-nesting resolution logic.
+ */
 interface ThemeIconSet {
   // Portrait/Avatar of the dev for System Info
   User: IconMetadata
@@ -155,7 +156,7 @@ interface ThemeIconSet {
   TwitchBuddy: IconMetadata
   TwitchChatIRC: IconMetadata
   TwitchRaffle: IconMetadata
-  TMSPrototype: IconMetadata
+  TMS: IconMetadata
   VisualStudioCode: IconMetadata
 
   // Tech Icons
@@ -166,8 +167,8 @@ interface ThemeIconSet {
   Docker: IconMetadata
   Express: IconMetadata
   Git: IconMetadata
-  Github: IconMetadata
-  GithubActions: IconMetadata
+  GitHub: IconMetadata
+  GitHubActions: IconMetadata
   HTML5: IconMetadata
   IntelliJ: IconMetadata
   Jasmine: IconMetadata

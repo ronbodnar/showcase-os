@@ -1,6 +1,6 @@
 import { memo, useCallback, useState } from "react"
 import { ContainerSize } from "types"
-import { CloseButton } from "@features/window/components/CloseButton"
+import { CloseButton } from "@shared/components/CloseButton"
 
 interface WindowCompositeProps {
   title: string

@@ -1,7 +1,7 @@
 import { overlayService } from "@core/services/overlayService"
 import { IconName } from "@features/theme/types"
-import { Button } from "@shared/components/button/Button"
-import Icon from "@shared/components/icon/Icon"
+import { Button } from "@shared/components/Button"
+import Icon from "@shared/components/Icon"
 import { debugMessage } from "@shared/utils/utils"
 import { useRef } from "react"
 import { XYCoordinate } from "types"
@@ -96,7 +96,7 @@ function ActionButtonPane({ url }: { url: string }) {
   function copyToClipboard() {
     overlayService.showOverlay("tooltip", {
       text: "URL Copied to Clipboard",
-      position: { x: mousePosition.current.x, y: mousePosition.current.y - 20 },
+      position: { x: mousePosition.current.x, y: mousePosition.current.y + 75 },
     })
     navigator.clipboard.writeText(url)
     setTimeout(() => {

@@ -9,8 +9,8 @@ import {
 } from "@core/store/useAppStackStore"
 import { getLauncherMeta } from "@features/launcher/registry"
 import { IconName } from "@features/theme/types"
-import { Button } from "@shared/components/button/Button"
-import Icon from "@shared/components/icon/Icon"
+import { Button } from "@shared/components/Button"
+import Icon from "@shared/components/Icon"
 import { useEffect } from "react"
 import { launcherService } from "@features/launcher/services/launcherService"
 

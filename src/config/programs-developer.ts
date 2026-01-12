@@ -1,4 +1,4 @@
-import { ProgramMetadata } from "../types"
+import { ProgramMetadata } from "../features/program/types"
 
 import CoreFlowArchitectureDark from "@assets/software-center/coreflow-erp-architecture-diagram-dark-mode.webp"
 import CoreFlowArchitectureLight from "@assets/software-center/coreflow-erp-architecture-diagram-light-mode.webp"
@@ -18,6 +18,11 @@ import TMSDashboardLight from "@assets/software-center/tms-dashboard-light-mode.
 import TMSAnalyticsDark from "@assets/software-center/tms-analytics-dark-mode.png"
 import TMSAnalyticsLight from "@assets/software-center/tms-analytics-light-mode.png"
 
+/**
+ * DEVELOPER PROGRAMS
+ * Custom developer-made programs that are shown in the Software Center automatically.
+ * Launcher metadata is automatically generated from these programs.
+ */
 export const DEVELOPER_PROGRAMS_META = [
   {
     id: "deliveryrouter_cli",
@@ -57,7 +62,7 @@ export const DEVELOPER_PROGRAMS_META = [
     details: {
       description: {
         short:
-          "A high-interactivity Wordle-inspired SPA with a custom Vanilla JavaScript frontend and Node.js/MongoDB backend.",
+          "A Wordle-inspired SPA built with vanilla JavaScript frontend and Node.js backend, implementing dynamic state management and a responsive UI.",
 
         long:
           `Grid of Words is a dynamic single-page application (**SPA**) featuring a fully custom, **framework-less frontend**. Built with **Vanilla JavaScript**, the UI is orchestrated through a **declarative component system** and **programmatic DOM generation**, achieving high-performance state transitions without relying on external frameworks.\n\n` +
@@ -74,7 +79,7 @@ export const DEVELOPER_PROGRAMS_META = [
           `<b>Reliability & Observability</b>\n` +
           `**Structured error logging** with Winston and environment-based configuration (**Docker**) enable easy development, deployment, and operational transparency.`,
       },
-      images: [GridOfWordsGameboard, GridOfWordsStatistics, GridOfWordsHowToPlay],
+      imageUrls: [GridOfWordsGameboard, GridOfWordsStatistics, GridOfWordsHowToPlay],
       githubUrl: "https://github.com/ronbodnar/grid-of-words",
       publicUrl: "https://play.ronbodnar.com/",
       technologies: ["JavaScript", "NodeJS", "Express", "ChartJS", "MongoDB", "Docker"],
@@ -190,7 +195,7 @@ export const DEVELOPER_PROGRAMS_META = [
     details: {
       description: {
         short:
-          "A web-based OS simulator designed as an interactive portfolio to demonstrate complex UI orchestration and frontend systems engineering.",
+          "A modular React web application implementing OS-like architecture, including processes, programs, launchers, and layered window management.",
         long:
           `Showcase OS is a desktop environment built entirely for the web. It functions as a <b>living operating system simulation</b> where projects are treated as first-class, system-level applications rather than static entries.\n\n` +
           `<b>Project Intent & Vision</b>\n` +
@@ -230,7 +235,7 @@ export const DEVELOPER_PROGRAMS_META = [
     details: {
       description: {
         short:
-          "A contract-first ERP engineered for deterministic financial management and automated legal-technical workflows.",
+          "A contract-first ERP system for variable-term commitments with automated financial traceability.",
 
         long:
           `CoreFlow ERP is a contract-first enterprise solution that digitizes the end-to-end lifecycle of complex contract-driven businesses. Contracts serve as the immutable source of truth for all billing and financial reporting.\n\n` +
@@ -261,7 +266,7 @@ export const DEVELOPER_PROGRAMS_META = [
           `• Client-side document generation avoided to reduce attack surface and ensure legal correctness.\n\n` +
           `CoreFlow drives daily operations in production, translating complex legal and operational requirements into a correctness-first system designed for efficiency, traceability, and long-term maintainability.`,
       },
-      images: [
+      imageUrls: [
         CoreFlowContractDetailsDark,
         CoreFlowContractDetailsLight,
         CoreFlowArchitectureDark,
@@ -281,34 +286,33 @@ export const DEVELOPER_PROGRAMS_META = [
         "NodeJS",
         "Nginx",
         "Docker",
-        "GithubActions",
+        "GitHubActions",
       ],
       year: { start: 2024 },
     },
   },
 
   {
-    id: "tms_prototype",
-    name: "TMS Prototype",
-    icon: "TMSPrototype",
+    id: "tms",
+    name: "TMS",
+    icon: "TMS",
     category: "developer",
     details: {
       description: {
         short:
-          "A prototype TMS that centralizes driver workflows and facility-level logistics, improving accountability and operational visibility.",
+          "A logistics management prototype built to handle complex workflows and domain-specific operations.",
 
         long:
-          `The TMS Prototype is a web-based transportation management system designed to digitize driver workflows and yard operations. Built to address manual tracking gaps, it provides a centralized platform for managing assignments, monitoring facility wait times, and tracking shipment status.\n\n` +
+          `TMS is a web-based transportation management system designed to digitize driver workflows and yard operations. Built to address manual tracking gaps, it provides a centralized platform for managing assignments, monitoring facility wait times, and tracking shipment status.\n\n` +
           `<div class='my-4' /><b class='text-xl'>Key Features & Logistics Logic</b>\n\n` +
           `<b>Driver & Yard Management</b>\n` +
           `Dynamic assignment of drivers, doors, and trailer tasks, with real-time status updates and historical tracking.\n\n` +
           `<b>Shipment Analytics</b>\n` +
           `Facility-level metrics and strict status-management allow transparency across shipments and accountability for delays or refusals.\n\n` +
           `<b>Technical Implementation</b>\n` +
-          `Frontend built with <b>JavaScript/jQuery</b> for interactive updates; backend uses <b>PHP/MySQL</b> to manage relational data.\n\n` +
-          `This prototype translates operational experience into a functional tool, demonstrating user-focused design and process efficiency without a full-scale production footprint.`,
+          `Frontend built with <b>JavaScript/jQuery</b> for interactive updates; backend uses <b>PHP/MySQL</b> to manage relational data.`,
       },
-      images: [TMSDashboardDark, TMSDashboardLight, TMSAnalyticsDark, TMSAnalyticsLight],
+      imageUrls: [TMSDashboardDark, TMSDashboardLight, TMSAnalyticsDark, TMSAnalyticsLight],
       technologies: ["PHP", "JavaScript", "JQuery", "ChartJS"],
       publicUrl: "https://tms.ronbodnar.com/",
       githubUrl: "https://github.com/ronbodnar/transportation-management",

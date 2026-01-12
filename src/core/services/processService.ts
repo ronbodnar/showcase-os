@@ -16,7 +16,7 @@ export const processService = {
   getProcessesByProgramId: (programId: ProgramId) =>
     useProcessStore.getState().processesByProgramId[programId],
 
-  startProcess: (launcherMeta: LauncherMetadata) => {
+  startProcess: (launcherMeta: LauncherMetadata, silent: boolean = false) => {
     const { getNextProcessId, addProcess } = useProcessStore.getState()
     const { addWindow } = useWindowStore.getState()
     const { addAppCard } = useAppStackStore.getState()
@@ -43,7 +43,7 @@ export const processService = {
     const processId = getNextProcessId()
 
     if (isDesktop) {
-      const window = windowService.createWindow(processId, programMeta.window, title)
+      const window = windowService.createWindow(processId, programMeta.window, title, silent)
       addProcess(processId, launcherMeta, window.id)
       addWindow(window)
       if (!programMeta.window?.isEphemeral) {

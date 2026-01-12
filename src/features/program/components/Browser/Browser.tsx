@@ -47,8 +47,7 @@ export const Browser = memo(function Browser({ displayId, url: initialUrl }: Bro
 
         if (!skipRouting) {
           setHistory((prev) => {
-            // If we are navigating to a new page while in the middle of history,
-            // clear the "forward" history (standard browser behavior)
+            // If we are navigating to a new page while in the middle of history, clear the "forward" history
             const newStack = prev.slice(0, currentIndex + 1)
 
             if (newStack[newStack.length - 1] === newUrl) return prev

@@ -2,6 +2,7 @@ import { create } from "zustand"
 import { devtools, persist } from "zustand/middleware"
 import { Themes } from "@features/theme"
 import { ThemeName, ThemeAccent } from "@features/theme/types"
+import { config } from "@config/config"
 
 interface SettingsState {
   themeName: ThemeName
@@ -21,9 +22,9 @@ export const useSettingsStore = create<SettingsState>()(
   devtools(
     persist(
       (set, _get) => ({
-        themeName: "Mint-Y (dark)",
-        accent: Themes["Mint-Y (dark)"].accentOptions[0],
-        wallpaperName: Themes["Mint-Y (dark)"].wallpaperOptions[1].name,
+        themeName: config.defaultTheme,
+        accent: Themes[config.defaultTheme].accentOptions[0],
+        wallpaperName: Themes[config.defaultTheme].wallpaperOptions[1].name,
         textScaling: 1,
 
         setThemeName: (themeName) =>

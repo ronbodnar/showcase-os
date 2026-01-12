@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useMemo, useState } from "react"
 import MenuLauncher, { MenuLauncherProps } from "@features/launcher/components/MenuLauncher"
 import { getLauncherMeta } from "@features/launcher/registry"
 import { getAllProgramMetadata } from "@features/program/registry"
@@ -19,23 +19,26 @@ export function CategoryOutput({
     undefined,
   )
 
-  const searchMatches = (matchText: string, searchQuery: string) => {
-    return matchText.toLowerCase().includes(searchQuery.toLowerCase())
-  }
-
-  const isActiveCategory = (p: ProgramMetadata) =>
-    activeCategory === "all" || p.category === activeCategory
-
-  const isSearchQuery = (p: ProgramMetadata) =>
-    searchQuery === "" ||
-    searchMatches(p.name, searchQuery) ||
-    searchMatches(p.details?.description?.short ?? "", searchQuery) ||
-    searchMatches(p.details?.description?.long ?? "", searchQuery) ||
-    p.details?.technologies?.some((t) => searchMatches(t, searchQuery))
-
-  const programs = getAllProgramMetadata()
-    .filter((p) => !p.window?.isEphemeral && !p.disabled && isSearchQuery(p) && isActiveCategory(p))
-    .sort((a, b) => a.name.localeCompare(b.name))
+  const programs = useMemo(() => {
+    const query = searchQuery.toLowerCase()
+    return getAllProgramMetadata().filter((p) => {
+      if (p.window?.isEphemeral || p.disabled) {
+        return false
+      }
+      if (activeCategory !== "all" && p.category !== activeCategory) {
+        return false
+      }
+      if (query === "") {
+        return true
+      }
+      return (
+        p.name.toLowerCase().includes(query) ||
+        p.details?.description?.short?.toLowerCase().includes(query) ||
+        p.details?.description?.long?.toLowerCase().includes(query) ||
+        p.details?.technologies?.some((t) => t.toLowerCase().includes(query))
+      )
+    })
+  }, [searchQuery, activeCategory])
 
   function handleMouseEnter(p: ProgramMetadata) {
     if (p.disabled) {

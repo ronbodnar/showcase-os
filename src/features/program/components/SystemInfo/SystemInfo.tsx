@@ -1,7 +1,7 @@
 import { memo } from "react"
 import { overlayService } from "@core/services/overlayService"
-import { IconList } from "@shared/components/icon-list/IconList"
-import Icon from "@shared/components/icon/Icon"
+import { IconList } from "@shared/components/IconList"
+import Icon from "@shared/components/Icon"
 
 interface SystemInfoEntry {
   label: string
@@ -13,8 +13,7 @@ interface SystemInfoEntry {
 
 export const SystemInfo = memo(function SystemInfo() {
   const entries: SystemInfoEntry[] = [
-    { label: "OS", value: "Showcase OS" },
-    { label: "Hostname", value: "ronbodnar" },
+    { label: "User", value: "Ron Bodnar" },
     {
       label: "Email",
       value: "ron.bodnar@outlook.com",
@@ -23,8 +22,16 @@ export const SystemInfo = memo(function SystemInfo() {
     { label: "Role", value: "Full-Stack Software Engineer" },
     { label: "Uptime", value: "15+ years coding (8 professionally)" },
     {
+      label: "Focus",
+      value: "Building scalable, user-focused systems",
+    },
+    {
       label: "Specialities",
-      value: "End-to-end development, business impact solutions",
+      value: "Internal platforms & workflow automation",
+    },
+    {
+      label: "Extensions",
+      value: "Family, yorkies, audiobooks, tinkering with ideas",
     },
     {
       label: "Primary Stack",
@@ -33,7 +40,7 @@ export const SystemInfo = memo(function SystemInfo() {
     },
     {
       label: "Tools & Packages",
-      value: ["React", "NodeJS", "Python", "RxJS", "Docker", "GithubActions", "Nginx"],
+      value: ["React", "NodeJS", "Python", "RxJS", "Docker", "GitHubActions", "Nginx"],
       tooltip: "Familiar tools leveraged confidently in production",
     },
     {

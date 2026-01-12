@@ -43,26 +43,37 @@ export const Window = memo(function Window({
     e.stopPropagation()
   }, [])
 
-  debugMessage("Rendering Window:", title)
+  debugMessage("Rendering Window:", title, state)
+
+  const isVisible = !isMinimized && !hiddenByDesktopMode
 
   return (
-    <AnimatePresence mode="wait">
+    <AnimatePresence mode="popLayout">
       <motion.div
         key={id}
-        initial={{ opacity: 0, scale: 0.8 }}
+        initial={{ opacity: 0, scale: 0.9, y: 20 }}
         animate={{
           opacity: isMinimized || hiddenByDesktopMode ? 0 : 1,
-          scale: isMinimized || hiddenByDesktopMode ? 0.8 : 1,
+          scale: isMinimized || hiddenByDesktopMode ? 0.9 : 1,
+          x: 0,
+          y: isVisible ? 0 : 20,
         }}
-        transition={{ duration: 0.1 }}
+        transition={{
+          type: "spring",
+          stiffness: 400,
+          damping: 30,
+          mass: 0.8,
+        }}
         style={{
           position: "absolute",
           zIndex,
-          top: position.y,
-          left: position.x,
+          top: 0,
+          left: 0,
+          translate: `${position.x}px ${position.y}px`,
           width: size.width,
           height: size.height,
-          pointerEvents: isMinimized || hiddenByDesktopMode ? "none" : "auto",
+          pointerEvents: isVisible ? "auto" : "none",
+          willChange: "translate, opacity",
         }}
       >
         <WindowFrame

@@ -9,6 +9,10 @@ import { windowService } from "@features/window/services/windowService"
 import { registerCommand, getAllCommands } from "./commandRegistry"
 import { launcherService } from "@features/launcher/services/launcherService"
 
+/**
+ * Registry for all built-in terminal commands. Maps CLI commands to OS actions and functions.
+ */
+
 function launchProgram(term: XTerm, id: LauncherId) {
   const meta = getLauncherMeta(id)
   const programMeta = getProgramMetaFromTarget(meta.target)
@@ -199,5 +203,28 @@ registerCommand({
 registerCommand({
   name: "whoami",
   description: "Display the current user",
-  execute: (term) => term.writeln(`\r\nron (Ron Bodnar)`),
+  execute: (term) => {
+    term.writeln("\r\n\x1b[30mUSER:")
+    term.writeln("Ron Bodnar\n")
+
+    term.writeln("\x1b[30mORIGIN:")
+    term.writeln("I started coding as a teenager, tinkering on private game servers")
+    term.writeln("and rebuilding my favorite game with twists that players loved.")
+    term.writeln("Along the way I learned databases, VPSes, server maintenance,")
+    term.writeln("and surviving downtime under pressure.\n")
+
+    term.writeln("\x1b[30mFIRST JOB:")
+    term.writeln("Data entry. Everything was slow and tedious, so I built Java tools")
+    term.writeln("to automate the work and simplify oversight.\n")
+
+    term.writeln("\x1b[30mNOW:")
+    term.writeln("I build software that solves real problems for businesses")
+    term.writeln("and makes life easier for the people using it.\n")
+
+    term.writeln("\x1b[30mINTERESTS:")
+    term.writeln("When I'm not at work, I'm usually with my Yorkies, Buddy and Kenny")
+    term.writeln("(they double as my rubber ducks).")
+    term.writeln("I live on audiobooks—classics like Lonesome Dove and East of Eden,")
+    term.writeln("plus the occasional book that sharpens my craft.")
+  },
 })

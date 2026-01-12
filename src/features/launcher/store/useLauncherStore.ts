@@ -2,10 +2,10 @@ import { create } from "zustand"
 import { devtools, persist } from "zustand/middleware"
 import { GridId } from "@features/grid/types"
 import { GridCellPosition } from "types"
-import { DEFAULT_LAUNCHER_CONFIGS } from "../defaultLayouts"
 import { GridLauncherState } from "../types"
 import { updateGridAndId, getDefaultLauncherState } from "../utils/launcher.utils"
 import { debugMessage } from "@shared/utils/utils"
+import { config } from "@config/config"
 
 export const LAUNCHER_STORE_NAME = "launcher-store"
 
@@ -118,7 +118,10 @@ export const useLauncherStore = create<LauncherStore>()(
 
         resetLaunchers: (gridId: GridId) =>
           set((state) => {
-            const launchers = getDefaultLauncherState(gridId, DEFAULT_LAUNCHER_CONFIGS[gridId])
+            const launchers = getDefaultLauncherState(
+              gridId,
+              config.launchers.defaultLayouts[gridId],
+            )
 
             return updateGridAndId(state, gridId, launchers)
           }),

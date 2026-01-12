@@ -94,7 +94,6 @@ export const useWindowStore = create<WindowStore>()(
         set((state) => {
           const updatedState = updateWindow(state, id, (w) => ({ ...w, isMinimized: true }))
           return {
-            //zOrder: state.zOrder.filter((w) => w !== id),
             windows: updatedState.windows,
           }
         }),

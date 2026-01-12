@@ -1,5 +1,5 @@
 import { ProgramId, ProgramMetadata } from "@features/program/types"
-import Icon from "@shared/components/icon/Icon"
+import Icon from "@shared/components/Icon"
 import { CarouselControls } from "./CarouselControls"
 import { useCarousel } from "./useCarousel"
 

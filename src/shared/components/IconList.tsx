@@ -1,5 +1,5 @@
 import { IconName } from "@features/theme/types"
-import Icon from "../icon/Icon"
+import Icon from "./Icon"
 
 export const IconList = ({ id, icons }: { id: string | number; icons: string[] }) => {
   return (

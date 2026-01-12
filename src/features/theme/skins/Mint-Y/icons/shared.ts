@@ -28,7 +28,7 @@ import TerminalSymbolicComponent from "@themeIcons/Mint-Y/apps/terminal-symbolic
 import TwitchBuddySrc from "@themeIcons/Mint-Y/apps/twitch-buddy.png"
 import TwitchChatIRCSrc from "@themeIcons/Mint-Y/apps/twitch-chat-irc.png"
 import TwitchRaffleSrc from "@themeIcons/Mint-Y/apps/twitch-raffle.png"
-import TMSPrototypeSrc from "@themeIcons/Mint-Y/apps/tms-prototype.png"
+import TMSSrc from "@themeIcons/Mint-Y/apps/tms.png"
 import VisualStudioCodeSrc from "@themeIcons/Mint-Y/apps/visual-studio-code.png"
 import AppsComponent from "@themeIcons/Mint-Y/places/apps.svg?react"
 import SystemAppsSrc from "@themeIcons/Mint-Y/places/apps-system.png"
@@ -65,7 +65,7 @@ export const icons: Record<string, IconMetadata> = {
   TwitchBuddy: makeIcon(TwitchBuddySrc),
   TwitchChatIRC: makeIcon(TwitchChatIRCSrc),
   TwitchRaffle: makeIcon(TwitchRaffleSrc),
-  TMSPrototype: makeIcon(TMSPrototypeSrc),
+  TMS: makeIcon(TMSSrc),
   VisualStudioCode: makeIcon(VisualStudioCodeSrc),
 
   // Places

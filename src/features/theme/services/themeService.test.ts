@@ -16,7 +16,6 @@ vi.mock("../helpers", () => ({ preloadImages: vi.fn() }))
 vi.mock("@features/program/registry")
 vi.mock("@shared/utils/utils")
 
-// Use a consistent key for the theme across mock and tests
 const THEME_KEY = "Mint-Y (dark)"
 
 vi.mock("..", () => ({
@@ -105,7 +104,6 @@ describe("themeService", () => {
 
   describe("applyTheme", () => {
     it("should coordinate wallpaper and icon loading", async () => {
-      // We spy on internal methods to ensure they are called by applyTheme
       const wallpaperSpy = vi.spyOn(themeService, "applyWallpaper").mockResolvedValue(undefined)
       const iconsSpy = vi.spyOn(themeService, "loadIcons").mockResolvedValue(undefined)
 

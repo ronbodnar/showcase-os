@@ -8,9 +8,7 @@ import { ProgramId } from "@features/program/types"
 export default function AppDrawer() {
   const allPrograms = useMemo(
     () =>
-      getAllProgramMetadata()
-        .filter((p) => p.window?.isEphemeral !== true && p.disabled !== true)
-        .sort((a, b) => a.name.localeCompare(b.name)),
+      getAllProgramMetadata().filter((p) => p.window?.isEphemeral !== true && p.disabled !== true),
     [],
   )
 

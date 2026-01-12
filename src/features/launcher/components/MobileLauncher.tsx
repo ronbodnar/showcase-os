@@ -1,7 +1,7 @@
 import { memo, useEffect, useRef, useState } from "react"
 import { motion } from "motion/react"
 import { useOverlayPosition } from "@core/hooks/useOverlayPosition"
-import Icon from "@shared/components/icon/Icon"
+import Icon from "@shared/components/Icon"
 import { useLongPress } from "@shared/hooks/useLongPress"
 import { ContextMenuPosition } from "types"
 import { useLauncherDrag } from "../hooks/useLauncherDrag"

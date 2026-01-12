@@ -1,5 +1,10 @@
-import { ProgramMetadata } from "../types"
+import { ProgramMetadata } from "../features/program/types"
 
+/**
+ * SYSTEM PROGRAMS
+ * System "installed" applications that are added to the Start Menu but not shown in the Software Center.
+ * Launcher metadata is automatically generated from these programs.
+ */
 export const SYSTEM_PROGRAMS_META = [
   {
     id: "app_drawer",
@@ -42,12 +47,9 @@ export const SYSTEM_PROGRAMS_META = [
     disabled: true,
     disabledText: "Photo Viewer is opened by zooming in on an image in the Software Center.",
     window: {
-      /*       isResizable: false,
-      isEphemeral: true,
-      hideControls: true, */
       spawn: {
         size: { width: 1, height: 1, unit: "%" },
-        maxSize: { width: 1800, height: 1000 },
+        maxSize: { width: 1800, height: 900 },
       },
     },
   },

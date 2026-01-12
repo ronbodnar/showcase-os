@@ -1,10 +1,17 @@
-import { LauncherMetadata } from "../types"
+import { GridId } from "@features/grid/types"
+import { LauncherId, LauncherMetadata } from "@features/launcher/types"
+import { GridCellPosition } from "types"
 
-export const LAUNCHER_METADATA = [
+/**
+ * LAUNCHERS
+ * Custom launchers that can be used across the UI to launch programs or run system actions.
+ * If you add a new system action you must add a launcher for it, but program launchers are created automatically.
+ */
+const LAUNCHER_METADATA = [
   {
     id: "github",
     label: "GitHub",
-    icon: "Github",
+    icon: "GitHub",
     description: "View my GitHub profile (opens in new tab)",
     target: {
       type: "action",
@@ -89,12 +96,12 @@ export const LAUNCHER_METADATA = [
   },
 
   {
-    id: "tms_prototype",
+    id: "tms",
     target: {
       type: "program",
       programId: "browser",
       args: {
-        title: "TMS Prototype",
+        title: "TMS",
         url: "https://tms.ronbodnar.com/",
       },
     },
@@ -111,4 +118,25 @@ export const LAUNCHER_METADATA = [
       },
     },
   },
+  // Don't specify the "id" because LauncherId type is inferred from these keys.
 ] as const satisfies (Partial<LauncherMetadata> & { id: string })[]
+
+/**
+ * The default launcher layouts for each grid.
+ * These layouts are used when a grid is first created or when the user resets the grid.
+ */
+const DEFAULT_LAUNCHER_LAYOUTS: Record<GridId, { id: LauncherId; position: GridCellPosition }[]> = {
+  home: [
+    { id: "software_center", position: { x: 0, y: 0 } },
+    { id: "browser", position: { x: 0, y: 1 } },
+    { id: "system_info", position: { x: 0, y: 2 } },
+    { id: "linkedin", position: { x: 0, y: 3 } },
+    { id: "github", position: { x: 0, y: 4 } },
+  ],
+  panel: [{ id: "start_menu", position: { x: 0, y: 0 } }],
+}
+
+export const launchersConfig = {
+  metadata: LAUNCHER_METADATA,
+  defaultLayouts: DEFAULT_LAUNCHER_LAYOUTS,
+}

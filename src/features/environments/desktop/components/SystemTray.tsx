@@ -1,8 +1,8 @@
 import { overlayService } from "@core/services/overlayService"
 import { useTheme } from "@features/theme/hooks/useTheme"
 import { IconName } from "@features/theme/types"
-import { Button } from "@shared/components/button/Button"
-import Icon from "@shared/components/icon/Icon"
+import { Button } from "@shared/components/Button"
+import Icon from "@shared/components/Icon"
 import { useSystemClock } from "@shared/hooks/useSystemClock"
 
 const SYSTEM_TRAY_ICON_NAMES: IconName[] = [

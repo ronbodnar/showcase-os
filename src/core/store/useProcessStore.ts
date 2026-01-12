@@ -13,6 +13,7 @@ export interface ProcessState {
   launcher: LauncherMetadata
   programId: ProgramId
   startTimestamp: number
+  running: boolean
 }
 
 interface State {
@@ -28,6 +29,7 @@ interface Action {
     launcher: LauncherMetadata, // The launcher that began the process
     displayId: string, // The display component (Window, AppCard) that the process is running in
   ) => void
+  stopProcess: (processId: number) => void
   removeProcess: (processId: number) => void
   reset: () => void
 }
@@ -55,6 +57,7 @@ export const useProcessStore = create<ProcessStore>()(
             launcher,
             programId: getProgramMetaFromTarget(launcher.target)?.id,
             startTimestamp: Date.now(),
+            running: true,
           } as ProcessState
 
           const processesByProgramId = { ...state.processesByProgramId }

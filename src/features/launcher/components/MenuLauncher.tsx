@@ -1,7 +1,7 @@
 import React, { memo } from "react"
 import { LauncherMetadata } from "../types"
 import { IconName } from "@features/theme/types"
-import Icon from "@shared/components/icon/Icon"
+import Icon from "@shared/components/Icon"
 import { overlayService } from "@core/services/overlayService"
 import { debugMessage } from "@shared/utils/utils"
 import { launcherService } from "../services/launcherService"

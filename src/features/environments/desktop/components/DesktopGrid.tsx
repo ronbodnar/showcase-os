@@ -1,3 +1,4 @@
+import { config } from "@config/config"
 import { ContextMenuProps } from "@core/overlays/components/ContextMenu"
 import { overlayService } from "@core/services/overlayService"
 import { GridContainer } from "@features/grid/components/GridContainer"
@@ -34,12 +35,10 @@ export function DesktopGrid() {
     overlayService.showOverlay("contextMenu", contextMenuProps)
   }
 
-  const iconSize = 40
-
   return (
     <GridContainer
       id="home"
-      iconSize={iconSize}
+      iconSize={config.grids.desktopIconSize}
       launchers={launchers}
       showGridLines={false}
       isGridResponsive={true}

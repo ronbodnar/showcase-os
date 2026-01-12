@@ -7,6 +7,7 @@
     "paths": {
       "@assets/*": ["assets/*"],
       "@core/*": ["core/*"],
+      "@config/*": ["config/*"],
       "@features/*": ["features/*"],
       "@shared/*": ["shared/*"],
       "@sharedIcons": ["assets/icons/shared/*"],

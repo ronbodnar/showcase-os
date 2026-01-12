@@ -7,11 +7,12 @@ import { GridContainer } from "@features/grid/components/GridContainer"
 import { useGridStore } from "@features/grid/store/useGridStore"
 import { getLauncherMeta } from "@features/launcher/registry"
 import { useLauncherStore } from "@features/launcher/store/useLauncherStore"
+import { config } from "@config/config"
 
 export const Panel = memo(function Panel() {
   const launchers = useLauncherStore((state) => state.launchersByGrid["panel"]) ?? []
   const panelPositionY = useGridStore((state) => state.grids["panel"]?.position?.y) ?? 0
-  const iconSize = 42
+  const iconSize = config.grids.panelIconSize
 
   const handleContextMenu = (e: React.MouseEvent) => {
     const contextMenuProps: ContextMenuProps = {

@@ -154,6 +154,7 @@ function handleProgramLauncher(meta: LauncherMetadata, isPanel: boolean) {
   const { processesByProgramId } = useProcessStore.getState()
   const { focusWindow } = useWindowStore.getState()
   const { setActiveCard } = useAppStackStore.getState()
+  const { setEphemeralWindowId } = useDesktopStore.getState()
   const { target } = meta
   const isDesktop = osService.isDesktop()
 
@@ -185,6 +186,9 @@ function handleProgramLauncher(meta: LauncherMetadata, isPanel: boolean) {
 
   if (isPanel && programProcesses?.length > 0) {
     if (programProcesses.length === 1) {
+      if (programMeta.window?.isEphemeral && isDesktop) {
+        setEphemeralWindowId(programProcesses[0].displayId)
+      }
       windowService.focusOrMinimizeWindow(programProcesses[0].displayId)
     } else if (programProcesses.length > 1) {
       const panelPositionY = useGridStore.getState().grids["panel"]?.position?.y ?? 0

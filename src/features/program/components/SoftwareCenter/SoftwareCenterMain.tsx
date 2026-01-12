@@ -1,36 +1,21 @@
 import { getProgramMeta } from "@features/program/registry"
 import { ProgramId, ProgramMetadata } from "@features/program/types"
-import { Button } from "@shared/components/button/Button"
-import Icon from "@shared/components/icon/Icon"
+import { Button } from "@shared/components/Button"
+import Icon from "@shared/components/Icon"
 import { ProgramCarousel } from "./carousel/ProgramCarousel"
+import { config } from "@config/config"
 
 export interface SoftwareCenterMainProps {
   onSelectProgram: (programId: ProgramId) => void
 }
 
 export function SoftwareCenterMain({ onSelectProgram }: SoftwareCenterMainProps) {
-  const featured: ProgramId[] = ["coreflow_erp", "showcase_os", "grid_of_words"]
+  const { featured, projects, archived } = config.softwareCenter
 
-  const projects: ProgramId[] = [
-    "tms_prototype",
-    "loan_eligibility",
-    "deliveryrouter_cli",
-    "oed_parser",
-  ]
-
-  const archived: ProgramId[] = [
-    "twitch_buddy",
-    "twitch_raffle",
-    "twitch_chat_irc",
-    "league_of_legends_log_parser",
-    "mtg_virtual_binder",
-  ]
-
-  const bannerPrograms: { id: ProgramId; meta: ProgramMetadata; backgroundImage?: string }[] = [
-    { id: "coreflow_erp", meta: getProgramMeta("coreflow_erp") },
-    { id: "grid_of_words", meta: getProgramMeta("grid_of_words") },
-    { id: "showcase_os", meta: getProgramMeta("showcase_os") },
-  ]
+  const bannerPrograms = featured.map((id) => ({
+    id,
+    meta: getProgramMeta(id),
+  }))
 
   return (
     <>

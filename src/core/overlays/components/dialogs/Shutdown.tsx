@@ -1,6 +1,6 @@
 import { overlayService } from "@core/services/overlayService"
 import { executeAction } from "@features/os/actions/systemRegistry"
-import { ButtonColor, Button } from "@shared/components/button/Button"
+import { ButtonColor, Button } from "@shared/components/Button"
 
 export interface DialogButtonOption {
   label: string

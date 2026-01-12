@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useRef } from "react"
 import { DndProvider } from "react-dnd"
 import { HTML5Backend } from "react-dnd-html5-backend"
 import { OverlayRoot } from "@core/overlays/components/OverlayRoot"
@@ -12,15 +12,21 @@ import { DesktopGrid } from "./DesktopGrid"
 import { Panel } from "./Panel"
 import { WindowRenderer } from "./WindowRenderer"
 import { debugMessage } from "@shared/utils/utils"
+import { processService } from "@core/services/processService"
+import { getLauncherMeta } from "@features/launcher/registry"
 
 export default function DesktopEnvironment() {
   debugMessage("Rendering DesktopEnvironment", performance.now())
+  const loaded = useRef<boolean>(false)
 
   useEffect(() => {
+    if (loaded.current) return
     gridService.initializeLaunchers()
+    processService.startProcess(getLauncherMeta("start_menu"), true)
 
+    loaded.current = true
     disableTextSelection()
-  }, [])
+  }, [loaded])
 
   useEffect(() => {
     const handlePointerUp = (e: MouseEvent) => {

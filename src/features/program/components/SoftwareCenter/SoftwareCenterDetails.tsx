@@ -5,9 +5,9 @@ import { LauncherProgramTarget } from "@features/launcher/types"
 import { ProgramId, ProgramMetadata } from "@features/program/types"
 import { preloadImages } from "@features/theme/helpers"
 import { IconName } from "@features/theme/types"
-import { Button } from "@shared/components/button/Button"
-import { IconList } from "@shared/components/icon-list/IconList"
-import Icon from "@shared/components/icon/Icon"
+import { Button } from "@shared/components/Button"
+import { IconList } from "@shared/components/IconList"
+import Icon from "@shared/components/Icon"
 import { ProgramLoading } from "@shared/components/ProgramLoading"
 import { VisualStudioCodeProps } from "../VisualStudioCode/VisualStudioCode"
 import { ImageCarousel } from "./carousel/ImageCarousel"
@@ -22,7 +22,7 @@ interface SoftwareCenterDetailsProps {
 export function SoftwareCenterDetails({ programId, programMeta }: SoftwareCenterDetailsProps) {
   const [loading, setLoading] = useState(true)
   const { icon, name, details, disabled } = programMeta
-  const { githubUrl, description, images } = details ?? {}
+  const { githubUrl, description, imageUrls: images } = details ?? {}
 
   const theme = useTheme()
   const oppositeScheme = theme.scheme === "dark" ? "light" : "dark"

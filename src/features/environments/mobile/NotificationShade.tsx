@@ -10,8 +10,8 @@ import {
 import { useEffect, useState } from "react"
 import { systemService } from "@core/services/systemService"
 import { getLauncherMeta } from "@features/launcher/registry"
-import { Button } from "@shared/components/button/Button"
-import Icon from "@shared/components/icon/Icon"
+import { Button } from "@shared/components/Button"
+import Icon from "@shared/components/Icon"
 import { useSystemClock } from "@shared/hooks/useSystemClock"
 import { launcherService } from "@features/launcher/services/launcherService"
 

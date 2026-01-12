@@ -4,7 +4,7 @@ import { useTheme } from "@features/theme/hooks/useTheme"
 import { useWallpaperThumbs } from "@features/theme/hooks/useWallpaperThumbs"
 import { themeService } from "@features/theme/services/themeService"
 import { ThemeName } from "@features/theme/types"
-import { Button } from "@shared/components/button/Button"
+import { Button } from "@shared/components/Button"
 import { ProgramLoading } from "@shared/components/ProgramLoading"
 
 const themeOptions = Object.keys(Themes).map((name) => ({ id: name, label: name }))

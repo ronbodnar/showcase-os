@@ -1,6 +1,6 @@
 export function ProgramLoading() {
   return (
-    <div className="flex flex-col gap-4 justify-center items-center w-full h-full backdrop-blur-lg text-text">
+    <div className="flex flex-col gap-4 justify-center items-center w-full h-full backdrop-blur-lg text-text translate-z-0 will-change-transform">
       <div className="relative size-15">
         <div
           className="

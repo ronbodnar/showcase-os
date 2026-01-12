@@ -1,6 +1,6 @@
 import { overlayService } from "@core/services/overlayService"
 import { GridId } from "@features/grid/types"
-import Icon from "@shared/components/icon/Icon"
+import Icon from "@shared/components/Icon"
 import { memo, useState } from "react"
 import { useLauncherDrag } from "../hooks/useLauncherDrag"
 import { useLauncherStatus } from "../hooks/useLauncherStatus"

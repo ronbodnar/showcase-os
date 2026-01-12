@@ -1,4 +1,4 @@
-import Icon from "@shared/components/icon/Icon"
+import Icon from "@shared/components/Icon"
 
 export function SearchInput({
   onSearch,
@@ -10,7 +10,7 @@ export function SearchInput({
       <input
         type="text"
         placeholder="Search by name, description, or technology"
-        className="w-full outline outline-accent placeholder-muted rounded-sm bg-surface px-2 py-1 text-text text-sm"
+        className="w-full h-7 outline outline-accent placeholder-muted rounded-sm bg-surface px-2 py-1 text-text text-sm"
         onInput={onSearch}
         autoFocus={true}
       />

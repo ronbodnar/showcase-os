@@ -1,6 +1,6 @@
 import { getAllProgramMetadata } from "@features/program/registry"
-import { LAUNCHER_METADATA } from "./metadata"
 import { LauncherMetadata, LauncherId } from "./types"
+import { config } from "@config/config"
 
 let launcherMap: Record<LauncherId, LauncherMetadata> | undefined = undefined
 
@@ -23,7 +23,7 @@ function buildProgramLaunchers() {
 
   // Apply custom launchers or override properties of existing program launchers
   const overrideLauncherMap: Record<LauncherId, LauncherMetadata> = Object.fromEntries(
-    LAUNCHER_METADATA.map((l) => [l.id, l as LauncherMetadata]),
+    config.launchers.metadata.map((l) => [l.id, l as LauncherMetadata]),
   ) as Record<LauncherId, LauncherMetadata>
 
   const mergedMap = { ...programLauncherMap } as Record<LauncherId, LauncherMetadata>

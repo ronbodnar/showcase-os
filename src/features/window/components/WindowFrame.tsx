@@ -2,7 +2,6 @@ import { memo, useMemo } from "react"
 import { WINDOW_RESIZE_LOCATIONS, WindowResizeLocation } from "../types"
 import { WindowResizeHotspot } from "./WindowResizeHotspot"
 import { WindowTitleBar } from "./WindowTitleBar"
-import { debugMessage } from "@shared/utils/utils"
 
 interface WindowFrameProps {
   ref?: React.RefObject<HTMLDivElement | null>
@@ -41,8 +40,6 @@ export const WindowFrame = memo(function WindowFrame({
   onContextMenu,
   onBackNavigation,
 }: WindowFrameProps) {
-  debugMessage("Rendering WindowFrame", title, onBackNavigation)
-
   const resizeHotspots = useMemo(
     () =>
       isResizable
@@ -57,8 +54,6 @@ export const WindowFrame = memo(function WindowFrame({
     [onStartResize, isResizable],
   )
 
-  // Hide bottom border from the start menu
-  // ${isEphemeral ? "border-b-0" : ""}
   return (
     <div
       ref={ref}

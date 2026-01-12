@@ -1,12 +1,14 @@
+import { getProgramMeta } from "@features/program/registry"
+import { ProgramMetadata } from "@features/program/types"
 import { IconName } from "@features/theme/types"
-import Icon from "@shared/components/icon/Icon"
+import Icon from "@shared/components/Icon"
 
 export function BrowserStartPage({ onLaunchApp }: { onLaunchApp: (url: string) => void }) {
-  const favorites = [
-    { name: "CoreFlow ERP", url: "https://erp.ronbodnar.com/", icon: "CoreFlowERP" },
-    { name: "Showcase OS", url: "https://ronbodnar.com/", icon: "ShowcaseOS" },
-    { name: "Grid of Words", url: "https://play.ronbodnar.com/", icon: "GridOfWords" },
-    { name: "TMS Prototype", url: "https://tms.ronbodnar.com/", icon: "TMSPrototype" },
+  const favorites: Array<ProgramMetadata> = [
+    getProgramMeta("coreflow_erp"),
+    getProgramMeta("showcase_os"),
+    getProgramMeta("grid_of_words"),
+    getProgramMeta("tms"),
   ]
 
   return (
@@ -14,8 +16,8 @@ export function BrowserStartPage({ onLaunchApp }: { onLaunchApp: (url: string) =
       <div className="grid grid-cols-4 gap-8 max-w-3xl w-full">
         {favorites.map((app) => (
           <button
-            key={app.url}
-            onClick={() => onLaunchApp(app.url)}
+            key={app.details?.publicUrl}
+            onClick={() => onLaunchApp(app.details?.publicUrl ?? "")}
             className="flex flex-col items-center group gap-3 cursor-pointer"
           >
             <div className="w-16 h-16 rounded-xl bg-surface-alt border border-border flex items-center justify-center backdrop-blur-sm group-hover:bg-surface-hover group-hover:scale-105 group-hover:border-accent/90 transition-all shadow-lg">

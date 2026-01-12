@@ -14,6 +14,11 @@ interface TerminalProps {
   windowId: string
 }
 
+/**
+ * Provides a high-performance terminal emulator interface for the OS.
+ * Component powered by @xterm/xterm.
+ * @see https://xtermjs.org/
+ */
 export default function Terminal({ windowId }: TerminalProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const termRef = useRef<XTerm | null>(null)

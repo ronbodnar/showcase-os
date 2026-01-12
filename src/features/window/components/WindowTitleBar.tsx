@@ -1,6 +1,6 @@
-import { Button } from "@shared/components/button/Button"
-import Icon from "@shared/components/icon/Icon"
-import { CloseButton } from "./CloseButton"
+import { Button } from "@shared/components/Button"
+import Icon from "@shared/components/Icon"
+import { CloseButton } from "../../../shared/components/CloseButton"
 
 interface Props {
   isFocused: boolean

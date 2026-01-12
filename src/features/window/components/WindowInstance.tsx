@@ -1,4 +1,4 @@
-import { memo, Suspense, useCallback, useEffect, useMemo, useRef } from "react"
+import { memo, Suspense, useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { programService } from "@features/program/services/programService"
 import { useProcessStore } from "@core/store/useProcessStore"
 import { LauncherProgramTarget } from "@features/launcher/types"
@@ -31,8 +31,6 @@ export const WindowInstance = memo(function WindowInstance({
 
   const { processId } = state
 
-  debugMessage("Rendering WindowInstance", state, id, useProcessStore.getState().processes)
-
   const process = useProcessStore((state) => state.processes[processId])
   const programMeta = getProgramMeta(process?.programId)
   const launchTarget = process?.launcher.target as LauncherProgramTarget
@@ -63,6 +61,14 @@ export const WindowInstance = memo(function WindowInstance({
   const component = useProgramComponent(process?.programId)
 
   debugMessage("WindowInstance component", component)
+
+  const [isContentVisible, setIsContentVisible] = useState(false)
+
+  useEffect(() => {
+    // Delay content mounting until the next frame to prevent animation flickering
+    const raf = requestAnimationFrame(() => setIsContentVisible(true))
+    return () => cancelAnimationFrame(raf)
+  }, [])
 
   const memoizedContentComponent = useMemo(
     () =>
@@ -99,7 +105,7 @@ export const WindowInstance = memo(function WindowInstance({
       onStartResize={isResizable !== false ? startResizing : undefined}
       onBackNavigation={programNavigation?.canGoBack() ? programNavigation.goBack : undefined}
     >
-      {memoizedContentComponent}
+      {isContentVisible ? memoizedContentComponent : <div className="bg-window h-full w-full" />}
     </Window>
   )
 })

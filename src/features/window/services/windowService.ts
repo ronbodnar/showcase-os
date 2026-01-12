@@ -1,6 +1,5 @@
 import { osService } from "@core/services/osService"
 import { processService } from "@core/services/processService"
-import { useProcessStore } from "@core/store/useProcessStore"
 import { useDesktopStore } from "@features/environments/desktop/store/useDesktopStore"
 import { useGridStore } from "@features/grid/store/useGridStore"
 import { WindowMetadata } from "@features/program/types"
@@ -10,12 +9,15 @@ import { useWindowFrameRefs } from "../store/useWindowRefs"
 import { useWindowStore } from "../store/useWindowStore"
 import { WindowState } from "../types"
 import { clamp, debugMessage } from "@shared/utils/utils"
-
-export const MIN_WINDOW_HEIGHT = 300
-export const MIN_WINDOW_WIDTH = 400
+import { config } from "@config/config"
 
 export const windowService = {
-  createWindow: (processId: number, meta: WindowMetadata | undefined, title?: string) => {
+  createWindow: (
+    processId: number,
+    meta: WindowMetadata | undefined,
+    title?: string,
+    silent?: boolean,
+  ) => {
     const gridStore = useGridStore.getState()
     const desktopStore = useDesktopStore.getState()
     const isDesktop = osService.isDesktop()
@@ -27,9 +29,12 @@ export const windowService = {
       )
     }
 
+    const minHeight = config.windows.minHeight
+    const minWidth = config.windows.minWidth
+
     const {
       spawn,
-      minSize = { width: MIN_WINDOW_WIDTH, height: MIN_WINDOW_HEIGHT },
+      minSize = { width: minWidth, height: minHeight },
       maxSize,
       anchor,
       isEphemeral,
@@ -45,12 +50,12 @@ export const windowService = {
 
     const windowWidth = clamp(
       spawnWidthCalc,
-      spawn?.minSize?.width ?? MIN_WINDOW_WIDTH,
+      spawn?.minSize?.width ?? minWidth,
       spawn?.maxSize?.width ?? window.innerWidth,
     )
     const windowHeight = clamp(
       spawnHeightCalc,
-      spawn?.minSize?.height ?? MIN_WINDOW_HEIGHT,
+      spawn?.minSize?.height ?? minHeight,
       spawn?.maxSize?.height ?? window.innerHeight,
     )
 
@@ -92,22 +97,21 @@ export const windowService = {
 
       title: title ?? "Untitled",
 
-      // instead of centering automatically (Which is the default), position should also eventually include..
-      // past window locations from localStorage and set that if applicable
-      // anchoring to a certain position.. eg: anchor: bottom-left, bottom-center, bottom-right, top-left, etc..
       position: position,
       previousPosition: position,
 
-      // sizes need to be adjusted for the device viewport dimensions
       size: size,
       minSize: minSize,
       maxSize: maxSize,
       previousSize: size,
 
+      isMinimized: !!silent,
       isMaximized: spawnSize.unit === "%" && spawnSize.width === 1 && spawnSize.height === 1,
     }
 
-    if (isEphemeral && isDesktop) {
+    debugMessage("Window State", windowState)
+
+    if (silent && isEphemeral && isDesktop) {
       desktopStore.setEphemeralWindowId(windowId)
     }
 
@@ -200,17 +204,21 @@ export const windowService = {
       const { width, height } = size
       const { x, y } = position
 
+      // When oldGridWidth is not yet available (if you launch a process before the grid is ready) scaleX and scaleY will be Infinity.
+      if (scaleX === Infinity || scaleY === Infinity) {
+        return window
+      }
+
       return {
         ...window,
-        position: { x: x * scaleX, y: y * scaleY },
-        size: { width: width * scaleX, height: height * scaleY },
+        position: { x: Math.round(x * scaleX), y: Math.round(y * scaleY) },
+        size: { width: Math.round(width * scaleX), height: Math.round(height * scaleY) },
       }
     })
   },
 
   tryCloseEphemeralWindow: (clickPosition?: ClickPosition) => {
-    const { windows, removeWindow } = useWindowStore.getState()
-    const { removeProcess } = useProcessStore.getState()
+    const { windows, minimizeWindow } = useWindowStore.getState()
     const { ephemeralWindowId, setEphemeralWindowId } = useDesktopStore.getState()
 
     const ephemeralWindow = ephemeralWindowId ? windows[ephemeralWindowId] : undefined
@@ -218,11 +226,10 @@ export const windowService = {
       return false
     }
 
-    const { id, size, position, processId } = ephemeralWindow
+    const { id, size, position } = ephemeralWindow
 
     if (!clickPosition || !clickedInside(clickPosition, position, size)) {
-      removeProcess(processId)
-      removeWindow(id)
+      minimizeWindow(id)
       setEphemeralWindowId(undefined)
       return true
     }

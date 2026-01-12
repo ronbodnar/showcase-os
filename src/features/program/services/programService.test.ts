@@ -51,7 +51,6 @@ describe("programService", () => {
       const Component = programService.loadProgramComponent("static-app" as any)
 
       expect(Component).toBeDefined()
-      // Verify it's not a React.lazy wrapper (standard functional component)
       expect((Component as any).$$typeof).not.toBe(Symbol.for("react.lazy"))
     })
 
@@ -59,11 +58,10 @@ describe("programService", () => {
       const Component = programService.loadProgramComponent("lazy-app" as any)
 
       expect(Component).toBeDefined()
-      // React.lazy components have a specific $$typeof symbol
       expect((Component as any).$$typeof).toBe(Symbol.for("react.lazy"))
     })
 
-    it("should cache the component after the first load (Idempotency)", () => {
+    it("should cache the component after the first load", () => {
       const firstLoad = programService.loadProgramComponent("static-app" as any)
       const secondLoad = programService.loadProgramComponent("static-app" as any)
 
