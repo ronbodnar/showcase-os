@@ -12,12 +12,14 @@ export interface BrowserProps {
   url: string
 }
 
+const HOME_URI = "home://"
+
 export const Browser = memo(function Browser({ displayId, url: initialUrl }: BrowserProps) {
   const iframeRef = useRef<HTMLIFrameElement>(null)
 
   const [history, setHistory] = useState<string[]>([])
   const [currentIndex, setCurrentIndex] = useState(0)
-  const [currentUrl, setCurrentUrl] = useState(initialUrl ?? "home://")
+  const [currentUrl, setCurrentUrl] = useState(initialUrl ?? HOME_URI)
 
   const isDesktop = useOSStore((state) => state.platform === "desktop")
   const setTitle = isDesktop
@@ -75,7 +77,7 @@ export const Browser = memo(function Browser({ displayId, url: initialUrl }: Bro
       const prevUrl = history[prevIndex]
       setCurrentIndex(prevIndex)
       setCurrentUrl(prevUrl)
-      if (iframeRef.current && prevUrl !== "home://") iframeRef.current.src = prevUrl
+      if (iframeRef.current && prevUrl !== HOME_URI) iframeRef.current.src = prevUrl
     }
   }
 
@@ -85,12 +87,12 @@ export const Browser = memo(function Browser({ displayId, url: initialUrl }: Bro
       const nextUrl = history[nextIndex]
       setCurrentIndex(nextIndex)
       setCurrentUrl(nextUrl)
-      if (iframeRef.current && nextUrl !== "home://") iframeRef.current.src = nextUrl
+      if (iframeRef.current && nextUrl !== HOME_URI) iframeRef.current.src = nextUrl
     }
   }
 
   const goHome = () => {
-    navigateTo("home://")
+    navigateTo(HOME_URI)
     setTitle(displayId, "Browser Start Page")
   }
 
@@ -98,7 +100,7 @@ export const Browser = memo(function Browser({ displayId, url: initialUrl }: Bro
     if (isHomePage) {
       // Option A: Just "blink" the home page to show it refreshed
       setCurrentUrl("")
-      setTimeout(() => setCurrentUrl("home://"), 10)
+      setTimeout(() => setCurrentUrl(HOME_URI), 10)
       return
     }
 
@@ -113,10 +115,10 @@ export const Browser = memo(function Browser({ displayId, url: initialUrl }: Bro
     setHistory((prev) => [...prev.slice(0, currentIndex + 1), url])
     setCurrentIndex((prev) => prev + 1)
     setCurrentUrl(url)
-    if (iframeRef.current && url !== "home://") iframeRef.current.src = url
+    if (iframeRef.current && url !== HOME_URI) iframeRef.current.src = url
   }
 
-  const isHomePage = currentUrl === undefined || currentUrl === "home://"
+  const isHomePage = currentUrl === undefined || currentUrl === HOME_URI
 
   return (
     <div className="flex flex-col w-full h-full bg-surface">
@@ -138,7 +140,7 @@ export const Browser = memo(function Browser({ displayId, url: initialUrl }: Bro
         )}
         <iframe
           ref={iframeRef}
-          src={initialUrl !== "home://" ? initialUrl : undefined}
+          src={initialUrl !== HOME_URI ? initialUrl : undefined}
           className={`w-full h-full bg-white transition-opacity duration-300 ${
             isHomePage ? "opacity-0 pointer-events-none" : "opacity-100"
           }`}

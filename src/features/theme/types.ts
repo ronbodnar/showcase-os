@@ -145,6 +145,7 @@ interface ThemeIconSet {
   MTGVirtualBinder: IconMetadata
   OEDParser: IconMetadata
   OSDClaimManager: IconMetadata
+  PDFViewer: IconMetadata
   PhotoViewer: IconMetadata
   ShowcaseOS: IconMetadata
   SystemSettings: IconMetadata

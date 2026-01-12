@@ -167,7 +167,7 @@ function detectResolution(): WallpaperResolution {
    * mobile-1440p = 1440x2960
    * mobile-1080p = 1080x1920
    *
-   * thumbnail = 350 x 146
+   * thumbnail = 350 x 150
    */
 
   if (isPortrait) {

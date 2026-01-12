@@ -8,15 +8,24 @@ export const useLauncherStatus = (launcher: GridLauncherState | undefined) => {
     launcher?.id ? state.isSelectedLauncher(launcher.id) : false,
   )
 
-  const isWindowFocused = useWindowStore(
-    (state) => launcher?.displayIds?.includes(state.zOrder[state.zOrder.length - 1] ?? "") ?? false,
-  )
+  const isWindowFocused = useWindowStore((state) => {
+    const focusedWindowId = state.zOrder.length > 0 ? state.zOrder[state.zOrder.length - 1] : ""
+    if (focusedWindowId && state.windows[focusedWindowId]?.isMinimized) {
+      return false
+    }
 
-  const runningProgramCount = useProcessStore((state) =>
-    isLauncherProgramTarget(launcher?.meta.target)
-      ? (state.processesByProgramId[launcher.meta.target.programId]?.length ?? 0)
-      : 0,
-  )
+    return launcher?.displayIds?.includes(focusedWindowId) ?? false
+  })
+
+  const runningProgramCount = useProcessStore((state) => {
+    const target = launcher?.meta.target
+    const isProgramLauncher = isLauncherProgramTarget(target)
+    if (!isProgramLauncher) {
+      return 0
+    }
+
+    return state.processesByProgramId[target.programId]?.length
+  })
 
   const isProgramRunning = runningProgramCount > 0
 

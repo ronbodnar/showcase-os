@@ -37,6 +37,20 @@ const LAUNCHER_METADATA = [
   },
 
   {
+    id: "resume",
+    label: "Resume",
+    icon: "PDFViewer",
+    target: {
+      type: "program",
+      programId: "browser",
+      args: {
+        title: "Ronald Bodnar | Resume",
+        url: "https://ronbodnar.com/Ronald-Bodnar_Resume.pdf",
+      },
+    },
+  },
+
+  {
     id: "lock_screen",
     label: "Lock Screen",
     description: "Lock the screen",
@@ -128,12 +142,15 @@ const LAUNCHER_METADATA = [
 const DEFAULT_LAUNCHER_LAYOUTS: Record<GridId, { id: LauncherId; position: GridCellPosition }[]> = {
   home: [
     { id: "software_center", position: { x: 0, y: 0 } },
-    { id: "browser", position: { x: 0, y: 1 } },
-    { id: "system_info", position: { x: 0, y: 2 } },
-    { id: "linkedin", position: { x: 0, y: 3 } },
-    { id: "github", position: { x: 0, y: 4 } },
+    { id: "system_info", position: { x: 0, y: 1 } },
+    { id: "linkedin", position: { x: 0, y: 2 } },
+    { id: "github", position: { x: 0, y: 3 } },
+    { id: "resume", position: { x: 0, y: 4 } },
   ],
-  panel: [{ id: "start_menu", position: { x: 0, y: 0 } }],
+  panel: [
+    { id: "start_menu", position: { x: 0, y: 0 } },
+    { id: "browser", position: { x: 1, y: 0 } },
+  ],
 }
 
 export const launchersConfig = {

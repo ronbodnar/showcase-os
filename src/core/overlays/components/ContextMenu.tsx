@@ -36,15 +36,11 @@ export function ContextMenu(props: ContextMenuProps) {
     return null
   }
 
+  const y = coords.y - variantOffset[variant].y
+  const x = coords.x - variantOffset[variant].x
+
   return (
-    <div
-      ref={ref}
-      className={`fixed z-9999 ${variantStyles[variant]}`}
-      style={{
-        top: coords.y - variantOffset[variant].y,
-        left: coords.x - variantOffset[variant].x,
-      }}
-    >
+    <div ref={ref} className={`fixed z-9999 ${variantStyles[variant]}`} style={{ left: x, top: y }}>
       <div className="flex flex-col">
         {menuItems.map((menuItem, index) => (
           <MenuLauncher
