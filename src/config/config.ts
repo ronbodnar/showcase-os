@@ -5,6 +5,7 @@ import { SYSTEM_PROGRAMS_META } from "./programs-system"
 import { ThemeName } from "@features/theme/types"
 
 interface Config {
+  formspreeKey: string
   launchers: typeof launchersConfig
   programs: {
     developer: ProgramMetadata[]
@@ -37,6 +38,7 @@ interface Config {
  *
  */
 export const config: Config = {
+  formspreeKey: "mqeekgeq",
   launchers: launchersConfig,
   programs: {
     developer: DEVELOPER_PROGRAMS_META,

@@ -93,17 +93,21 @@ interface ThemeIconSet {
   Wifi: IconMetadata
 
   // Actions
+  Add: IconMetadata
   ChevronLeft: IconMetadata
   ChevronRight: IconMetadata
-  Home: IconMetadata
-  Share: IconMetadata
   Delete: IconMetadata
-  Add: IconMetadata
-  StartMenu: IconMetadata
+  Home: IconMetadata
+  Mail: IconMetadata
+  MailSendSuccess: IconMetadata
+  MapPin: IconMetadata
   OpenInNew: IconMetadata
   PinWindow: IconMetadata
-  Settings: IconMetadata
   Refresh: IconMetadata
+  Send: IconMetadata
+  Settings: IconMetadata
+  Share: IconMetadata
+  StartMenu: IconMetadata
   UnpinWindow: IconMetadata
   WindowClose: IconMetadata
   WindowRestore: IconMetadata
@@ -135,6 +139,7 @@ interface ThemeIconSet {
   About: IconMetadata
   AppPlaceholder: IconMetadata
   Browser: IconMetadata
+  Connect: IconMetadata
   CoreFlowERP: IconMetadata
   DeliveryRouterCLI: IconMetadata
   Files: IconMetadata
