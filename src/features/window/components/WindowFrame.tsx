@@ -81,9 +81,7 @@ export const WindowFrame = memo(function WindowFrame({
         />
       )}
 
-      <div className="@container w-full h-full overflow-y-auto flex flex-col bg-surface">
-        {children}
-      </div>
+      <div className="@container flex-1 overflow-y-auto bg-surface">{children}</div>
     </div>
   )
 })

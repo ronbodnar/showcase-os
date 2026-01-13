@@ -67,9 +67,8 @@ export const Window = memo(function Window({
         style={{
           position: "absolute",
           zIndex,
-          top: 0,
-          left: 0,
-          translate: `${position.x}px ${position.y}px`,
+          top: position.y,
+          left: position.x,
           width: size.width,
           height: size.height,
           pointerEvents: isVisible ? "auto" : "none",

@@ -35,7 +35,7 @@ export function Tooltip(props: TooltipProps) {
     <div
       ref={ref}
       className="fixed z-999 text-sm px-5 py-3 rounded-md shadow-lg pointer-events-none whitespace-nowrap text-stone-200 bg-accent/90"
-      style={{ translate: `${coords.x}px ${coords.y}px` }}
+      style={{ left: coords.x, top: coords.y }}
     >
       {text}
     </div>

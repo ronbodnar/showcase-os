@@ -39,6 +39,14 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   font-variant-ligatures: none;
+  image-rendering: crisp-edges;
+  backface-visibility: hidden;
+}
+
+.text-text {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 .no-select {
