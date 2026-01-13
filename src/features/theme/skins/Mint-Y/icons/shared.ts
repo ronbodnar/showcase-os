@@ -4,12 +4,17 @@ import { IconMetadata } from "@features/theme/types"
 import ChevronLeftComponent from "@themeIcons/Mint-Y/actions/chevron-left.svg?react"
 import ChevronRightComponent from "@themeIcons/Mint-Y/actions/chevron-right.svg?react"
 import HomeComponent from "@themeIcons/Mint-Y/mobile/home.svg?react"
+import MailComponent from "@themeIcons/Mint-Y/actions/mail-unread-symbolic.svg?react"
+import MailSendSuccess from "@themeIcons/Mint-Y/actions/mail-mark-notjunk-symbolic.svg?react"
+import MapPinComponent from "@themeIcons/Mint-Y/actions/mark-location-symbolic.svg?react"
 import OpenInNewComponent from "@themeIcons/Mint-Y/actions/open-in-new.svg?react"
-import SettingsComponent from "@themeIcons/Mint-Y/actions/settings.svg?react"
+import SendComponent from "@themeIcons/Mint-Y/actions/send.svg?react"
+import SettingsComponent from "@themeIcons/Mint-Y/actions/applications-system-symbolic.svg?react"
 import ShareComponent from "@themeIcons/Mint-Y/actions/share.svg?react"
 
 import AppPlaceholderSrc from "@themeIcons/Mint-Y/apps/package-x-generic.png"
 import BrowserSrc from "@themeIcons/Mint-Y/apps/brave-browser.png"
+import ConnectComponent from "@themeIcons/Mint-Y/apps/internet-mail.png"
 import CoreFlowERPSrc from "@themeIcons/Mint-Y/apps/coreflow-erp.png"
 import DeliveryRouterCLISrc from "@themeIcons/Mint-Y/apps/deliveryrouter-cli.svg"
 import GridOfWordsSrc from "@themeIcons/Mint-Y/apps/grid-of-words.svg"
@@ -41,13 +46,18 @@ export const icons: Record<string, IconMetadata> = {
   ChevronLeft: makeIcon(ChevronLeftComponent, "Go back"),
   ChevronRight: makeIcon(ChevronRightComponent, "Go forward"),
   Home: makeIcon(HomeComponent),
+  Mail: makeIcon(MailComponent),
+  MailSendSuccess: makeIcon(MailSendSuccess),
+  MapPin: makeIcon(MapPinComponent),
   OpenInNew: makeIcon(OpenInNewComponent),
+  Send: makeIcon(SendComponent),
   Settings: makeIcon(SettingsComponent),
   Share: makeIcon(ShareComponent),
 
   // Apps
   AppPlaceholder: makeIcon(AppPlaceholderSrc),
   Browser: makeIcon(BrowserSrc),
+  Connect: makeIcon(ConnectComponent),
   CoreFlowERP: makeIcon(CoreFlowERPSrc),
   DeliveryRouterCLI: makeIcon(DeliveryRouterCLISrc),
   GridOfWords: makeIcon(GridOfWordsSrc),
