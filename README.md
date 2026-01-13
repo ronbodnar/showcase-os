@@ -31,6 +31,12 @@
   </a>
 </p>
 
+<br />
+
+<p align="center">
+  <img src="https://cdn.ronbodnar.com/images/gif/showcase-os-banner.gif" width="500" alt="Showcase OS Animated Banner" />
+</p>
+
 ## 📍 Table of Contents
 
 - [🚦 Getting Started](#getting-started)
@@ -121,16 +127,6 @@ Programs are React components wrapped in OS‑managed windows.
 - Terminal (command registry–driven, powered by XTerm)
 - Visual Studio Code (powered by github1s)
 
-### Formspree Integration
-
-The Connect program uses Formspree to send email messages.
-
-To enable Formspree for your own form project, you must:
-
-1. Sign up or log in to [Formspree](https://formspree.io/) (It has a great free tier)
-2. Create a new form and copy the form's public key `https://formspree.io/f/**PUBLIC_KEY**`
-3. Replace the form's public key in `src/features/program/components/Connect/ContactForm.tsx` with your own.
-
 The OS automatically handles:
 
 - Launcher creation
@@ -145,6 +141,16 @@ The OS automatically handles:
 3. Register the Component in the program map: `src/features/program/components/index.ts`
 
 _Note: Programs are lazy-loaded by default and use a resolver to map the component. You can eagerly load it by providing the Component directly (Start Menu is an example)_
+
+### Formspree Integration
+
+The Connect program uses Formspree to send email messages.
+
+To enable Formspree for your own form project, you must:
+
+1. Sign up or log in to [Formspree](https://formspree.io/) (It has a great free tier)
+2. Create a new form and copy the form's public key `https://formspree.io/f/**PUBLIC_KEY**`
+3. Replace the form's public key in `src/features/program/components/Connect/ContactForm.tsx` with your own.
 
 <br />
 
