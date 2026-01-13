@@ -18,13 +18,16 @@ interface SettingsState {
 
 export const SETTINGS_STORE_NAME = "settings-store"
 
+const colorScheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
+const defaultTheme = config.defaultTheme[colorScheme]
+
 export const useSettingsStore = create<SettingsState>()(
   devtools(
     persist(
       (set, _get) => ({
-        themeName: config.defaultTheme,
-        accent: Themes[config.defaultTheme].accentOptions[0],
-        wallpaperName: Themes[config.defaultTheme].wallpaperOptions[1].name,
+        themeName: defaultTheme,
+        accent: Themes[defaultTheme].accentOptions[0],
+        wallpaperName: Themes[defaultTheme].wallpaperOptions[1].name,
         textScaling: 1,
 
         setThemeName: (themeName) =>

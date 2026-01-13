@@ -10,7 +10,10 @@ interface Config {
     developer: ProgramMetadata[]
     system: ProgramMetadata[]
   }
-  defaultTheme: ThemeName
+  defaultTheme: {
+    light: ThemeName
+    dark: ThemeName
+  }
   grids: {
     mobileIconSize: number
     panelIconSize: number
@@ -40,7 +43,10 @@ export const config: Config = {
     system: SYSTEM_PROGRAMS_META,
   },
 
-  defaultTheme: "Mint-Y (dark)",
+  defaultTheme: {
+    light: "Mint-Y (light)",
+    dark: "Mint-Y (dark)",
+  },
 
   grids: {
     mobileIconSize: 48,

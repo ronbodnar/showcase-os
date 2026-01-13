@@ -62,7 +62,7 @@ export const DEVELOPER_PROGRAMS_META = [
     details: {
       description: {
         short:
-          "A Wordle-inspired SPA built with vanilla JavaScript frontend and Node.js backend, implementing dynamic state management and a responsive UI.",
+          "A Wordle-inspired SPA built with a custom vanilla JavaScript frontend and Node.js backend, implementing dynamic state management and a responsive UI.",
 
         long:
           `Grid of Words is a dynamic single-page application (**SPA**) featuring a fully custom, **framework-less frontend**. Built with **Vanilla JavaScript**, the UI is orchestrated through a **declarative component system** and **programmatic DOM generation**, achieving high-performance state transitions without relying on external frameworks.\n\n` +
@@ -195,7 +195,7 @@ export const DEVELOPER_PROGRAMS_META = [
     details: {
       description: {
         short:
-          "A modular React web application implementing OS-like architecture, including processes, programs, launchers, and layered window management.",
+          "A modular React web application implementing OS-like architecture, including: processes, programs, launchers, and layered window management.",
         long:
           `Showcase OS is a desktop environment built entirely for the web. It functions as a <b>living operating system simulation</b> where projects are treated as first-class, system-level applications rather than static entries.\n\n` +
           `<b>Project Intent & Vision</b>\n` +
