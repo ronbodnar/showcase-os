@@ -112,6 +112,7 @@ Programs are React components wrapped in OS‑managed windows.
 
 - App Drawer
 - Browser
+- Connect (Socials and contact form, powered by Formspree)
 - Photo Viewer
 - Software Center
 - Start Menu
@@ -119,6 +120,16 @@ Programs are React components wrapped in OS‑managed windows.
 - System Settings
 - Terminal (command registry–driven, powered by XTerm)
 - Visual Studio Code (powered by github1s)
+
+### Formspree Integration
+
+The Connect program uses Formspree to send email messages.
+
+To enable Formspree for your own form project, you must:
+
+1. Sign up or log in to [Formspree](https://formspree.io/) (It has a great free tier)
+2. Create a new form and copy the form's public key `https://formspree.io/f/**PUBLIC_KEY**`
+3. Replace the form's public key in `src/features/program/components/Connect/ContactForm.tsx` with your own.
 
 The OS automatically handles:
 

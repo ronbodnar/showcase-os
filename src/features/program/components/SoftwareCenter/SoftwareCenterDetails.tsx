@@ -74,9 +74,9 @@ export function SoftwareCenterDetails({ programId, programMeta }: SoftwareCenter
       />
 
       {/* Scrollable content */}
-      <main className="flex-1 flex flex-col gap-3 py-3 md:p-3 lg:overflow-y-auto">
+      <main className="flex-1 flex flex-col gap-3 py-3 md:p-4 lg:overflow-y-auto">
         {filteredImages && (
-          <section className="flex justify-center px-3">
+          <section className="flex justify-center">
             <ImageCarousel
               images={filteredImages}
               autoPlay={false}
@@ -106,8 +106,8 @@ function Header({
 }) {
   const buttonClass = "rounded-sm border border-border px-4 py-1.5"
   return (
-    <div className="flex flex-col lg:sticky lg:top-0 lg:z-10 border-b border-border">
-      <header className="flex flex-col md:flex-row items-center justify-between gap-3 px-3 py-3 bg-surface">
+    <div className="flex flex-col lg:sticky lg:top-0 lg:z-10 px-4 py-2 border-b border-border">
+      <header className="flex flex-col md:flex-row items-center justify-between gap-3 bg-surface">
         <div className="flex gap-3">
           <Icon name={icon ?? "AppPlaceholder"} className="w-16 h-16 rounded-lg" />
           <div>
@@ -156,7 +156,7 @@ function DetailsSection({
     <section>
       <HeaderRow />
 
-      <div className="flex flex-col md:flex-row flex-wrap gap-3 text-sm m-3 mt-0 p-3 border border-border border-t-0">
+      <div className="flex flex-col md:flex-row flex-wrap gap-3 text-sm m-0 p-3 border border-border border-t-0">
         <Details id={programId} year={year} githubUrl={githubUrl} publicUrl={publicUrl} />
         <TechnologiesList id={programId} technologies={technologies} />
 
@@ -168,7 +168,7 @@ function DetailsSection({
 
 function HeaderRow() {
   return (
-    <div className="grid grid-cols-2 mx-3">
+    <div className="grid grid-cols-2">
       <div className="py-1 text-sm text-center text-text border border-border border-b-0">
         Details
       </div>
