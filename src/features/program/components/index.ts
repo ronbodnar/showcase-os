@@ -15,6 +15,7 @@ export const PROGRAM_COMPONENTS: Partial<
 > = {
   app_drawer: { loader: () => import("./AppDrawer/AppDrawer") },
   browser: { loader: () => import("./Browser/Browser") },
+  connect: { loader: () => import("./Connect/Connect") },
   photo_viewer: { loader: () => import("./PhotoViewer/PhotoViewer") },
   software_center: { loader: () => import("./SoftwareCenter/SoftwareCenter") },
 

@@ -20,6 +20,7 @@ export const SYSTEM_PROGRAMS_META = [
       isEphemeral: true,
     },
   },
+
   {
     id: "browser",
     name: "Brave Browser",
@@ -36,6 +37,26 @@ export const SYSTEM_PROGRAMS_META = [
         minSize: { width: 600, height: 400 },
         maxSize: { width: 1920, height: 1080 },
       },
+    },
+  },
+
+  {
+    id: "connect",
+    name: "Connect",
+    icon: "Connect",
+    category: "system",
+    details: {
+      description: {
+        short: "Contact me or connect with me on other platforms",
+      },
+    },
+    window: {
+      spawn: {
+        size: { width: 1, height: 1, unit: "%" },
+        minSize: { width: 600, height: 600 },
+        maxSize: { width: 900, height: 600 },
+      },
+      maxSize: { width: 900, height: 650 },
     },
   },
 
