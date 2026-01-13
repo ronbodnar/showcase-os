@@ -143,9 +143,8 @@ const DEFAULT_LAUNCHER_LAYOUTS: Record<GridId, { id: LauncherId; position: GridC
   home: [
     { id: "software_center", position: { x: 0, y: 0 } },
     { id: "system_info", position: { x: 0, y: 1 } },
-    { id: "linkedin", position: { x: 0, y: 2 } },
-    { id: "github", position: { x: 0, y: 3 } },
-    { id: "resume", position: { x: 0, y: 4 } },
+    { id: "connect", position: { x: 0, y: 2 } },
+    { id: "resume", position: { x: 0, y: 3 } },
   ],
   panel: [
     { id: "start_menu", position: { x: 0, y: 0 } },
