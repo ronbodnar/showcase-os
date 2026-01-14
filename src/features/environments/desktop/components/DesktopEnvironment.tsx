@@ -22,7 +22,10 @@ export default function DesktopEnvironment() {
   useEffect(() => {
     if (loaded.current) return
     gridService.initializeLaunchers()
-    processService.startProcess(getLauncherMeta("start_menu"), true)
+
+    if (processService.getRunningCountForProgramId("start_menu") === 0) {
+      processService.startProcess(getLauncherMeta("start_menu"), true)
+    }
 
     loaded.current = true
     disableTextSelection()
