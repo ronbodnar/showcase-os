@@ -12,7 +12,7 @@ export interface BrowserProps {
   url: string
 }
 
-const HOME_URI = "home://"
+export const HOME_URI = "home://"
 
 export const Browser = memo(function Browser({ displayId, url: initialUrl }: BrowserProps) {
   const iframeRef = useRef<HTMLIFrameElement>(null)
@@ -71,51 +71,58 @@ export const Browser = memo(function Browser({ displayId, url: initialUrl }: Bro
     return () => window.removeEventListener("message", handleMessage)
   }, [currentIndex, history, currentUrl, displayId, setTitle])
 
-  const goBack = () => {
+  function goBack() {
     if (currentIndex > 0) {
       const prevIndex = currentIndex - 1
       const prevUrl = history[prevIndex]
       setCurrentIndex(prevIndex)
       setCurrentUrl(prevUrl)
-      if (iframeRef.current && prevUrl !== HOME_URI) iframeRef.current.src = prevUrl
+      if (iframeRef.current && prevUrl !== HOME_URI) {
+        iframeRef.current.src = prevUrl
+      }
     }
   }
 
-  const goForward = () => {
+  function goForward() {
     if (currentIndex < history.length - 1) {
       const nextIndex = currentIndex + 1
       const nextUrl = history[nextIndex]
       setCurrentIndex(nextIndex)
       setCurrentUrl(nextUrl)
-      if (iframeRef.current && nextUrl !== HOME_URI) iframeRef.current.src = nextUrl
+
+      if (iframeRef.current && nextUrl !== HOME_URI) {
+        iframeRef.current.src = nextUrl
+      }
     }
   }
 
-  const goHome = () => {
+  function goHome() {
     navigateTo(HOME_URI)
     setTitle(displayId, "Browser Start Page")
   }
 
-  const refresh = () => {
+  function refresh() {
+    // Just "blink" the home page to show it refreshed
     if (isHomePage) {
-      // Option A: Just "blink" the home page to show it refreshed
       setCurrentUrl("")
       setTimeout(() => setCurrentUrl(HOME_URI), 10)
       return
     }
 
+    // Re-assigning the src forces the iframe to reload the document
     if (iframeRef.current) {
-      // Re-assigning the src forces the iframe to reload the document
       iframeRef.current.src = currentUrl
-      debugMessage("Refreshing iframe:", currentUrl)
     }
   }
 
-  const navigateTo = (url: string) => {
+  function navigateTo(url: string) {
     setHistory((prev) => [...prev.slice(0, currentIndex + 1), url])
     setCurrentIndex((prev) => prev + 1)
     setCurrentUrl(url)
-    if (iframeRef.current && url !== HOME_URI) iframeRef.current.src = url
+
+    if (iframeRef.current && url !== HOME_URI) {
+      iframeRef.current.src = url
+    }
   }
 
   const isHomePage = currentUrl === undefined || currentUrl === HOME_URI
@@ -141,7 +148,7 @@ export const Browser = memo(function Browser({ displayId, url: initialUrl }: Bro
         <iframe
           ref={iframeRef}
           src={initialUrl !== HOME_URI ? initialUrl : undefined}
-          className={`w-full h-full bg-white transition-opacity duration-300 ${
+          className={`w-full h-full bg-surface transition-opacity duration-300 ${
             isHomePage ? "opacity-0 pointer-events-none" : "opacity-100"
           }`}
           style={{ colorScheme: themeColorScheme }}
