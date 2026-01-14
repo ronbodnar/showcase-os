@@ -10,9 +10,9 @@ import { IconList } from "@shared/components/IconList"
 import Icon from "@shared/components/Icon"
 import { ProgramLoading } from "@shared/components/ProgramLoading"
 import { VisualStudioCodeProps } from "../VisualStudioCode/VisualStudioCode"
-import { ImageCarousel } from "./carousel/ImageCarousel"
 import { useTheme } from "@features/theme/hooks/useTheme"
 import { launcherService } from "@features/launcher/services/launcherService"
+import { Carousel } from "./carousel/Carousel"
 
 interface SoftwareCenterDetailsProps {
   programId: ProgramId
@@ -74,11 +74,11 @@ export function SoftwareCenterDetails({ programId, programMeta }: SoftwareCenter
       />
 
       {/* Scrollable content */}
-      <main className="flex-1 flex flex-col gap-3 py-3 md:p-4 lg:overflow-y-auto">
+      <main className="flex-1 flex flex-col space-y-8 py-3 md:p-4 lg:overflow-y-auto">
         {filteredImages && (
           <section className="flex justify-center">
-            <ImageCarousel
-              images={filteredImages}
+            <Carousel
+              assets={filteredImages}
               autoPlay={false}
               className="h-[40vh] max-h-[450px] rounded-sm"
             />
@@ -156,7 +156,7 @@ function DetailsSection({
     <section>
       <HeaderRow />
 
-      <div className="flex flex-col md:flex-row flex-wrap gap-3 text-sm m-0 p-3 border border-border border-t-0">
+      <div className="flex flex-col md:flex-row flex-wrap gap-3 text-sm m-0 p-3 border border-border border-t-0 shadow-2xl shadow-black/10">
         <Details id={programId} year={year} githubUrl={githubUrl} publicUrl={publicUrl} />
         <TechnologiesList id={programId} technologies={technologies} />
 

@@ -18,7 +18,7 @@ export default function SystemSettings() {
   return (
     <div className="flex flex-col gap-6 p-4 w-full h-full overflow-auto">
       {/* Wallpaper Section */}
-      <section className="space-y-2">
+      <section className="space-y-2 shadow-2xl shadow-black/5">
         <h3 className="text-sm font-semibold text-text">Wallpaper</h3>
         <div className="grid grid-cols-2 @md:grid-cols-3 @2xl:grid-cols-4 @4xl:grid-cols-5 gap-3 bg-window p-3 rounded-md border border-border">
           {!loaded && <ProgramLoading />}
@@ -42,7 +42,7 @@ export default function SystemSettings() {
       </section>
 
       {/* Theme Section */}
-      <section className="space-y-2">
+      <section className="space-y-2 shadow-2xl shadow-black/5">
         <h3 className="text-sm font-semibold text-text">Theme</h3>
         <div className="flex flex-col gap-4 bg-window p-3 rounded-md border border-border">
           {/* Skin Dropdown */}
@@ -62,7 +62,7 @@ export default function SystemSettings() {
           </div>
 
           {/* Accent Colors */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 shadow-2xl shadow-black/5">
             <label className="text-sm text-text w-28">Accent Color</label>
             <div className="flex gap-2">
               {theme?.accentOptions.map((a) => (
@@ -85,7 +85,7 @@ export default function SystemSettings() {
       </section>
 
       {/* Text Scaling Section */}
-      <section className="space-y-2">
+      <section className="space-y-2 shadow-2xl shadow-black/5">
         <h3 className="text-sm font-semibold text-text">Text Scaling</h3>
         <div className="flex flex-col gap-4 bg-window p-3 rounded-md border border-border">
           {/* Scaling Factor */}

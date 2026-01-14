@@ -55,10 +55,10 @@ export const SystemInfo = memo(function SystemInfo() {
     <div className="flex flex-col h-full">
       <div className="flex flex-col pb-5 items-center overflow-y-auto">
         <div className="py-4">
-          <Icon name="User" className="w-30 h-30 rounded-full" />
+          <Icon name="User" className="w-30 h-30 rounded-full shadow-2xl shadow-black/20" />
         </div>
 
-        <div className="mx-4 md:mx-0 md:w-5/6 flex flex-col border border-border text-text">
+        <div className="mx-4 md:mx-0 md:w-5/6 flex flex-col border border-border text-text shadow-2xl shadow-black/5">
           {entries.map((entry) => (
             <InfoEntry key={entry.label} {...entry} />
           ))}

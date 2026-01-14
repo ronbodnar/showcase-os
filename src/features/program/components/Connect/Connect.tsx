@@ -4,7 +4,7 @@ import { ContactForm } from "./ContactForm"
 
 export default function Connect() {
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col h-full overflow-hidden">
       <div className="max-w-5xl mx-auto p-6 space-y-6">
         {/* Header */}
         <div className="flex flex-col @2xl:flex-row items-start @2xl:items-center justify-between gap-6">
@@ -15,27 +15,25 @@ export default function Connect() {
             </p>
           </div>
 
-            <div className="flex items-center gap-2 text-xs text-muted">
-              <span className="w-2 h-2 bg-green-600 rounded-full" />
-              Currently exploring new senior-level roles
-            </div>
+          <div className="flex items-center gap-2 text-xs text-muted">
+            <span className="w-2 h-2 bg-green-600 rounded-full" />
+            Currently exploring new senior-level roles
           </div>
+        </div>
 
         <div className="grid grid-cols-1 @2xl:grid-cols-2 gap-6">
-          <div className="bg-window border border-border shadow-2xl shadow-black/40 rounded order-2 @2xl:order-1">
+          <div className="bg-window border border-border shadow-2xl shadow-black/70 rounded overflow-hidden order-2 @2xl:order-1">
             <div className="p-4 space-y-4">
               <h3 className="text-xs uppercase tracking-wide font-semibold text-text">
                 Send a Message
-              </div>
-              <div className="p-4">
-                <ContactForm />
-              </div>
+              </h3>
+              <ContactForm />
             </div>
+          </div>
 
-            <div className="space-y-4 order-1 @2xl:order-2">
-              <IdentityPanel />
-              <QuickLinks />
-            </div>
+          <div className="space-y-4 order-1 @2xl:order-2">
+            <IdentityPanel />
+            <QuickLinks />
           </div>
         </div>
       </div>
@@ -45,10 +43,8 @@ export default function Connect() {
 
 function IdentityPanel() {
   return (
-    <div className="bg-window border border-border rounded p-4 space-y-4">
-      <div>
-        <h3 className="text-xs uppercase tracking-wide font-semibold text-text">About Me</h3>
-      </div>
+    <div className="bg-window border border-border shadow-2xl shadow-black/30 rounded p-4 space-y-4">
+      <h3 className="text-xs uppercase tracking-wide font-semibold text-text">About Me</h3>
 
       <div className="space-y-3 text-sm">
         <Row icon="Mail">
@@ -84,7 +80,7 @@ function QuickLinks() {
   ]
 
   return (
-    <div className="bg-window border border-border rounded p-4 space-y-5">
+    <div className="bg-window border border-border shadow-2xl shadow-black/30 rounded p-4 space-y-5">
       <h3 className="text-xs uppercase tracking-wide font-semibold text-text">Find me elsewhere</h3>
 
       <div className="flex gap-3">

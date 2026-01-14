@@ -140,7 +140,7 @@ export function ContactForm() {
         <Button
           type="submit"
           color="accent"
-          disabled={formState.submitting}
+          disabled={formState.submitting || formData.name.trim() === ""}
           className="px-6 py-1 rounded-sm text-stone-200"
         >
           {formState.submitting ? "Sending..." : "Send Message"}

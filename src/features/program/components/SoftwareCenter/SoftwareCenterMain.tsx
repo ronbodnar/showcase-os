@@ -2,7 +2,7 @@ import { getProgramMeta } from "@features/program/registry"
 import { ProgramId, ProgramMetadata } from "@features/program/types"
 import { Button } from "@shared/components/Button"
 import Icon from "@shared/components/Icon"
-import { ProgramCarousel } from "./carousel/ProgramCarousel"
+import { Carousel } from "./carousel/Carousel"
 import { config } from "@config/config"
 
 export interface SoftwareCenterMainProps {
@@ -19,15 +19,15 @@ export function SoftwareCenterMain({ onSelectProgram }: SoftwareCenterMainProps)
 
   return (
     <>
-      <header className="p-3 pb-2 rounded-lg">
-        <ProgramCarousel
-          programs={bannerPrograms}
+      <header className="p-3 rounded-lg">
+        <Carousel
+          assets={bannerPrograms}
           onSelectProgram={onSelectProgram}
           className="h-30 lg:h-40 rounded-md"
         />
       </header>
 
-      <section>
+      <section className="pt-3">
         <h2 className="text-md font-medium text-text pl-3 pb-2">Featured</h2>
         <ProgramGrid programs={featured} onSelectProgram={onSelectProgram} />
       </section>
@@ -78,7 +78,7 @@ function ProgramCard({
   return (
     <Button
       color="surface-alt"
-      className="flex p-3 border border-border-lighter rounded-sm shadow-sm hover:shadow-lg"
+      className="flex p-3 border border-border-lighter rounded-sm shadow-2xl hover:shadow-lg shadow-window/10 transition-shadow"
       onClick={onClick}
     >
       {programMeta.icon && <Icon name={programMeta.icon} className="w-10 h-10 mr-3 rounded-md" />}
