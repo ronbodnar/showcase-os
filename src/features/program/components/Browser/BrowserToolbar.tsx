@@ -5,6 +5,7 @@ import Icon from "@shared/components/Icon"
 import { debugMessage } from "@shared/utils/utils"
 import { useRef } from "react"
 import { XYCoordinate } from "types"
+import { HOME_URI } from "./Browser"
 
 interface BrowserToolbarProps {
   url: string
@@ -16,7 +17,17 @@ interface BrowserToolbarProps {
   canForward: boolean
 }
 
-export function BrowserToolbar({
+export function BrowserToolbar(props: BrowserToolbarProps) {
+  return (
+    <div className="w-full flex items-center p-1 gap-2">
+      <NavigationPane {...props} />
+      <AddressBar url={props.url} />
+      <ActionButtonPane url={props.url} />
+    </div>
+  )
+}
+
+function NavigationPane({
   url,
   onBack,
   onForward,
@@ -25,36 +36,11 @@ export function BrowserToolbar({
   canBack,
   canForward,
 }: BrowserToolbarProps) {
-  return (
-    <div className="w-full flex items-center p-1 gap-2">
-      <NavigationPane
-        onBack={onBack}
-        onForward={onForward}
-        onHome={onHome}
-        onRefresh={onRefresh}
-        canBack={canBack}
-        canForward={canForward}
-      />
-      <AddressBar url={url} />
-
-      <ActionButtonPane url={url} />
-    </div>
-  )
-}
-
-function NavigationPane({
-  onBack,
-  onForward,
-  onHome,
-  onRefresh,
-  canBack,
-  canForward,
-}: Omit<BrowserToolbarProps, "url">) {
   const navigationButtons: { name: IconName; onClick: () => void; disabled?: boolean }[] = [
     { name: "ChevronLeft", onClick: onBack, disabled: !canBack },
     { name: "ChevronRight", onClick: onForward, disabled: !canForward },
     { name: "Refresh", onClick: onRefresh },
-    { name: "Home", onClick: onHome },
+    { name: "Home", onClick: onHome, disabled: url === HOME_URI },
   ]
   return (
     <div className="flex items-center gap-2">
@@ -127,6 +113,7 @@ function ActionButtonPane({ url }: { url: string }) {
           className="p-1 hover:bg-window rounded-md"
           key={b.name}
           onClick={b.onClick}
+          disabled={url === HOME_URI}
           onMouseEnter={(e) => (mousePosition.current = { x: e.clientX, y: e.clientY })}
         >
           <Icon name={b.name} className="w-5 h-5 text-text" />
