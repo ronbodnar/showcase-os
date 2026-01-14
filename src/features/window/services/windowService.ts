@@ -195,6 +195,10 @@ export const windowService = {
     const { width: oldGridWidth, height: oldGridHeight } = oldGridSize
     const { width: gridWidth, height: gridHeight } = grid.size
 
+    if (gridWidth === 0 || gridHeight === 0) {
+      return
+    }
+
     const scaleX = gridWidth / oldGridWidth
     const scaleY = gridHeight / oldGridHeight
 
