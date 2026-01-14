@@ -74,7 +74,7 @@ export function SoftwareCenterDetails({ programId, programMeta }: SoftwareCenter
       />
 
       {/* Scrollable content */}
-      <main className="flex-1 flex flex-col space-y-8 py-3 md:p-4 lg:overflow-y-auto">
+      <main className="flex-1 flex flex-col space-y-5 py-3 md:p-4 lg:overflow-y-auto">
         {filteredImages && (
           <section className="flex justify-center">
             <Carousel

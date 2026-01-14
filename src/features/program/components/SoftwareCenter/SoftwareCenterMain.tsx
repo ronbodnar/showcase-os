@@ -23,7 +23,7 @@ export function SoftwareCenterMain({ onSelectProgram }: SoftwareCenterMainProps)
         <Carousel
           assets={bannerPrograms}
           onSelectProgram={onSelectProgram}
-          className="h-30 lg:h-40 rounded-md"
+          className="h-30 lg:h-40 rounded-md shadow-2xl shadow-black/30"
         />
       </header>
 

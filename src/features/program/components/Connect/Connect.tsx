@@ -22,7 +22,7 @@ export default function Connect() {
         </div>
 
         <div className="grid grid-cols-1 @2xl:grid-cols-2 gap-6">
-          <div className="bg-window border border-border shadow-2xl shadow-black/70 rounded overflow-hidden order-2 @2xl:order-1">
+          <div className="bg-window border border-border shadow-2xl shadow-black/40 rounded overflow-hidden order-2 @2xl:order-1">
             <div className="p-4 space-y-4">
               <h3 className="text-xs uppercase tracking-wide font-semibold text-text">
                 Send a Message

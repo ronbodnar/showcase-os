@@ -11,7 +11,7 @@ interface ProgramAsset {
 }
 
 interface Props {
-  assets: string[] | ProgramAsset[]
+  assets: (string | ProgramAsset)[]
   autoPlay?: boolean
   autoPlayInterval?: number
   className?: string
@@ -45,7 +45,7 @@ export function Carousel({
 
   return (
     <div
-      className={`relative overflow-hidden shadow-2xl shadow-black/30 ${className}`}
+      className={`relative overflow-hidden ${className}`}
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
