@@ -6,43 +6,29 @@ import { IconName, ThemeAccent, ThemeName, WallpaperResolution } from "../types"
 import { getAllProgramMetadata } from "@features/program/registry"
 import { wallpapers } from "../assets/wallpaper"
 import { debugMessage } from "@shared/utils/utils"
+import { config } from "@config/config"
 
 export const themeService = {
   /**
-   * Loads icons for the currently active theme based on the user's platform (desktop, mobile).
+   * Loads icon sources for the currently active theme based on the user's platform (desktop, mobile).
    */
-  loadIcons: async (themeName?: ThemeName) => {
+  loadIconSources: async (themeName?: ThemeName) => {
     const platform = osService.getPlatform()
     const userThemeName = useSettingsStore.getState().themeName
 
     const theme = Themes[themeName ?? userThemeName]
     const icons = await theme.loadIcons(platform)
     theme.icons = icons
-
-    // is there where i should just put preloading everything i need for the system? start menu icons (pretty much all program icons), etc?
   },
 
-  preloadAssets: async () => {
-    const names: IconName[] = [
-      "User",
-      "StartMenu",
-      "Apps",
-      "DeveloperApps",
-      "LinkedIn",
-      "GitHub",
-      "SystemApps",
-      "Search",
-      "Shutdown",
-      "LockScreen",
-      "Terminal",
-      "SystemSettings",
-      "VSCode",
-      "SoftwareCenter",
-    ]
-    const programNames: (IconName | undefined)[] = getAllProgramMetadata().map((p) => p.icon)
+  /**
+   * Decodes the icons from the active theme to preload them in the DOM.
+   */
+  preloadIcons: async () => {
     const { themeName } = useSettingsStore.getState()
     const theme = Themes[themeName]
-    const assets = [...names, ...programNames]
+    const programNames: (IconName | undefined)[] = getAllProgramMetadata().map((p) => p.icon)
+    const assets = [...config.preloadIcons, ...programNames]
       .filter((name) => name !== undefined)
       .map((name) => theme.icons[name]?.src)
 
@@ -113,7 +99,8 @@ export const themeService = {
     const { setThemeName, setAccent, setWallpaperName } = useSettingsStore.getState()
 
     await themeService.applyWallpaper(theme.defaultWallpaper.name)
-    await themeService.loadIcons(theme.name as ThemeName)
+    await themeService.loadIconSources(theme.name as ThemeName)
+    await themeService.preloadIcons()
     applyStaticStyles(themeName, theme.accentOptions[0])
 
     setWallpaperName(theme.defaultWallpaper.name)

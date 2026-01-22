@@ -17,8 +17,8 @@ export function BootScreen() {
       await step("Initializing Showcase OS...")
       await step(`Detected device platform: ${osService.getPlatform()}`)
       await step(`Loading theme "${themeName}"...`, () => themeService.initializeTheme())
-      await step("Loading theme icons...", () => themeService.loadIcons())
-      await step("Preloading assets...", () => themeService.preloadAssets())
+      await step("Loading theme icons...", () => themeService.loadIconSources())
+      await step("Preloading assets...", () => themeService.preloadIcons())
       await step("Boot complete!")
       await new Promise((resolve) =>
         setTimeout(() => resolve(osService.setStatus("unlocked")), 500),

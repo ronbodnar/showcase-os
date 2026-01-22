@@ -65,11 +65,11 @@ describe("themeService", () => {
     Object.defineProperty(window, "devicePixelRatio", { writable: true, value: 1 })
   })
 
-  describe("loadIcons", () => {
+  describe("loadIconSources", () => {
     it("should load icons for the specific theme and platform", async () => {
       vi.mocked(osService.getPlatform).mockReturnValue("desktop")
 
-      await themeService.loadIcons(THEME_KEY as any)
+      await themeService.loadIconSources(THEME_KEY as any)
 
       expect(Themes[THEME_KEY].loadIcons).toHaveBeenCalledWith("desktop")
       expect(Themes[THEME_KEY].icons).toEqual({ Terminal: { src: "term.png" } })
@@ -84,7 +84,7 @@ describe("themeService", () => {
       }
       vi.mocked(getAllProgramMetadata).mockReturnValue([{ icon: "Terminal" }] as any)
 
-      await themeService.preloadAssets()
+      await themeService.preloadIcons()
 
       expect(preloadImages).toHaveBeenCalledWith(expect.arrayContaining(["user.png", "term.png"]))
     })
@@ -105,7 +105,7 @@ describe("themeService", () => {
   describe("applyTheme", () => {
     it("should coordinate wallpaper and icon loading", async () => {
       const wallpaperSpy = vi.spyOn(themeService, "applyWallpaper").mockResolvedValue(undefined)
-      const iconsSpy = vi.spyOn(themeService, "loadIcons").mockResolvedValue(undefined)
+      const iconsSpy = vi.spyOn(themeService, "loadIconSources").mockResolvedValue(undefined)
 
       await themeService.applyTheme(THEME_KEY as any)
 

@@ -2,11 +2,13 @@ import { ProgramId, ProgramMetadata } from "@features/program/types"
 import { launchersConfig } from "./launchers"
 import { DEVELOPER_PROGRAMS_META } from "./programs-developer"
 import { SYSTEM_PROGRAMS_META } from "./programs-system"
-import { ThemeName } from "@features/theme/types"
+import { IconName, ThemeName } from "@features/theme/types"
 
 interface Config {
   formspreeKey: string
   launchers: typeof launchersConfig
+  /* Non-program icons that should be preloaded during boot phase. Program Icons are automatically preloaded. */
+  preloadIcons: IconName[]
   programs: {
     developer: ProgramMetadata[]
     system: ProgramMetadata[]
@@ -40,6 +42,17 @@ interface Config {
 export const config: Config = {
   formspreeKey: "mqeekgeq",
   launchers: launchersConfig,
+  preloadIcons: [
+    "User",
+    "Apps",
+    "DeveloperApps",
+    "LinkedIn",
+    "GitHub",
+    "SystemApps",
+    "Search",
+    "Shutdown",
+    "LockScreen",
+  ],
   programs: {
     developer: DEVELOPER_PROGRAMS_META,
     system: SYSTEM_PROGRAMS_META,
