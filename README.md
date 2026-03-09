@@ -7,7 +7,7 @@
 <h1 align="center">Showcase OS</h1>
 
 <p align="center">
-  A web-based, extensible desktop environment for developers.
+  A web-based OS simulation built as an interactive developer portfolio — featuring a full window manager, process lifecycle, theming engine, and dual desktop/mobile environments.
 </p>
 
 <p align="center">
@@ -34,26 +34,26 @@
 <br />
 
 <p align="center">
-  <img src="https://cdn.ronbodnar.com/images/gif/showcase-os-banner.gif" width="500" alt="Showcase OS Animated Banner" />
+  <img src="https://cdn.ronbodnar.com/images/showcase-os-preview.png" width="500" alt="Showcase OS Animated Banner" />
 </p>
 
-## 📍 Table of Contents
+## Table of Contents
 
-- [🚦 Getting Started](#getting-started)
-- [🛠️ Add Your Projects or Apps](#customization)
-- [🧩 Extend System Programs](#programs)
-- [🎨 Modifying Themes](#themes)
-- [📂 Project Structure (High‑Level)](#structure)
-- [🏗️ Architecture Overview](#architecture)
-- [🧪 Testing Strategy](#testing)
-- [📫 Connect](#connect)
-- [🎨 Credits & Assets](#credits)
+- [Getting Started](#getting-started)
+- [Add Your Projects or Apps](#customization)
+- [Extend System Programs](#programs)
+- [Modifying Themes](#themes)
+- [Project Structure (High‑Level)](#structure)
+- [Architecture Overview](#architecture)
+- [Testing Strategy](#testing)
+- [Connect](#connect)
+- [Credits & Assets](#credits)
 
 <br />
 
 <a name="getting-started"></a>
 
-## 🚦 Getting Started
+## Getting Started
 
 ### Clone
 
@@ -96,7 +96,7 @@ Open http://localhost:8080 in your browser.
 
 <a name="customization"></a>
 
-## 🛠️ Add Your Projects or Apps
+## Add Your Projects or Apps
 
 1. Add project metadata: `src/config/programs-developer.ts`
 2. Add project to the Software Center: `src/config/config.ts`
@@ -108,7 +108,7 @@ _Note: Step 3 is required if you are supplying a URL for the iframe to the `brow
 
 <a name="programs"></a>
 
-## 🧩 Extend System Programs
+## Extend System Programs
 
 Programs are React components wrapped in OS‑managed windows.
 
@@ -156,7 +156,7 @@ To enable Formspree for your own form project, you must:
 
 <a name="themes"></a>
 
-## 🎨 Modifying Themes
+## Modifying Themes
 
 ### Icons
 
@@ -208,7 +208,7 @@ To ensure the system picks up new themes or to change a skin directory name, you
 
 <a name="structure"></a>
 
-## 📂 Project Structure (High‑Level)
+## Project Structure (High‑Level)
 
 ```txt
 public/               # Static assets for branding and deployment
@@ -231,7 +231,7 @@ index.html            # Site metadata and root element
 
 <a name="architecture"></a>
 
-## 🏗️ Architecture Overview
+## Architecture Overview
 
 Every subsystem behaves like its real OS counterpart, but implemented in a modern web stack.
 
@@ -309,7 +309,7 @@ Tooltips, context menus, dialogs, and window compositor (for live previews on th
 
 <a name="testing"></a>
 
-## 🧪 Testing Strategy
+## Testing Strategy
 
 Since the UI is a complex state-driven simulation, I prioritize testing the service logic and state transitions that drive the experience.
 
@@ -330,7 +330,7 @@ npm run test
 
 <a name="connect"></a>
 
-## 📫 Connect
+## Connect
 
 **Created by Ron Bodnar**
 
@@ -341,7 +341,7 @@ npm run test
 
 <a name="credits"></a>
 
-## 🎨 Credits & Assets
+## Credits & Assets
 
 This project is an open-source tribute to desktop environments. It utilizes several high-quality asset libraries:
 
