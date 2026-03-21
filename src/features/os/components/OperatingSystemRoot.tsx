@@ -1,7 +1,6 @@
 import { useEffect, lazy, Suspense, useRef } from "react"
 import { AnimatePresence, motion } from "framer-motion"
 import { Shutdown } from "./Shutdown"
-import { BootScreen } from "./BootScreen"
 import { LockScreen } from "./LockScreen"
 import { Loading } from "./Loading"
 import { osService } from "@core/services/osService"
@@ -10,6 +9,7 @@ import { useMediaQuery } from "@shared/hooks/useMediaQuery"
 import { processService } from "@core/services/processService"
 import { windowService } from "@features/window/services/windowService"
 import { debugMessage } from "@shared/utils/utils"
+import { themeService } from "@features/theme/services/themeService"
 
 const MobileEnvironment = lazy(() => import("../../environments/mobile/MobileEnvironment"))
 const DesktopEnvironment = lazy(
@@ -25,15 +25,22 @@ export function OperatingSystemRoot() {
   const lastPlatformRef = useRef<OSPlatform>(osService.getPlatform())
 
   useEffect(() => {
+    async function setupTheme() {
+      await themeService.initializeTheme()
+      await themeService.loadIconSources()
+      await themeService.preloadIcons()
+    }
+
     const newPlatform = isDesktop ? "desktop" : "mobile"
 
     if (lastPlatformRef.current !== newPlatform) {
       lastPlatformRef.current = newPlatform
 
+      setupTheme()
+
       osService.setPlatform(newPlatform)
       windowService.closeAllWindows()
       processService.stopAllProcesses()
-      osService.setStatus("booting")
     }
   }, [isDesktop])
 
@@ -48,7 +55,6 @@ export function OperatingSystemRoot() {
       <Suspense fallback={<Loading />}>
         <AnimatePresence mode="wait">
           {status === "shutdown" && withMotion(<Shutdown />, `shutdown_${keyModifier}`)}
-          {status === "booting" && withMotion(<BootScreen />, `booting_${keyModifier}`)}
           {status === "locked" && withMotion(<LockScreen />, `locked_${keyModifier}`)}
           {status === "unlocked" && withMotion(<UIEnvironment />, `unlocked_${keyModifier}`)}
         </AnimatePresence>

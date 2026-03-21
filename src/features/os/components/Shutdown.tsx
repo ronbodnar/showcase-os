@@ -55,15 +55,18 @@ export const Shutdown = () => {
     requestAnimationFrame(animate)
   }, [])
 
-  const boot = () => osService.setStatus("booting")
+  const setLocked = () => osService.setStatus("locked")
 
   useEffect(() => {
-    window.addEventListener("keyup", boot)
-    return () => window.removeEventListener("keyup", boot)
+    window.addEventListener("keyup", setLocked)
+    return () => window.removeEventListener("keyup", setLocked)
   })
 
   return (
-    <div className="h-screen w-screen bg-neutral-950 text-white overflow-hidden" onClick={boot}>
+    <div
+      className="h-screen w-screen bg-neutral-950 text-white overflow-hidden"
+      onClick={setLocked}
+    >
       <div
         ref={boxRef}
         className="absolute flex flex-col items-center gap-5 p-10 border border-stone-800 bg-neutral-900 rounded-md"

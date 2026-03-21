@@ -2,7 +2,7 @@ import { create } from "zustand"
 import { devtools } from "zustand/middleware"
 
 export type OSPlatform = "desktop" | "mobile"
-export type OSStatus = "booting" | "locked" | "unlocked" | "shutdown"
+export type OSStatus = "locked" | "unlocked" | "shutdown"
 
 interface State {
   status: OSStatus
@@ -21,7 +21,7 @@ interface Action {
 type OSStore = State & Action
 
 const defaultState: State = {
-  status: "booting",
+  status: "unlocked",
   platform: "mobile",
 }
 
