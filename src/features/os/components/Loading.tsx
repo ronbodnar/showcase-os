@@ -1,4 +1,4 @@
-export function Loading() {
+export function Loading({ message }: { message: string }) {
   return (
     <div className="flex flex-col gap-4 justify-center items-center w-full h-full bg-black/30 backdrop-blur-sm text-stone-200">
       <div className="relative size-20">
@@ -20,7 +20,7 @@ export function Loading() {
           "
         />
       </div>
-      <h2 className="text-lg">Preparing the environment...</h2>
+      <h2 className="text-lg">{message}</h2>
     </div>
   )
 }

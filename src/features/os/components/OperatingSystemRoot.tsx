@@ -1,4 +1,4 @@
-import { useEffect, lazy, Suspense, useRef } from "react"
+import { useEffect, lazy, Suspense, useRef, useState } from "react"
 import { AnimatePresence, motion } from "framer-motion"
 import { Shutdown } from "./Shutdown"
 import { LockScreen } from "./LockScreen"
@@ -19,6 +19,8 @@ const DesktopEnvironment = lazy(
 export function OperatingSystemRoot() {
   const status = useOSStore((s) => s.status)
   const isDesktop = useMediaQuery("(min-width: 1024px)")
+  const [loading, setLoading] = useState(true)
+  const [loadingMessage, setLoadingMessage] = useState("")
 
   debugMessage("Loading Operating System Root", status, isDesktop)
 
@@ -26,9 +28,13 @@ export function OperatingSystemRoot() {
 
   useEffect(() => {
     async function setupTheme() {
+      setLoadingMessage("Setting up theme...")
       await themeService.initializeTheme()
+      setLoadingMessage("Loading icons...")
       await themeService.loadIconSources()
+      setLoadingMessage("Loading icons...")
       await themeService.preloadIcons()
+      setLoading(false)
     }
 
     const newPlatform = isDesktop ? "desktop" : "mobile"
@@ -52,13 +58,16 @@ export function OperatingSystemRoot() {
     <div
       className={`fixed inset-0 flex flex-col h-screen w-screen wallpaper transition-all duration-600`}
     >
-      <Suspense fallback={<Loading />}>
-        <AnimatePresence mode="wait">
-          {status === "shutdown" && withMotion(<Shutdown />, `shutdown_${keyModifier}`)}
-          {status === "locked" && withMotion(<LockScreen />, `locked_${keyModifier}`)}
-          {status === "unlocked" && withMotion(<UIEnvironment />, `unlocked_${keyModifier}`)}
-        </AnimatePresence>
-      </Suspense>
+      {loading && <Loading message={loadingMessage} />}
+      {!loading && (
+        <Suspense fallback={<Loading message={"Loading the environment..."} />}>
+          <AnimatePresence mode="wait">
+            {status === "shutdown" && withMotion(<Shutdown />, `shutdown_${keyModifier}`)}
+            {status === "locked" && withMotion(<LockScreen />, `locked_${keyModifier}`)}
+            {status === "unlocked" && withMotion(<UIEnvironment />, `unlocked_${keyModifier}`)}
+          </AnimatePresence>
+        </Suspense>
+      )}
     </div>
   )
 }
