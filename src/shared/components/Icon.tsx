@@ -1,4 +1,4 @@
-import { memo } from "react"
+import { memo, useEffect, useState } from "react"
 import { overlayService } from "@core/services/overlayService"
 import { useTheme } from "@features/theme/hooks/useTheme"
 import { IconName } from "@features/theme/types"
@@ -10,11 +10,21 @@ interface Props {
   className?: string
   style?: React.CSSProperties
 }
-
 export const Icon = memo(({ name, tooltip, className, style }: Props) => {
   const theme = useTheme()
   const icon = name ? theme.icons[name] : undefined
-  const { src, title } = icon ?? {}
+  const [resolvedSrc, setResolvedSrc] = useState<
+    string | React.FC<React.SVGProps<SVGSVGElement>> | undefined
+  >(undefined)
+  const { loader, title } = icon ?? {}
+
+  useEffect(() => console.log("Resolved icon", icon, resolvedSrc), [icon, resolvedSrc])
+
+  useEffect(() => {
+    if (loader) {
+      loader().then((src) => setResolvedSrc(src as string))
+    }
+  }, [loader])
 
   if (tooltip === "icon") {
     tooltip = title ?? name
@@ -27,13 +37,13 @@ export const Icon = memo(({ name, tooltip, className, style }: Props) => {
     ...style,
   } as React.CSSProperties
 
-  const isUrl = typeof src === "string"
-  const isComponent = typeof src === "function"
+  const isUrl = typeof resolvedSrc === "string"
+  const isComponent = typeof resolvedSrc === "function"
 
   if (isUrl) {
     return (
       <img
-        src={src}
+        src={resolvedSrc}
         className={className}
         alt={name}
         style={styles}
@@ -47,7 +57,7 @@ export const Icon = memo(({ name, tooltip, className, style }: Props) => {
 
   // Component is needed to apply fill to SVG icons
   if (isComponent) {
-    const Component = src
+    const Component = resolvedSrc
     return (
       <Component
         className={className}

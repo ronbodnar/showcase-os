@@ -1,9 +1,8 @@
-import { SVGProps } from "react"
 import { wallpaperModules } from "./assets/wallpaper"
 
-export function makeIcon(src: string | React.FC<SVGProps<SVGSVGElement>>, title?: string) {
+export function makeIcon(loader: () => Promise<unknown>, title?: string) {
   return {
-    src,
+    loader,
     title,
   }
 }

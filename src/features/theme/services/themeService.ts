@@ -1,42 +1,12 @@
-import { osService } from "@core/services/osService"
 import { useSettingsStore } from "@core/store/useSettingsStore"
 import { Themes } from ".."
 import { preloadImages } from "../helpers"
-import { IconName, ThemeAccent, ThemeName, WallpaperResolution } from "../types"
-import { getAllProgramMetadata } from "@features/program/registry"
+import { IconMetadata, IconName, ThemeAccent, ThemeName, WallpaperResolution } from "../types"
 import { wallpapers } from "../assets/wallpaper"
 import { debugMessage } from "@shared/utils/utils"
-import { config } from "@config/config"
 
 export const themeService = {
-  /**
-   * Loads icon sources for the currently active theme based on the user's platform (desktop, mobile).
-   */
-  loadIconSources: async (themeName?: ThemeName) => {
-    const platform = osService.getPlatform()
-    const userThemeName = useSettingsStore.getState().themeName
-
-    const theme = Themes[themeName ?? userThemeName]
-    const icons = await theme.loadIcons(platform)
-    theme.icons = icons
-  },
-
-  /**
-   * Decodes the icons from the active theme to preload them in the DOM.
-   */
-  preloadIcons: async () => {
-    const { themeName } = useSettingsStore.getState()
-    const theme = Themes[themeName]
-    const programNames: (IconName | undefined)[] = getAllProgramMetadata().map((p) => p.icon)
-    const assets = [...config.preloadIcons, ...programNames]
-      .filter((name) => name !== undefined)
-      .map((name) => theme.icons[name]?.src)
-
-    const stringAssets = assets.filter(
-      (src): src is string => src !== undefined && typeof src === "string",
-    )
-    preloadImages(stringAssets)
-  },
+  iconCache: new Map<IconName, IconMetadata>(),
 
   initializeTheme: async () => {
     const { themeName, wallpaperName, accent, textScaling } = useSettingsStore.getState()
@@ -99,8 +69,6 @@ export const themeService = {
     const { setThemeName, setAccent, setWallpaperName } = useSettingsStore.getState()
 
     await themeService.applyWallpaper(theme.defaultWallpaper.name)
-    await themeService.loadIconSources(theme.name as ThemeName)
-    await themeService.preloadIcons()
     applyStaticStyles(themeName, theme.accentOptions[0])
 
     setWallpaperName(theme.defaultWallpaper.name)

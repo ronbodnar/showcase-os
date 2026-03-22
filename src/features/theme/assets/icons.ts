@@ -1,85 +1,176 @@
-import { IconMetadata } from "../types"
+import { IconMetadata, IconName } from "../types"
 import { makeIcon } from "../helpers"
 
-import UserSrc from "@sharedIcons/user.png"
-
-import AngularSrc from "@sharedIcons/tech/angular.svg"
-import AWSSrc from "@sharedIcons/tech/aws.svg"
-import ChartJSSrc from "@sharedIcons/tech/chartjs.svg"
-import CSS3Src from "@sharedIcons/tech/css3.svg"
-import DockerSrc from "@sharedIcons/tech/docker.svg"
-import ExpressComponent from "@sharedIcons/tech/express.svg?react"
-import GitSrc from "@sharedIcons/tech/git.svg"
-import GithubComponent from "@sharedIcons/tech/github.svg?react"
-import GithubActionsSrc from "@sharedIcons/tech/github-actions.svg"
-import HTML5Src from "@sharedIcons/tech/html5.svg"
-import IntelliJSrc from "@sharedIcons/tech/intellij-idea.svg"
-import JasmineSrc from "@sharedIcons/tech/jasmine.svg"
-import JavaSrc from "@sharedIcons/tech/java.svg"
-import JavaScriptSrc from "@sharedIcons/tech/javascript.svg"
-import JQuerySrc from "@sharedIcons/tech/jquery.svg"
-import JUnitSrc from "@sharedIcons/tech/junit.svg"
-import JupyterSrc from "@sharedIcons/tech/jupyter.svg"
-import LinkedInSrc from "@sharedIcons/tech/linkedin.svg"
-import LinuxSrc from "@sharedIcons/tech/linux.svg"
-import MongoDBSrc from "@sharedIcons/tech/mongodb.svg"
-import MySQLSrc from "@sharedIcons/tech/mysql.svg"
-import NginxSrc from "@sharedIcons/tech/nginx.svg"
-import NodeJSSrc from "@sharedIcons/tech/node.js.svg"
-import NumPySrc from "@sharedIcons/tech/numpy.svg"
-import PandasSrc from "@sharedIcons/tech/pandas.svg"
-import PHPSrc from "@sharedIcons/tech/php.svg"
-import PostmanSrc from "@sharedIcons/tech/postman.svg"
-import PythonSrc from "@sharedIcons/tech/python.svg"
-import ReactSrc from "@sharedIcons/tech/react.svg"
-import RxJSSrc from "@sharedIcons/tech/rxjs.svg"
-import ScikitLearnSrc from "@sharedIcons/tech/scikit-learn.svg"
-import SpringSrc from "@sharedIcons/tech/spring.svg"
-import TailwindCSSSrc from "@sharedIcons/tech/tailwind-css.svg"
-import TypeScriptSrc from "@sharedIcons/tech/typescript.svg"
-import ViteSrc from "@sharedIcons/tech/vite.svg"
-import VSCodeSrc from "@sharedIcons/tech/vscode.svg"
-
 // Themes can override these icons if they wish, but they are theme agnostic.
-export const defaultIcons: Record<string, IconMetadata> = {
-  User: makeIcon(UserSrc),
+export const defaultIcons: Record<IconName, IconMetadata> = {
+  User: makeIcon(() => import("@sharedIcons/user.png")),
 
-  Angular: makeIcon(AngularSrc),
-  AWS: makeIcon(AWSSrc),
-  ChartJS: makeIcon(ChartJSSrc),
-  CSS3: makeIcon(CSS3Src),
-  Docker: makeIcon(DockerSrc),
-  Express: makeIcon(ExpressComponent),
-  Git: makeIcon(GitSrc),
-  GitHub: makeIcon(GithubComponent),
-  GitHubActions: makeIcon(GithubActionsSrc, "GitHub Actions"),
-  HTML5: makeIcon(HTML5Src),
-  IntelliJ: makeIcon(IntelliJSrc, "IntelliJ IDEA"),
-  Jasmine: makeIcon(JasmineSrc),
-  Java: makeIcon(JavaSrc),
-  JavaScript: makeIcon(JavaScriptSrc),
-  JQuery: makeIcon(JQuerySrc),
-  JUnit: makeIcon(JUnitSrc),
-  Jupyter: makeIcon(JupyterSrc, "Jupyter Notebook"),
-  LinkedIn: makeIcon(LinkedInSrc),
-  Linux: makeIcon(LinuxSrc),
-  MongoDB: makeIcon(MongoDBSrc),
-  MySQL: makeIcon(MySQLSrc),
-  Nginx: makeIcon(NginxSrc),
-  NodeJS: makeIcon(NodeJSSrc),
-  NumPy: makeIcon(NumPySrc),
-  Pandas: makeIcon(PandasSrc),
-  PHP: makeIcon(PHPSrc),
-  Postman: makeIcon(PostmanSrc),
-  Python: makeIcon(PythonSrc),
-  React: makeIcon(ReactSrc),
-  RxJS: makeIcon(RxJSSrc),
-  ScikitLearn: makeIcon(ScikitLearnSrc, "Scikit-Learn"),
-  Spring: makeIcon(SpringSrc, "Spring Ecosystem (Spring Boot, Spring Data, Spring Security)"),
-  TailwindCSS: makeIcon(TailwindCSSSrc, "Tailwind CSS"),
-  TypeScript: makeIcon(TypeScriptSrc),
-  Vite: makeIcon(ViteSrc),
-  VSCode: makeIcon(VSCodeSrc, "Visual Studio Code"),
-}
+  // Actions
+  ChevronLeft: makeIcon(
+    () => import("@themeIcons/Mint-Y/actions/chevron-left.svg?react"),
+    "Go back",
+  ),
+  ChevronRight: makeIcon(
+    () => import("@themeIcons/Mint-Y/actions/chevron-right.svg?react"),
+    "Go forward",
+  ),
+  Home: makeIcon(() => import("@themeIcons/Mint-Y/mobile/home.svg?react")),
+  Mail: makeIcon(() => import("@themeIcons/Mint-Y/actions/mail-unread-symbolic.svg?react")),
+  MailSendSuccess: makeIcon(
+    () => import("@themeIcons/Mint-Y/actions/mail-mark-notjunk-symbolic.svg?react"),
+  ),
+  MapPin: makeIcon(() => import("@themeIcons/Mint-Y/actions/mark-location-symbolic.svg?react")),
+  OpenInNew: makeIcon(() => import("@themeIcons/Mint-Y/actions/open-in-new.svg?react")),
+  Send: makeIcon(() => import("@themeIcons/Mint-Y/actions/send.svg?react")),
+  Settings: makeIcon(
+    () => import("@themeIcons/Mint-Y/actions/applications-system-symbolic.svg?react"),
+  ),
+  Share: makeIcon(() => import("@themeIcons/Mint-Y/actions/share.svg?react")),
+
+  // Places
+  Apps: makeIcon(() => import("@themeIcons/Mint-Y/places/apps.svg?react")),
+  SystemApps: makeIcon(() => import("@themeIcons/Mint-Y/places/apps-system.png")),
+  DeveloperApps: makeIcon(() => import("@themeIcons/Mint-Y/places/apps-developer.png")),
+  Search: makeIcon(
+    () => import("@themeIcons/Mint-Y/places/folder-saved-search-symbolic.svg?react"),
+    "Search",
+  ),
+
+  // Programs / Apps
+  AppPlaceholder: makeIcon(() => import("@themeIcons/Mint-Y/apps/package-x-generic.png")),
+  Browser: makeIcon(() => import("@themeIcons/Mint-Y/apps/brave-browser.png")),
+  Connect: makeIcon(() => import("@themeIcons/Mint-Y/apps/internet-mail.png")),
+  CoreFlowERP: makeIcon(() => import("@themeIcons/Mint-Y/apps/coreflow-erp.png")),
+  DeliveryRouterCLI: makeIcon(() => import("@themeIcons/Mint-Y/apps/deliveryrouter-cli.svg")),
+  GridOfWords: makeIcon(() => import("@themeIcons/Mint-Y/apps/grid-of-words.svg")),
+  LeagueOfLegendsLogParser: makeIcon(
+    () => import("@themeIcons/Mint-Y/apps/league-of-legends-log-parser.svg"),
+  ),
+  LoanEligibilityML: makeIcon(() => import("@themeIcons/Mint-Y/apps/loan-eligibility-ml.svg")),
+  MTGVirtualBinder: makeIcon(() => import("@themeIcons/Mint-Y/apps/mtg-virtual-binder.svg")),
+  OEDParser: makeIcon(() => import("@themeIcons/Mint-Y/apps/oed-parser.svg")),
+  OSDClaimManager: makeIcon(() => import("@themeIcons/Mint-Y/apps/osd-claim-manager.svg")),
+  PDFViewer: makeIcon(() => import("@themeIcons/Mint-Y/apps/pdf-viewer.png")),
+  PhotoViewer: makeIcon(() => import("@themeIcons/Mint-Y/apps/photo-viewer.png")),
+  ShowcaseOS: makeIcon(() => import("@themeIcons/Mint-Y/apps/showcase-os.svg")),
+  SoftwareCenter: makeIcon(() => import("@themeIcons/Mint-Y/apps/software-center.png")),
+  SystemInfo: makeIcon(() => import("@themeIcons/Mint-Y/apps/system-info.png")),
+  SystemSettings: makeIcon(() => import("@themeIcons/Mint-Y/apps/system-settings.png")),
+  Terminal: makeIcon(() => import("@themeIcons/Mint-Y/apps/terminal.png")),
+  TerminalSymbolic: makeIcon(() => import("@themeIcons/Mint-Y/apps/terminal-symbolic.svg?react")),
+  TwitchBuddy: makeIcon(() => import("@themeIcons/Mint-Y/apps/twitch-buddy.png")),
+  TwitchChatIRC: makeIcon(() => import("@themeIcons/Mint-Y/apps/twitch-chat-irc.png")),
+  TwitchRaffle: makeIcon(() => import("@themeIcons/Mint-Y/apps/twitch-raffle.png")),
+  TMS: makeIcon(() => import("@themeIcons/Mint-Y/apps/tms.png")),
+  VisualStudioCode: makeIcon(() => import("@themeIcons/Mint-Y/apps/visual-studio-code.png")),
+
+  // Mobile
+  FiveG: makeIcon(() => import("@themeIcons/Mint-Y/mobile/5g.svg?react")),
+  AppStack: makeIcon(() => import("@themeIcons/Mint-Y/mobile/window-stack.svg?react")),
+  BatteryMobile: makeIcon(() => import("@themeIcons/Mint-Y/mobile/android-battery-full.svg?react")),
+  MobileSignal: makeIcon(() => import("@themeIcons/Mint-Y/mobile/android-cell-5-bar.svg?react")),
+  PowerOff: makeIcon(() => import("@themeIcons/Mint-Y/mobile/mode_off_on.svg?react")),
+  Wifi: makeIcon(() => import("@themeIcons/Mint-Y/mobile/android-wifi-4-bar.svg?react")),
+  Bell: makeIcon(() => import("@themeIcons/Mint-Y/mobile/notification-bell.svg?react")),
+
+  // Technologies
+  Angular: makeIcon(() => import("@sharedIcons/tech/angular.svg")),
+  AWS: makeIcon(() => import("@sharedIcons/tech/aws.svg")),
+  ChartJS: makeIcon(() => import("@sharedIcons/tech/chartjs.svg")),
+  CSS3: makeIcon(() => import("@sharedIcons/tech/css3.svg")),
+  Docker: makeIcon(() => import("@sharedIcons/tech/docker.svg")),
+  Express: makeIcon(() => import("@sharedIcons/tech/express.svg?react")),
+  Git: makeIcon(() => import("@sharedIcons/tech/git.svg")),
+  GitHub: makeIcon(() => import("@sharedIcons/tech/github.svg?react")),
+  GitHubActions: makeIcon(() => import("@sharedIcons/tech/github-actions.svg"), "GitHub Actions"),
+  HTML5: makeIcon(() => import("@sharedIcons/tech/html5.svg")),
+  IntelliJ: makeIcon(() => import("@sharedIcons/tech/intellij-idea.svg"), "IntelliJ IDEA"),
+  Jasmine: makeIcon(() => import("@sharedIcons/tech/jasmine.svg")),
+  Java: makeIcon(() => import("@sharedIcons/tech/java.svg")),
+  JavaScript: makeIcon(() => import("@sharedIcons/tech/javascript.svg")),
+  JQuery: makeIcon(() => import("@sharedIcons/tech/jquery.svg")),
+  JUnit: makeIcon(() => import("@sharedIcons/tech/junit.svg")),
+  Jupyter: makeIcon(() => import("@sharedIcons/tech/jupyter.svg"), "Jupyter Notebook"),
+  LinkedIn: makeIcon(() => import("@sharedIcons/tech/linkedin.svg")),
+  Linux: makeIcon(() => import("@sharedIcons/tech/linux.svg")),
+  MongoDB: makeIcon(() => import("@sharedIcons/tech/mongodb.svg")),
+  MySQL: makeIcon(() => import("@sharedIcons/tech/mysql.svg")),
+  Nginx: makeIcon(() => import("@sharedIcons/tech/nginx.svg")),
+  NodeJS: makeIcon(() => import("@sharedIcons/tech/node.js.svg")),
+  NumPy: makeIcon(() => import("@sharedIcons/tech/numpy.svg")),
+  Pandas: makeIcon(() => import("@sharedIcons/tech/pandas.svg")),
+  PHP: makeIcon(() => import("@sharedIcons/tech/php.svg")),
+  Postman: makeIcon(() => import("@sharedIcons/tech/postman.svg")),
+  Python: makeIcon(() => import("@sharedIcons/tech/python.svg")),
+  React: makeIcon(() => import("@sharedIcons/tech/react.svg")),
+  RxJS: makeIcon(() => import("@sharedIcons/tech/rxjs.svg")),
+  ScikitLearn: makeIcon(() => import("@sharedIcons/tech/scikit-learn.svg"), "Scikit-Learn"),
+  Spring: makeIcon(
+    () => import("@sharedIcons/tech/spring.svg"),
+    "Spring Ecosystem (Spring Boot, Spring Data, Spring Security)",
+  ),
+  TailwindCSS: makeIcon(() => import("@sharedIcons/tech/tailwind-css.svg"), "Tailwind CSS"),
+  TypeScript: makeIcon(() => import("@sharedIcons/tech/typescript.svg")),
+  Vite: makeIcon(() => import("@sharedIcons/tech/vite.svg")),
+  VSCode: makeIcon(() => import("@sharedIcons/tech/vscode.svg"), "Visual Studio Code"),
+
+  // Actions
+  Add: makeIcon(() => import("@themeIcons/Mint-Y/actions/list-add.svg?react")),
+  Delete: makeIcon(() => import("@themeIcons/Mint-Y/actions/edit-delete-symbolic.svg?react")),
+  StartMenu: makeIcon(
+    () => import("@themeIcons/Mint-Y/actions/linuxmint-logo-ring-symbolic.svg?react"),
+  ),
+  PinWindow: makeIcon(() => import("@themeIcons/Mint-Y/actions/xapp-pin-symbolic.svg?react")),
+  Refresh: makeIcon(() => import("@themeIcons/Mint-Y/actions/refresh.svg?react")),
+  UnpinWindow: makeIcon(() => import("@themeIcons/Mint-Y/actions/xapp-unpin-symbolic.svg?react")),
+  WindowClose: makeIcon(() => import("@themeIcons/Mint-Y/actions/window-close-symbolic.svg?react")),
+  WindowRestore: makeIcon(
+    () => import("@themeIcons/Mint-Y/actions/window-restore-symbolic.svg?react"),
+  ),
+  WindowMaximize: makeIcon(
+    () => import("@themeIcons/Mint-Y/actions/window-maximize-symbolic.svg?react"),
+  ),
+  WindowMinimize: makeIcon(
+    () => import("@themeIcons/Mint-Y/actions/window-minimize-symbolic.svg?react"),
+  ),
+  WindowNew: makeIcon(() => import("@themeIcons/Mint-Y/actions/window-new-symbolic.svg?react")),
+
+  // Apps
+  LockScreen: makeIcon(() => import("@themeIcons/Mint-Y/apps/lock-screen.png")),
+  Shutdown: makeIcon(() => import("@themeIcons/Mint-Y/apps/shutdown.png")),
+
+  // Devices
+  Computer: makeIcon(() => import("@themeIcons/Mint-Y/devices/computer-symbolic.svg?react")),
+  RemovableMedia: makeIcon(
+    () => import("@themeIcons/Mint-Y/devices/drive-removable-media-symbolic.svg?react"),
+    "Removable drives",
+  ),
+
+  // Status
+  Volume: makeIcon(
+    () => import("@themeIcons/Mint-Y/status/audio-status-volume-medium-symbolic.svg?react"),
+    "Volume: 20%",
+  ),
+  HighSecurity: makeIcon(
+    () => import("@themeIcons/Mint-Y/status/security-high-symbolic.svg?react"),
+    "The system is up to date",
+  ),
+  Dropbox: makeIcon(
+    () => import("@themeIcons/Mint-Y/status/dropboxstatus-logo.svg?react"),
+    "Dropbox",
+  ),
+  NetworkWired: makeIcon(
+    () => import("@themeIcons/Mint-Y/status/network-wired-symbolic.svg?react"),
+    "Connected to the wired network",
+  ),
+  Bluetooth: makeIcon(
+    () => import("@themeIcons/Mint-Y/status/bluetooth-symbolic.svg?react"),
+    "Bluetooth Enabled",
+  ),
+  Battery: makeIcon(
+    () => import("@themeIcons/Mint-Y/status/battery-level-90-symbolic.svg?react"),
+    "Mouse (90%)",
+  ),
+} as const
 
 export default defaultIcons

@@ -28,12 +28,9 @@ export function OperatingSystemRoot() {
 
   useEffect(() => {
     async function setupTheme() {
-      setLoadingMessage("Setting up theme...")
+      setLoadingMessage("Loading theme assets...")
       await themeService.initializeTheme()
-      setLoadingMessage("Loading icons...")
-      await themeService.loadIconSources()
-      setLoadingMessage("Loading icons...")
-      await themeService.preloadIcons()
+
       setLoading(false)
     }
 
