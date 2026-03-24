@@ -1,7 +1,11 @@
 import { SVGProps } from "react"
 import { wallpaperModules } from "./assets/wallpaper"
+import { IconMetadata } from "./types"
 
-export function makeIcon(src: string | React.FC<SVGProps<SVGSVGElement>>, title?: string) {
+export function makeIcon(
+  src: string | React.FC<SVGProps<SVGSVGElement>>,
+  title?: string,
+): IconMetadata {
   return {
     src,
     title,

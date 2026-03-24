@@ -1,10 +1,10 @@
-import { useEffect, lazy, Suspense, useRef, useState } from "react"
+import { useEffect, lazy, Suspense, useState } from "react"
 import { AnimatePresence, motion } from "framer-motion"
 import { Shutdown } from "./Shutdown"
 import { LockScreen } from "./LockScreen"
 import { Loading } from "./Loading"
 import { osService } from "@core/services/osService"
-import { OSPlatform, useOSStore } from "@core/store/useOSStore"
+import { useOSStore } from "@core/store/useOSStore"
 import { useMediaQuery } from "@shared/hooks/useMediaQuery"
 import { processService } from "@core/services/processService"
 import { windowService } from "@features/window/services/windowService"
@@ -24,30 +24,19 @@ export function OperatingSystemRoot() {
 
   debugMessage("Loading Operating System Root", status, isDesktop)
 
-  const lastPlatformRef = useRef<OSPlatform>(osService.getPlatform())
-
   useEffect(() => {
     async function setupTheme() {
-      setLoadingMessage("Setting up theme...")
+      setLoadingMessage("Loading theme assets...")
       await themeService.initializeTheme()
-      setLoadingMessage("Loading icons...")
-      await themeService.loadIconSources()
-      setLoadingMessage("Loading icons...")
-      await themeService.preloadIcons()
+
       setLoading(false)
     }
 
-    const newPlatform = isDesktop ? "desktop" : "mobile"
+    setupTheme()
 
-    if (lastPlatformRef.current !== newPlatform) {
-      lastPlatformRef.current = newPlatform
-
-      setupTheme()
-
-      osService.setPlatform(newPlatform)
-      windowService.closeAllWindows()
-      processService.stopAllProcesses()
-    }
+    osService.setPlatform(isDesktop ? "desktop" : "mobile")
+    windowService.closeAllWindows()
+    processService.stopAllProcesses()
   }, [isDesktop])
 
   const UIEnvironment = isDesktop ? DesktopEnvironment : MobileEnvironment

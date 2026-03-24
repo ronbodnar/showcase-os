@@ -132,6 +132,24 @@ const LAUNCHER_METADATA = [
       },
     },
   },
+
+  {
+    id: "projects",
+    label: "My Projects",
+    target: {
+      type: "program",
+      programId: "software_center",
+    },
+  },
+
+  {
+    id: "about_me",
+    label: "About Me",
+    target: {
+      type: "program",
+      programId: "system_info",
+    },
+  },
   // Don't specify the "id" because LauncherId type is inferred from these keys.
 ] as const satisfies (Partial<LauncherMetadata> & { id: string })[]
 
@@ -141,8 +159,8 @@ const LAUNCHER_METADATA = [
  */
 const DEFAULT_LAUNCHER_LAYOUTS: Record<GridId, { id: LauncherId; position: GridCellPosition }[]> = {
   home: [
-    { id: "software_center", position: { x: 0, y: 0 } },
-    { id: "system_info", position: { x: 0, y: 1 } },
+    { id: "projects", position: { x: 0, y: 0 } },
+    { id: "about_me", position: { x: 0, y: 1 } },
     { id: "connect", position: { x: 0, y: 2 } },
     { id: "resume", position: { x: 0, y: 3 } },
   ],

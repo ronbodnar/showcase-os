@@ -1,4 +1,4 @@
-import { IconMetadata } from "@features/theme/types"
+import { ThemeIconSet } from "@features/theme/types"
 import { makeIcon } from "@features/theme/helpers"
 
 import AddListComponent from "@themeIcons/Mint-Y/actions/list-add.svg?react"
@@ -24,7 +24,7 @@ import NetworkWiredComponent from "@themeIcons/Mint-Y/status/network-wired-symbo
 import BluetoothComponent from "@themeIcons/Mint-Y/status/bluetooth-symbolic.svg?react"
 import BatteryComponent from "@themeIcons/Mint-Y/status/battery-level-90-symbolic.svg?react"
 
-export const desktopIcons: Record<string, IconMetadata> = {
+export const desktopIconSet: Partial<ThemeIconSet> = {
   // Actions
   Add: makeIcon(AddListComponent),
   Delete: makeIcon(DeleteEditComponent),
@@ -53,6 +53,6 @@ export const desktopIcons: Record<string, IconMetadata> = {
   NetworkWired: makeIcon(NetworkWiredComponent, "Connected to the wired network"),
   Bluetooth: makeIcon(BluetoothComponent, "Bluetooth Enabled"),
   Battery: makeIcon(BatteryComponent, "Mouse (90%)"),
-}
+} as const
 
-export default desktopIcons
+export default desktopIconSet

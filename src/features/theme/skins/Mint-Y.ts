@@ -1,6 +1,6 @@
-import { OSPlatform } from "@core/store/useOSStore"
-import { IconMetadata, Theme } from "../../types"
-import { wallpapers } from "../../assets/wallpaper"
+import { Theme } from "../types"
+import { wallpapers } from "../assets/wallpaper"
+import defaultIconSet from "@features/theme/assets/icons"
 
 export const theme: Theme = {
   name: "Mint-Y (dark)",
@@ -37,23 +37,7 @@ export const theme: Theme = {
   },
   defaultWallpaper: wallpapers.Nebula,
   wallpaperOptions: Object.values(wallpapers),
-  icons: {}, // Icons are loaded in themeService and made available here for synchronous access
-  loadIcons: async (platform: OSPlatform) => {
-    const defaultIconsModule = await import("../../assets/icons")
-    const defaultIcons = defaultIconsModule.default
-
-    const sharedIconsModule = await import("./icons/shared")
-    const sharedIcons = sharedIconsModule.default
-
-    let platformIcons: Record<string, IconMetadata> = {}
-    if (platform === "desktop") {
-      const desktopIconsModule = await import("./icons/desktop")
-      platformIcons = desktopIconsModule.default
-    } else if (platform === "mobile") {
-      const mobileIconsModule = await import("./icons/mobile")
-      platformIcons = mobileIconsModule.default
-    }
-
-    return { ...defaultIcons, ...sharedIcons, ...platformIcons }
+  icons: {
+    ...defaultIconSet,
   },
 }
