@@ -1,4 +1,3 @@
-import { OSPlatform } from "@core/store/useOSStore"
 import { Themes } from "."
 
 export type ThemeName = keyof typeof Themes
@@ -39,11 +38,7 @@ export interface Theme {
   defaultWallpaper: ThemeWallpaper
   wallpaperOptions: ThemeWallpaper[]
 
-  /** Currently loaded icons; starts as a partial set until loadIcons is called */
-  icons: Partial<ThemeIconSet>
-
-  /** Dynamic import for platform-specific (Mobile/Desktop) icon assets */
-  loadIcons: (platform: OSPlatform) => Promise<Partial<ThemeIconSet>>
+  icons: ThemeIconSet
 }
 
 export interface ThemeAccent {
@@ -79,7 +74,7 @@ export type IconName = keyof ThemeIconSet
  * Comprehensive manifest of all system icons.
  * Using a flat interface prevents deep-nesting resolution logic.
  */
-interface ThemeIconSet {
+export interface ThemeIconSet {
   // Portrait/Avatar of the dev for System Info
   User: IconMetadata
 

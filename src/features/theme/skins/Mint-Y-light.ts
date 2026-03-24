@@ -1,4 +1,4 @@
-import { OSPlatform } from "@core/store/useOSStore"
+import defaultIconSet from "@features/theme/assets/icons"
 import { wallpapers } from "@features/theme/assets/wallpaper"
 import { Theme } from "@features/theme/types"
 
@@ -37,23 +37,7 @@ export const theme: Theme = {
   },
   defaultWallpaper: wallpapers.Nature,
   wallpaperOptions: Object.values(wallpapers),
-  icons: {},
-  loadIcons: async (platform: OSPlatform) => {
-    const defaultIconsModule = await import("../../assets/icons")
-    const defaultIcons = defaultIconsModule.default
-
-    const sharedIconsModule = await import("./icons/shared")
-    const sharedIcons = sharedIconsModule.default
-
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    let platformIconsModule: any
-    if (platform === "desktop") {
-      platformIconsModule = await import(`./icons/desktop`)
-    } else if (platform === "mobile") {
-      platformIconsModule = await import(`./icons/mobile`)
-    }
-    const platformIcons = platformIconsModule.default
-
-    return { ...defaultIcons, ...sharedIcons, ...platformIcons }
+  icons: {
+    ...defaultIconSet,
   },
 }

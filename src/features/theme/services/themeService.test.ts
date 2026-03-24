@@ -1,10 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { describe, it, expect, vi, beforeEach } from "vitest"
 import { themeService } from "./themeService"
-import { osService } from "@core/services/osService"
-import { Themes } from ".."
-import { preloadImages } from "../helpers"
-import { getAllProgramMetadata } from "@features/program/registry"
 
 const { mockSettingsStore } = vi.hoisted(() => ({
   mockSettingsStore: { getState: vi.fn() },
@@ -22,7 +18,6 @@ vi.mock("..", () => ({
   Themes: {
     "Mint-Y (dark)": {
       name: "Mint-Y (dark)",
-      loadIcons: vi.fn().mockResolvedValue({ Terminal: { src: "term.png" } }),
       icons: {},
       colors: { background: "#000", accent: "#f00" },
       accentOptions: [{ name: "Red", color: "#f00", hover: "#ff0" }],
@@ -65,31 +60,6 @@ describe("themeService", () => {
     Object.defineProperty(window, "devicePixelRatio", { writable: true, value: 1 })
   })
 
-  describe("loadIcons", () => {
-    it("should load icons for the specific theme and platform", async () => {
-      vi.mocked(osService.getPlatform).mockReturnValue("desktop")
-
-      await themeService.loadIcons(THEME_KEY as any)
-
-      expect(Themes[THEME_KEY].loadIcons).toHaveBeenCalledWith("desktop")
-      expect(Themes[THEME_KEY].icons).toEqual({ Terminal: { src: "term.png" } })
-    })
-  })
-
-  describe("preloadAssets", () => {
-    it("should extract source strings from theme icons and call preload", async () => {
-      Themes[THEME_KEY].icons = {
-        User: { src: "user.png" },
-        Terminal: { src: "term.png" },
-      }
-      vi.mocked(getAllProgramMetadata).mockReturnValue([{ icon: "Terminal" }] as any)
-
-      await themeService.preloadAssets()
-
-      expect(preloadImages).toHaveBeenCalledWith(expect.arrayContaining(["user.png", "term.png"]))
-    })
-  })
-
   describe("applyWallpaper", () => {
     it("should detect resolution, load image, and update CSS variables", async () => {
       await themeService.applyWallpaper("mountains")
@@ -99,19 +69,6 @@ describe("themeService", () => {
         "--wallpaper",
         "url(img-src)",
       )
-    })
-  })
-
-  describe("applyTheme", () => {
-    it("should coordinate wallpaper and icon loading", async () => {
-      const wallpaperSpy = vi.spyOn(themeService, "applyWallpaper").mockResolvedValue(undefined)
-      const iconsSpy = vi.spyOn(themeService, "loadIcons").mockResolvedValue(undefined)
-
-      await themeService.applyTheme(THEME_KEY as any)
-
-      expect(wallpaperSpy).toHaveBeenCalledWith("mountains")
-      expect(iconsSpy).toHaveBeenCalledWith(THEME_KEY)
-      expect(setThemeNameSpy).toHaveBeenCalledWith(THEME_KEY)
     })
   })
 

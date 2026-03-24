@@ -1,15 +1,15 @@
-import { useEffect, lazy, Suspense, useRef } from "react"
+import { useEffect, lazy, Suspense, useState } from "react"
 import { AnimatePresence, motion } from "framer-motion"
 import { Shutdown } from "./Shutdown"
-import { BootScreen } from "./BootScreen"
 import { LockScreen } from "./LockScreen"
 import { Loading } from "./Loading"
 import { osService } from "@core/services/osService"
-import { OSPlatform, useOSStore } from "@core/store/useOSStore"
+import { useOSStore } from "@core/store/useOSStore"
 import { useMediaQuery } from "@shared/hooks/useMediaQuery"
 import { processService } from "@core/services/processService"
 import { windowService } from "@features/window/services/windowService"
 import { debugMessage } from "@shared/utils/utils"
+import { themeService } from "@features/theme/services/themeService"
 
 const MobileEnvironment = lazy(() => import("../../environments/mobile/MobileEnvironment"))
 const DesktopEnvironment = lazy(
@@ -19,22 +19,24 @@ const DesktopEnvironment = lazy(
 export function OperatingSystemRoot() {
   const status = useOSStore((s) => s.status)
   const isDesktop = useMediaQuery("(min-width: 1024px)")
+  const [loading, setLoading] = useState(true)
+  const [loadingMessage, setLoadingMessage] = useState("")
 
   debugMessage("Loading Operating System Root", status, isDesktop)
 
-  const lastPlatformRef = useRef<OSPlatform>(osService.getPlatform())
-
   useEffect(() => {
-    const newPlatform = isDesktop ? "desktop" : "mobile"
+    async function setupTheme() {
+      setLoadingMessage("Loading theme assets...")
+      await themeService.initializeTheme()
 
-    if (lastPlatformRef.current !== newPlatform) {
-      lastPlatformRef.current = newPlatform
-
-      osService.setPlatform(newPlatform)
-      windowService.closeAllWindows()
-      processService.stopAllProcesses()
-      osService.setStatus("booting")
+      setLoading(false)
     }
+
+    setupTheme()
+
+    osService.setPlatform(isDesktop ? "desktop" : "mobile")
+    windowService.closeAllWindows()
+    processService.stopAllProcesses()
   }, [isDesktop])
 
   const UIEnvironment = isDesktop ? DesktopEnvironment : MobileEnvironment
@@ -45,14 +47,16 @@ export function OperatingSystemRoot() {
     <div
       className={`fixed inset-0 flex flex-col h-screen w-screen wallpaper transition-all duration-600`}
     >
-      <Suspense fallback={<Loading />}>
-        <AnimatePresence mode="wait">
-          {status === "shutdown" && withMotion(<Shutdown />, `shutdown_${keyModifier}`)}
-          {status === "booting" && withMotion(<BootScreen />, `booting_${keyModifier}`)}
-          {status === "locked" && withMotion(<LockScreen />, `locked_${keyModifier}`)}
-          {status === "unlocked" && withMotion(<UIEnvironment />, `unlocked_${keyModifier}`)}
-        </AnimatePresence>
-      </Suspense>
+      {loading && <Loading message={loadingMessage} />}
+      {!loading && (
+        <Suspense fallback={<Loading message={"Loading the environment..."} />}>
+          <AnimatePresence mode="wait">
+            {status === "shutdown" && withMotion(<Shutdown />, `shutdown_${keyModifier}`)}
+            {status === "locked" && withMotion(<LockScreen />, `locked_${keyModifier}`)}
+            {status === "unlocked" && withMotion(<UIEnvironment />, `unlocked_${keyModifier}`)}
+          </AnimatePresence>
+        </Suspense>
+      )}
     </div>
   )
 }

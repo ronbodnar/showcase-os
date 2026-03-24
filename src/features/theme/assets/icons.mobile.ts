@@ -1,4 +1,4 @@
-import { IconMetadata } from "@features/theme/types"
+import { ThemeIconSet } from "@features/theme/types"
 import { makeIcon } from "@features/theme/helpers"
 
 import BellComponent from "@themeIcons/Mint-Y/mobile/notification-bell.svg?react"
@@ -9,7 +9,7 @@ import MobileSignalComponent from "@themeIcons/Mint-Y/mobile/android-cell-5-bar.
 import PowerOffComponent from "@themeIcons/Mint-Y/mobile/mode_off_on.svg?react"
 import WifiComponent from "@themeIcons/Mint-Y/mobile/android-wifi-4-bar.svg?react"
 
-export const mobileIcons: Record<string, IconMetadata> = {
+export const mobileIconSet: Partial<ThemeIconSet> = {
   FiveG: makeIcon(FiveGComponent),
   AppStack: makeIcon(AppStackComponent),
   BatteryMobile: makeIcon(BatteryMobileComponent),
@@ -17,6 +17,6 @@ export const mobileIcons: Record<string, IconMetadata> = {
   PowerOff: makeIcon(PowerOffComponent),
   Wifi: makeIcon(WifiComponent),
   Bell: makeIcon(BellComponent),
-}
+} as const
 
-export default mobileIcons
+export default mobileIconSet

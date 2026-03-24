@@ -55,7 +55,7 @@ export const Shutdown = () => {
     requestAnimationFrame(animate)
   }, [])
 
-  const boot = () => osService.setStatus("booting")
+  const boot = () => osService.setStatus("locked")
 
   useEffect(() => {
     window.addEventListener("keyup", boot)

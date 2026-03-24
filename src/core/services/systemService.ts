@@ -20,7 +20,7 @@ export const systemService = {
   reboot: () => {
     executeAction("shutdown")
     setTimeout(() => {
-      osService.setStatus("booting")
+      osService.setStatus("locked")
       overlayService.hideOverlay()
     }, 2500)
   },

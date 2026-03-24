@@ -1,4 +1,3 @@
-import { osService } from "@core/services/osService"
 import { useSettingsStore } from "@core/store/useSettingsStore"
 import { Themes } from ".."
 import { preloadImages } from "../helpers"
@@ -8,20 +7,6 @@ import { wallpapers } from "../assets/wallpaper"
 import { debugMessage } from "@shared/utils/utils"
 
 export const themeService = {
-  /**
-   * Loads icons for the currently active theme based on the user's platform (desktop, mobile).
-   */
-  loadIcons: async (themeName?: ThemeName) => {
-    const platform = osService.getPlatform()
-    const userThemeName = useSettingsStore.getState().themeName
-
-    const theme = Themes[themeName ?? userThemeName]
-    const icons = await theme.loadIcons(platform)
-    theme.icons = icons
-
-    // is there where i should just put preloading everything i need for the system? start menu icons (pretty much all program icons), etc?
-  },
-
   preloadAssets: async () => {
     const names: IconName[] = [
       "User",
@@ -113,7 +98,6 @@ export const themeService = {
     const { setThemeName, setAccent, setWallpaperName } = useSettingsStore.getState()
 
     await themeService.applyWallpaper(theme.defaultWallpaper.name)
-    await themeService.loadIcons(theme.name as ThemeName)
     applyStaticStyles(themeName, theme.accentOptions[0])
 
     setWallpaperName(theme.defaultWallpaper.name)

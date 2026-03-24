@@ -70,14 +70,14 @@ describe("systemService", () => {
   })
 
   describe("reboot", () => {
-    it("should trigger shutdown action and set status to booting after delay", () => {
+    it("should trigger shutdown action and set status to locked after delay", () => {
       systemService.reboot()
 
       expect(executeAction).toHaveBeenCalledWith("shutdown")
 
       vi.advanceTimersByTime(2500)
 
-      expect(osService.setStatus).toHaveBeenCalledWith("booting")
+      expect(osService.setStatus).toHaveBeenCalledWith("locked")
       expect(overlayService.hideOverlay).toHaveBeenCalled()
     })
   })
