@@ -159,6 +159,7 @@ export interface ThemeIconSet {
   TwitchRaffle: IconMetadata
   TMS: IconMetadata
   VisualStudioCode: IconMetadata
+  Welcome: IconMetadata
 
   // Tech Icons
   Angular: IconMetadata

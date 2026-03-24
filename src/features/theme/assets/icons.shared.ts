@@ -19,6 +19,7 @@ import BrowserSrc from "@themeIcons/Mint-Y/apps/brave-browser.png"
 import ConnectComponent from "@themeIcons/Mint-Y/apps/internet-mail.png"
 import CoreFlowERPSrc from "@themeIcons/Mint-Y/apps/coreflow-erp.png"
 import DeliveryRouterCLISrc from "@themeIcons/Mint-Y/apps/deliveryrouter-cli.svg"
+import FilesSrc from "@themeIcons/Mint-Y/actions/xsi-folder-open-symbolic.svg?react"
 import GridOfWordsSrc from "@themeIcons/Mint-Y/apps/grid-of-words.svg"
 import LeagueOfLegendsLogParserSrc from "@themeIcons/Mint-Y/apps/league-of-legends-log-parser.svg"
 import LoanEligibilityMLSrc from "@themeIcons/Mint-Y/apps/loan-eligibility-ml.svg"
@@ -101,6 +102,7 @@ export const sharedIconSet: Partial<ThemeIconSet> = {
   Connect: makeIcon(ConnectComponent),
   CoreFlowERP: makeIcon(CoreFlowERPSrc),
   DeliveryRouterCLI: makeIcon(DeliveryRouterCLISrc),
+  Files: makeIcon(FilesSrc),
   GridOfWords: makeIcon(GridOfWordsSrc),
   LeagueOfLegendsLogParser: makeIcon(LeagueOfLegendsLogParserSrc),
   LoanEligibilityML: makeIcon(LoanEligibilityMLSrc),

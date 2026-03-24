@@ -17,7 +17,7 @@ export default function Connect() {
 
           <div className="flex items-center gap-2 text-xs text-muted">
             <span className="w-2 h-2 bg-green-600 rounded-full" />
-            Currently exploring new senior-level roles
+            Currently exploring new roles
           </div>
         </div>
 

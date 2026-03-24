@@ -14,6 +14,7 @@ import WindowMinimizeComponent from "@themeIcons/Mint-Y/actions/window-minimize-
 import WindowNewComponent from "@themeIcons/Mint-Y/actions/window-new-symbolic.svg?react"
 import LockScreenSrc from "@themeIcons/Mint-Y/apps/lock-screen.png"
 import ShutdownSrc from "@themeIcons/Mint-Y/apps/shutdown.png"
+import WelcomeSrc from "@themeIcons/Mint-Y/apps/mintwelcome.png"
 
 import ComputerComponent from "@themeIcons/Mint-Y/devices/computer-symbolic.svg?react"
 import RemovableMediaComponent from "@themeIcons/Mint-Y/devices/drive-removable-media-symbolic.svg?react"
@@ -41,6 +42,7 @@ export const desktopIconSet: Partial<ThemeIconSet> = {
   // Apps
   LockScreen: makeIcon(LockScreenSrc),
   Shutdown: makeIcon(ShutdownSrc),
+  Welcome: makeIcon(WelcomeSrc),
 
   // Devices
   Computer: makeIcon(ComputerComponent),

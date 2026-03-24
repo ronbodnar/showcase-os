@@ -14,6 +14,7 @@ import { WindowRenderer } from "./WindowRenderer"
 import { debugMessage } from "@shared/utils/utils"
 import { processService } from "@core/services/processService"
 import { getLauncherMeta } from "@features/launcher/registry"
+import { useSettingsStore } from "@core/store/useSettingsStore"
 
 export default function DesktopEnvironment() {
   debugMessage("Rendering DesktopEnvironment", performance.now())
@@ -23,8 +24,15 @@ export default function DesktopEnvironment() {
     if (loaded.current) return
     gridService.initializeLaunchers()
 
-    if (processService.getRunningCountForProgramId("start_menu") === 0) {
+    const isRunningStartMenu = processService.getRunningCountForProgramId("start_menu") > 0
+    if (!isRunningStartMenu) {
       processService.startProcess(getLauncherMeta("start_menu"), true)
+    }
+
+    const showWelcome = useSettingsStore.getState().showWelcome
+    const isShowingWelcome = processService.getRunningCountForProgramId("welcome") > 0
+    if (showWelcome && !isShowingWelcome) {
+      processService.startProcess(getLauncherMeta("welcome"))
     }
 
     loaded.current = true

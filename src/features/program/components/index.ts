@@ -25,4 +25,5 @@ export const PROGRAM_COMPONENTS: Partial<
   system_settings: { loader: () => import("./SystemSettings/SystemSettings") },
   terminal: { loader: () => import("./Terminal/Terminal") },
   visual_studio_code: { loader: () => import("./VisualStudioCode/VisualStudioCode") },
+  welcome: { loader: () => import("./Welcome/Welcome") },
 }

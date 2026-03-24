@@ -9,11 +9,13 @@ interface SettingsState {
   accent: ThemeAccent
   wallpaperName: string
   textScaling: number
+  showWelcome: boolean
 
   setThemeName: (themeName: ThemeName) => void
   setAccent: (accent: ThemeAccent) => void
   setWallpaperName: (wallpaperName: string) => void
   setTextScaling: (textScaling: number) => void
+  setShowingWelcome: (showWelcome: boolean) => void
 }
 
 export const SETTINGS_STORE_NAME = "settings-store"
@@ -29,6 +31,7 @@ export const useSettingsStore = create<SettingsState>()(
         accent: Themes[defaultTheme].accentOptions[0],
         wallpaperName: Themes[defaultTheme].wallpaperOptions[1].name,
         textScaling: 1,
+        showWelcome: true,
 
         setThemeName: (themeName) =>
           set((state) => (themeName === state.themeName ? state : { themeName })),
@@ -37,6 +40,8 @@ export const useSettingsStore = create<SettingsState>()(
           set((state) => (wallpaperName === state.wallpaperName ? state : { wallpaperName })),
         setTextScaling: (textScaling) =>
           set((state) => (textScaling === state.textScaling ? state : { textScaling })),
+        setShowingWelcome: (showWelcome) =>
+          set((state) => (showWelcome === state.showWelcome ? state : { showWelcome })),
       }),
       { name: SETTINGS_STORE_NAME },
     ),

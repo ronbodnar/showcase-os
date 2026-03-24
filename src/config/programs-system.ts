@@ -185,4 +185,19 @@ export const SYSTEM_PROGRAMS_META = [
       },
     },
   },
+
+  {
+    id: "welcome",
+    name: "Welcome",
+    icon: "Welcome",
+    category: "system",
+    window: {
+      spawn: {
+        size: { width: 0.6, height: 0.4, unit: "%" },
+        minSize: { width: 600, height: 500 },
+        maxSize: { width: 900, height: 500 },
+      },
+      minSize: { width: 600, height: 500 },
+    },
+  },
 ] as const satisfies ProgramMetadata[]
