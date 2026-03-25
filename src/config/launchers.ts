@@ -136,6 +136,7 @@ const LAUNCHER_METADATA = [
   {
     id: "projects",
     label: "Projects",
+    icon: "SoftwareCenter",
     target: {
       type: "program",
       programId: "software_center",
@@ -145,6 +146,7 @@ const LAUNCHER_METADATA = [
   {
     id: "about",
     label: "About",
+    icon: "SystemInfo",
     target: {
       type: "program",
       programId: "system_info",

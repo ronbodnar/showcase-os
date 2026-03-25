@@ -195,7 +195,7 @@ export const SYSTEM_PROGRAMS_META = [
       spawn: {
         size: { width: 0.6, height: 0.4, unit: "%" },
         minSize: { width: 600, height: 500 },
-        maxSize: { width: 900, height: 500 },
+        maxSize: { width: 600, height: 500 },
       },
       minSize: { width: 600, height: 500 },
     },

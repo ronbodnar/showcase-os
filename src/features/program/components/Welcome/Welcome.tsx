@@ -1,4 +1,5 @@
 import { processService } from "@core/services/processService"
+import { useOSStore } from "@core/store/useOSStore"
 import { useSettingsStore } from "@core/store/useSettingsStore"
 import { getLauncherMeta } from "@features/launcher/registry"
 import { launcherService } from "@features/launcher/services/launcherService"
@@ -6,20 +7,40 @@ import { LauncherId } from "@features/launcher/types"
 import Icon from "@shared/components/Icon"
 
 export default function Welcome() {
+  const isDesktop = useOSStore((state) => state.isDesktop())
+
   const textSections = [
     "Welcome to my interactive portfolio!",
 
-    "I'm Ron Bodnar, a software engineer based near Los Angeles, CA. I build software that solves real problems for businesses and improves the experience for the people using it.",
+    `This environment is designed to feel like a real operating system, inspired by${isDesktop ? "" : " Android and"} my personal Linux Mint setup.`,
 
-    "This environment is designed to feel like a real operating system, inspired by my personal Linux Mint setup.",
+    `You can explore projects, launch applications,${isDesktop ? " manage windows," : ""} adjust the theme, and more — just like a real ${isDesktop ? "desktop" : "mobile"} environment. Feel free to explore and send any feedback.`,
 
-    "You can explore projects, launch applications, manage windows, adjust the theme, and more — just like a real desktop environment. Feel free to explore and send any feedback.",
-
-    "Ready to get started? Open a launcher below.",
+    `Ready to get started? ${isDesktop ? "Open" : "Tap"} a launcher below.`,
   ]
-  const launchers: LauncherId[] = ["software_center", "terminal", "system_settings", "browser"]
+  const launchers: LauncherId[] = ["about", "projects", "terminal", "system_settings", "browser"]
 
   const showWelcome = useSettingsStore((state) => state.showWelcome)
+
+  const renderLauncher = (launcher: LauncherId) => {
+    const launcherMeta = getLauncherMeta(launcher)
+
+    const handleClick = () => {
+      processService.stopProcessesWithProgramId("welcome")
+      launcherService.openLauncher(launcherMeta)
+    }
+
+    return (
+      <div
+        key={launcher}
+        className="flex flex-col items-center gap-2 cursor-pointer hover:drop-shadow-2xl hover:drop-shadow-neutral-950/50 hover:brightness-110"
+        onClick={handleClick}
+      >
+        <Icon name={launcherMeta.icon ?? "AppPlaceholder"} className="w-8 h-8" />
+        <span className="text-sm text-muted text-center">{launcherMeta.label ?? "Unknown"}</span>
+      </div>
+    )
+  }
 
   return (
     <div className="flex flex-col h-full w-full">
@@ -34,28 +55,22 @@ export default function Welcome() {
           </p>
         ))}
 
-        <div className="flex justify-around gap-5">
-          {launchers.map((launcher) => {
-            const launcherMeta = getLauncherMeta(launcher)
-            const handleClick = () => {
-              processService.stopProcessesWithProgramId("welcome")
-              launcherService.openLauncher(launcherMeta)
-            }
-            return (
-              <div
-                key={launcher}
-                className="flex flex-col items-center gap-2 cursor-pointer hover:drop-shadow-2xl hover:drop-shadow-neutral-950/50 hover:brightness-110"
-                onClick={handleClick}
-              >
-                <Icon name={launcherMeta.icon ?? "AppPlaceholder"} className="w-8 h-8" />
-                <span className="text-sm text-muted">{launcherMeta.label ?? "Unknown"}</span>
-              </div>
-            )
-          })}
+        {/* Mobile layout */}
+        <div className="flex flex-1 w-full justify-evenly flex-col gap-5 lg:hidden">
+          <div className="grid grid-cols-3 gap-5">{launchers.slice(0, 3).map(renderLauncher)}</div>
+
+          <div className="flex justify-around gap-5">
+            {launchers.slice(3, 5).map(renderLauncher)}
+          </div>
+        </div>
+
+        {/* Desktop layout */}
+        <div className="hidden lg:flex lg:flex-1 flex-wrap items-center justify-around gap-5">
+          {launchers.map(renderLauncher)}
         </div>
       </div>
 
-      <div className="flex justify-end items-center gap-1 px-3 bg-window h-7">
+      <div className="flex justify-end items-center gap-1 px-3 bg-window h-10 lg:h-7">
         <input
           type="checkbox"
           className="text-text accent-accent rounded"

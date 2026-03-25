@@ -13,14 +13,24 @@ import { HomeScreen } from "./HomeScreen"
 import { NavigationControls } from "./NavigationControls"
 import { NotificationBar } from "./NotificationBar"
 import { debugMessage } from "@shared/utils/utils"
+import { useSettingsStore } from "@core/store/useSettingsStore"
+import { processService } from "@core/services/processService"
+import { getLauncherMeta } from "@features/launcher/registry"
+import { launcherService } from "@features/launcher/services/launcherService"
 
 export default function MobileEnvironment() {
-  debugMessage("Rendering MobileEnvironment")
-
   const activeAppCard = useAppStackStore((state) => state.activeCard)
+
+  debugMessage("Rendering MobileEnvironment", activeAppCard)
 
   useEffect(() => {
     gridService.initializeLaunchers()
+
+    const showWelcome = useSettingsStore.getState().showWelcome
+    const isShowingWelcome = processService.getRunningCountForProgramId("welcome") > 0
+    if (showWelcome && !isShowingWelcome) {
+      launcherService.openLauncher(getLauncherMeta("welcome"))
+    }
 
     disableTextSelection()
   }, [])
@@ -49,25 +59,23 @@ function MobileLayout({ activeAppCard }: { activeAppCard: AppCardState | undefin
         <AnimatePresence mode="wait">
           {!activeAppCard && (
             <motion.div
-              key="home"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.1 }}
               className="w-full h-full py-15"
             >
-              <HomeScreen />
+              <HomeScreen key="home" />
             </motion.div>
           )}
           {activeAppCard && (
             <motion.div
-              key={activeAppCard.id}
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.8 }}
               transition={{ duration: 0.1 }}
               className="w-full h-full"
             >
-              <AppCardInstance id={activeAppCard.id} />
+              <AppCardInstance key={activeAppCard.id} id={activeAppCard.id} />
             </motion.div>
           )}
         </AnimatePresence>
