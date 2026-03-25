@@ -11,7 +11,8 @@ import { AppCard } from "./AppCard"
 import { debugMessage } from "@shared/utils/utils"
 
 export function AppCardInstance({ id }: { id: string }) {
-  const appCard = useAppStackStore((state) => state.appCards[id])
+  const appCards = useAppStackStore((state) => state.appCards)
+  const appCard = appCards[id]
   const appCardRef = useRef<HTMLDivElement | null>(null)
 
   const process = processService.getProcess(appCard.processId)
@@ -33,7 +34,7 @@ export function AppCardInstance({ id }: { id: string }) {
     return surfaceColor
   }
 
-  debugMessage("Rendering AppCardInstance", appCard)
+  debugMessage("Rendering AppCardInstance", id, appCard)
 
   const memoizedComponent = useMemo(
     () =>
