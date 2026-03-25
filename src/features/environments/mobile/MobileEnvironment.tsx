@@ -13,6 +13,9 @@ import { HomeScreen } from "./HomeScreen"
 import { NavigationControls } from "./NavigationControls"
 import { NotificationBar } from "./NotificationBar"
 import { debugMessage } from "@shared/utils/utils"
+import { useSettingsStore } from "@core/store/useSettingsStore"
+import { processService } from "@core/services/processService"
+import { getLauncherMeta } from "@features/launcher/registry"
 
 export default function MobileEnvironment() {
   debugMessage("Rendering MobileEnvironment")
@@ -21,6 +24,12 @@ export default function MobileEnvironment() {
 
   useEffect(() => {
     gridService.initializeLaunchers()
+
+    const showWelcome = useSettingsStore.getState().showWelcome
+    const isShowingWelcome = processService.getRunningCountForProgramId("welcome") > 0
+    if (showWelcome && !isShowingWelcome) {
+      processService.startProcess(getLauncherMeta("welcome"))
+    }
 
     disableTextSelection()
   }, [])
