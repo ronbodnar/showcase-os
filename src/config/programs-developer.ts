@@ -160,6 +160,49 @@ export const DEVELOPER_PROGRAMS_META = [
   },
 
   {
+    id: "ng_modular_forms",
+    name: "NG Modular Forms",
+    icon: "NGModularForms",
+    category: "developer",
+    runnable: false,
+    background: {
+      color: "#3b82f6",
+    },
+    details: {
+      description: {
+        short:
+          "A structured Angular forms architecture for building scalable, maintainable, and reusable reactive form systems.",
+        long:
+          `NG Modular Forms is a modular form orchestration framework built on top of Angular Reactive Forms, designed to address the architectural complexity that emerges in large-scale enterprise applications.\n\n` +
+          `<b>Project Intent & Vision</b>\n` +
+          `The library introduces a <b>separation-of-concerns architecture</b> for form development by decomposing form responsibilities into isolated, reusable primitives. Rather than embedding orchestration, business logic, transformation layers, and UI state directly into Angular components, ng-modular-forms establishes a structured system that keeps complex forms maintainable as applications scale.\n\n` +
+          `<div class='my-4' /><b class='text-xl'>Core Architecture</b>\n\n` +
+          `<b>Form Orchestration Layer</b>\n` +
+          `The framework centers around a <b>FormOrchestrator</b> abstraction responsible for form lifecycle management, composition, and initialization. This creates a centralized orchestration layer capable of coordinating large, multi-domain form systems.\n\n` +
+          `<b>Reactive Behavior Isolation</b>\n` +
+          `Cross-field interactions, computed state, dynamic validation, and reactive subscriptions are extracted into dedicated <b>FormHandler</b> classes. This prevents Angular components from becoming tightly coupled state containers while significantly improving readability and testability.\n\n` +
+          `<b>Transformation & Serialization Pipeline</b>\n` +
+          `A dedicated <b>FormMapper</b> layer handles API-to-UI transformations, hydration, normalization, and serialization concerns independently of presentation logic. This architecture allows frontend forms to evolve independently from backend DTO structures.\n\n` +
+          `<b>Reusable Input Infrastructure</b>\n` +
+          `The library provides a collection of reusable <b>ControlValueAccessor-based inputs</b> with interchangeable Native and Angular Material implementations. Inputs expose a consistent API while supporting validation state management, formatting, parsing, and behavior-driven restrictions.\n\n` +
+          `<div class='my-4' /><b class='text-xl'>Developer Experience</b>\n\n` +
+          `<b>Framework-Native Integration</b>\n` +
+          `ng-modular-forms extends Angular Reactive Forms rather than replacing them, preserving compatibility with Angular's existing forms ecosystem while introducing higher-level architectural primitives.\n\n` +
+          `<b>Scalable Design Patterns</b>\n` +
+          `The system was designed specifically for enterprise-scale forms where maintainability, team scalability, and long-term evolution become more important than minimizing initial boilerplate.\n\n` +
+          `<div class='my-4' /><b class='text-xl'>Engineering Tradeoffs</b>\n\n` +
+          `• Introduced additional architectural abstraction layers to improve long-term scalability and separation of concerns.\n` +
+          `• Prioritized explicit orchestration and modularity over minimal setup complexity.\n` +
+          `• Accepted higher initial implementation structure in exchange for improved maintainability across large reactive form systems.`,
+      },
+      publicUrl: "https://ngmf.ronbodnar.com/",
+      githubUrl: "https://github.com/ronbodnar/ng-modular-forms",
+      technologies: ["Angular", "TypeScript", "RxJS", "TailwindCSS", "Vite"],
+      year: { start: 2026 },
+    },
+  },
+
+  {
     id: "oed_parser",
     name: "OED Parser",
     icon: "OEDParser",

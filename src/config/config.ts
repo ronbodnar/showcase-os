@@ -62,7 +62,7 @@ export const config: Config = {
    * Banners are derived from the programs in the "featured" section.
    */
   softwareCenter: {
-    featured: ["coreflow_erp", "showcase_os", "grid_of_words"] as ProgramId[],
+    featured: ["coreflow_erp", "ng_modular_forms", "showcase_os", "grid_of_words"] as ProgramId[],
 
     projects: ["tms", "loan_eligibility", "deliveryrouter_cli", "oed_parser"] as ProgramId[],
 

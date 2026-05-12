@@ -24,6 +24,7 @@ import GridOfWordsSrc from "@themeIcons/Mint-Y/apps/grid-of-words.svg"
 import LeagueOfLegendsLogParserSrc from "@themeIcons/Mint-Y/apps/league-of-legends-log-parser.svg"
 import LoanEligibilityMLSrc from "@themeIcons/Mint-Y/apps/loan-eligibility-ml.svg"
 import MTGVirtualBinderSrc from "@themeIcons/Mint-Y/apps/mtg-virtual-binder.svg"
+import NGModularFormsSrc from "@sharedIcons/apps/ng-modular-forms.png"
 import OEDParserSrc from "@themeIcons/Mint-Y/apps/oed-parser.svg"
 import OSDClaimManagerSrc from "@themeIcons/Mint-Y/apps/osd-claim-manager.svg"
 import PDFViewerSrc from "@themeIcons/Mint-Y/apps/pdf-viewer.png"
@@ -107,6 +108,7 @@ export const sharedIconSet: Partial<ThemeIconSet> = {
   LeagueOfLegendsLogParser: makeIcon(LeagueOfLegendsLogParserSrc),
   LoanEligibilityML: makeIcon(LoanEligibilityMLSrc),
   MTGVirtualBinder: makeIcon(MTGVirtualBinderSrc),
+  NGModularForms: makeIcon(NGModularFormsSrc),
   OEDParser: makeIcon(OEDParserSrc),
   OSDClaimManager: makeIcon(OSDClaimManagerSrc),
   PDFViewer: makeIcon(PDFViewerSrc),

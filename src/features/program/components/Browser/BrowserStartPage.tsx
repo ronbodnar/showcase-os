@@ -6,6 +6,7 @@ import Icon from "@shared/components/Icon"
 export function BrowserStartPage({ onLaunchApp }: { onLaunchApp: (url: string) => void }) {
   const favorites: Array<ProgramMetadata> = [
     getProgramMeta("coreflow_erp"),
+    getProgramMeta("ng_modular_forms"),
     getProgramMeta("showcase_os"),
     getProgramMeta("grid_of_words"),
     getProgramMeta("tms"),
@@ -13,7 +14,7 @@ export function BrowserStartPage({ onLaunchApp }: { onLaunchApp: (url: string) =
 
   return (
     <div className="absolute inset-0 flex items-start justify-center bg-linear-to-br from-window to-window/90 text-text p-8">
-      <div className="grid grid-cols-4 gap-8 max-w-3xl w-full">
+      <div className="flex flex-wrap justify-center gap-8 max-w-3xl w-full">
         {favorites.map((app) => (
           <button
             key={app.details?.publicUrl}
@@ -21,7 +22,7 @@ export function BrowserStartPage({ onLaunchApp }: { onLaunchApp: (url: string) =
             className="flex flex-col items-center group gap-3 cursor-pointer"
           >
             <div className="w-16 h-16 rounded-xl bg-surface-alt border border-border flex items-center justify-center backdrop-blur-sm group-hover:bg-surface-hover group-hover:scale-105 group-hover:border-accent/90 transition-all shadow-lg">
-              <Icon name={app.icon as IconName} className="w-8 h-8 text-gray-200" />
+              <Icon name={app.icon as IconName} className="w-10 h-10 text-text" />
             </div>
             <span className="text-sm font-medium text-text transition-colors">{app.name}</span>
           </button>

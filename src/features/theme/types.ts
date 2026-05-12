@@ -143,6 +143,7 @@ export interface ThemeIconSet {
   LoanEligibilityML: IconMetadata
   LockScreen: IconMetadata
   MTGVirtualBinder: IconMetadata
+  NGModularForms: IconMetadata
   OEDParser: IconMetadata
   OSDClaimManager: IconMetadata
   PDFViewer: IconMetadata
