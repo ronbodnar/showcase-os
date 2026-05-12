@@ -57,7 +57,7 @@ export const DEVELOPER_PROGRAMS_META = [
     icon: "GridOfWords",
     category: "developer",
     background: {
-      color: "#6c5ce7",
+      color: "#4B5563",
     },
     details: {
       description: {
@@ -166,7 +166,7 @@ export const DEVELOPER_PROGRAMS_META = [
     category: "developer",
     runnable: false,
     background: {
-      color: "#3b82f6",
+      color: "#0F3D2A",
     },
     details: {
       description: {
@@ -233,7 +233,7 @@ export const DEVELOPER_PROGRAMS_META = [
     icon: "ShowcaseOS",
     category: "developer",
     background: {
-      color: "#ff914d",
+      color: "#0F172A",
     },
     details: {
       description: {

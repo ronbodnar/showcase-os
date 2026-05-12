@@ -3,8 +3,9 @@ import { launchersConfig } from "./launchers"
 import { DEVELOPER_PROGRAMS_META } from "./programs-developer"
 import { SYSTEM_PROGRAMS_META } from "./programs-system"
 import { ThemeName } from "@features/theme/types"
+import { LauncherId } from "@features/launcher/types"
 
-interface Config {
+interface AppConfig {
   formspreeKey: string
   launchers: typeof launchersConfig
   programs: {
@@ -25,6 +26,11 @@ interface Config {
     projects: ProgramId[]
     archived: ProgramId[]
   }
+  welcome: {
+    title: string
+    text: string[]
+    launchers: LauncherId[]
+  }
   windows: {
     minHeight: number
     minWidth: number
@@ -37,7 +43,7 @@ interface Config {
  * This file is used to configure the UI and behavior of the application.
  *
  */
-export const config: Config = {
+export const config: AppConfig = {
   formspreeKey: "mqeekgeq",
   launchers: launchersConfig,
   programs: {
@@ -73,6 +79,22 @@ export const config: Config = {
       "league_of_legends_log_parser",
       "mtg_virtual_binder",
     ] as ProgramId[],
+  },
+
+  welcome: {
+    title: "Welcome to Showcase OS",
+    text: [
+      "Hi, I'm Ron Bodnar — a full stack software engineer focused on building scalable, modular software systems with a focus on architecture, data orchestration, and long-term maintainability.",
+
+      "Showcase OS is an interactive portfolio environment designed to present my projects, technical architecture, and engineering approach through a desktop-inspired experience.",
+
+      "The system is heavily inspired by operating system design patterns, combining application launchers, window management, theming, and modular UI architecture into a unified interface.",
+
+      "You can explore projects, launch applications, inspect technical details, and navigate the environment much like a real operating system.",
+
+      "Ready to get started? Launch an application below.",
+    ],
+    launchers: ["about", "projects", "terminal", "browser"],
   },
 
   windows: {

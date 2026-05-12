@@ -73,7 +73,7 @@ export function Carousel({
               <div
                 className="flex-1 h-full"
                 style={{
-                  backgroundColor: asset.meta.background?.color ?? "#6c5ce7",
+                  backgroundColor: asset.meta.background?.color ?? "transparent",
                   backgroundImage: asset.meta.background?.image
                     ? `url(${asset.meta.background.image})`
                     : undefined,
