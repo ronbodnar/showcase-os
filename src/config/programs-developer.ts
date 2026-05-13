@@ -161,7 +161,7 @@ export const DEVELOPER_PROGRAMS_META = [
 
   {
     id: "ng_modular_forms",
-    name: "NG Modular Forms",
+    name: "ng-modular-forms",
     icon: "NGModularForms",
     category: "developer",
     runnable: false,
@@ -173,7 +173,7 @@ export const DEVELOPER_PROGRAMS_META = [
         short:
           "A structured Angular forms architecture for building scalable, maintainable, and reusable reactive form systems.",
         long:
-          `NG Modular Forms is a modular form orchestration framework built on top of Angular Reactive Forms, designed to address the architectural complexity that emerges in large-scale enterprise applications.\n\n` +
+          `ng-modular-forms is a modular form orchestration framework built on top of Angular Reactive Forms, designed to address the architectural complexity that emerges in large-scale enterprise applications.\n\n` +
           `<b>Project Intent & Vision</b>\n` +
           `The library introduces a <b>separation-of-concerns architecture</b> for form development by decomposing form responsibilities into isolated, reusable primitives. Rather than embedding orchestration, business logic, transformation layers, and UI state directly into Angular components, ng-modular-forms establishes a structured system that keeps complex forms maintainable as applications scale.\n\n` +
           `<div class='my-4' /><b class='text-xl'>Core Architecture</b>\n\n` +
