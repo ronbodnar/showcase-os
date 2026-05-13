@@ -4,6 +4,7 @@ import { DEVELOPER_PROGRAMS_META } from "./programs-developer"
 import { SYSTEM_PROGRAMS_META } from "./programs-system"
 import { ThemeName } from "@features/theme/types"
 import { LauncherId } from "@features/launcher/types"
+import { getProgramMeta } from "@features/program/registry"
 
 interface AppConfig {
   formspreeKey: string
@@ -20,6 +21,9 @@ interface AppConfig {
     mobileIconSize: number
     panelIconSize: number
     desktopIconSize: number
+  }
+  browser: {
+    favorites: ProgramMetadata[]
   }
   softwareCenter: {
     featured: ProgramId[]
@@ -62,13 +66,23 @@ export const config: AppConfig = {
     desktopIconSize: 40,
   },
 
+  browser: {
+    favorites: [
+      getProgramMeta("ng_modular_forms"),
+      getProgramMeta("coreflow_erp"),
+      getProgramMeta("showcase_os"),
+      getProgramMeta("grid_of_words"),
+      getProgramMeta("tms"),
+    ],
+  },
+
   /**
    * Custom configuration to build the main window for the Software Center.
    * These are the programs that are displayed in each section of the Software Center.
    * Banners are derived from the programs in the "featured" section.
    */
   softwareCenter: {
-    featured: ["coreflow_erp", "ng_modular_forms", "showcase_os", "grid_of_words"] as ProgramId[],
+    featured: ["ng_modular_forms", "coreflow_erp", "showcase_os", "grid_of_words"] as ProgramId[],
 
     projects: ["tms", "loan_eligibility", "deliveryrouter_cli", "oed_parser"] as ProgramId[],
 

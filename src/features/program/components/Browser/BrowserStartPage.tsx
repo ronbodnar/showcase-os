@@ -1,16 +1,9 @@
-import { getProgramMeta } from "@features/program/registry"
-import { ProgramMetadata } from "@features/program/types"
+import { config } from "@config/config"
 import { IconName } from "@features/theme/types"
 import Icon from "@shared/components/Icon"
 
 export function BrowserStartPage({ onLaunchApp }: { onLaunchApp: (url: string) => void }) {
-  const favorites: Array<ProgramMetadata> = [
-    getProgramMeta("coreflow_erp"),
-    getProgramMeta("ng_modular_forms"),
-    getProgramMeta("showcase_os"),
-    getProgramMeta("grid_of_words"),
-    getProgramMeta("tms"),
-  ]
+  const favorites = config.browser.favorites
 
   return (
     <div className="absolute inset-0 flex items-start justify-center bg-linear-to-br from-window to-window/90 text-text p-8">
