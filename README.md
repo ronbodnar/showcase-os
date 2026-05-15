@@ -27,7 +27,7 @@
 
 <p align="center">
   <a href="https://ronbodnar.com/" target="_blank">
-    <img src="https://img.shields.io/badge/Launch_Live_Demo-2ea44f?style=for-the-badge" alt="Launch Demo" />
+    <img src="https://img.shields.io/badge/Launch_Showcase_OS-2ea44f?style=for-the-badge" alt="Launch Showcase OS" />
   </a>
 </p>
 
