@@ -286,7 +286,7 @@ export const DEVELOPER_PROGRAMS_META = [
           `Built under real operational constraints, CoreFlow prevents misalignment between contracts, invoices, and ledgers by enforcing contract state as the single source of truth and ensuring consistency at the service and API layers.\n\n` +
           `<div class='my-4' /><b class='text-xl'>Backend Architecture</b>\n\n` +
           `<b>Multi-Tenancy & Isolation</b>\n` +
-          `Strict tenant data isolation is enforced using a <b>TenantRoutingDataSource</b> with context-propagation filters and <b>ThreadLocal storage</b>, enabling rapid provisioning of isolated demo environments.\n\n` +
+          `Strict tenant data isolation is enforced using a <b>TenantRoutingDataSource</b> with context-propagation filters and <b>ThreadLocal storage</b>, enabling rapid provisioning of isolated sandbox environments.\n\n` +
           `<b>CQRS-Lite & API Governance</b>\n` +
           `Read and write paths are separated via a <b>Query Handler layer</b>, while RBAC at the API boundary ensures controlled data exposure.\n\n` +
           `<b>Deterministic Financial Logic</b>\n` +
