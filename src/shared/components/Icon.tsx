@@ -24,6 +24,8 @@ export const Icon = memo(({ name, tooltip, className, style }: Props) => {
     filter: "brightness(0.9) saturate(1.1) contrast(1.05)",
     opacity: 1,
     mixBlendMode: "normal",
+    imageRendering: "auto",
+    backfaceVisibility: "hidden",
     ...style,
   } as React.CSSProperties
 
