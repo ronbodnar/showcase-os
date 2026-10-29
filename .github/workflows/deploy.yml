@@ -36,4 +36,4 @@ jobs:
           rsync -az --delete \
             -e "ssh -p ${{ secrets.DEPLOY_PORT }} -o StrictHostKeyChecking=accept-new" \
             dist/ \
-            ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:/home/${{ secrets.DEPLOY_USER }}/web-services/public/ronbodnar.com/
+            ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:/home/${{ secrets.DEPLOY_USER }}/infrastructure/public/ronbodnar.com/
