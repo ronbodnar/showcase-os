@@ -55,5 +55,9 @@
     "vite": "^6.2.0",
     "vite-plugin-svgr": "^4.5.0",
     "vitest": "^4.0.16"
+  },
+  "allowScripts": {
+    "@swc/core@1.16.20": true,
+    "esbuild@0.25.12": true
   }
 }
